@@ -153,12 +153,7 @@ public class LauncherUtil {
         File tmpDir = new File("/files/_tmp/");
         try {
             FilesUtil.emptyDirectory(tmpDir);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Files.createDirectories(tmpDir.toPath());
+            tmpDir.delete();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -166,6 +161,7 @@ public class LauncherUtil {
 
 
     public static void copyJar(byte[] jar, File destFile) throws IOException {
+        Files.createDirectories(destFile.toPath().getParent());
         try (OutputStream out = new FileOutputStream(destFile)) {
             out.write(jar);
         }
