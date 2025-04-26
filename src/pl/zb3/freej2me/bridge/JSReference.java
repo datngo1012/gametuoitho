@@ -2,9 +2,9 @@ package pl.zb3.freej2me.bridge;
 
 // CheerpJ wrappers aren't equal, this class
 public class JSReference {
-    static {
-        System.loadLibrary("libjsreference");
-	}
+    //static {
+    //    System.loadLibrary("libjsreference");
+	//}
 
     private Object handle;
     private int hashCode;

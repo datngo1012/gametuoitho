@@ -1,9 +1,9 @@
 package pl.zb3.freej2me.bridge.media;
 
 public class MidiBridge {
-    static {
-        System.loadLibrary("libmidibridge");
-    }
+    //static {
+    //    System.loadLibrary("libmidibridge");
+    //}
 
     /*
      * this assumes we only have one midi player [as in spec], so no object references

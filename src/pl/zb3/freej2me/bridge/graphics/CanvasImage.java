@@ -6,9 +6,9 @@ import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
 
 public class CanvasImage extends Image {
-    static {
-        System.loadLibrary("libcanvasgraphics");
-    }
+    //static {
+    //    System.loadLibrary("libcanvasgraphics");
+    //}
 
     protected Object bitmapHandle = null;
     protected CanvasGraphics gc = null;

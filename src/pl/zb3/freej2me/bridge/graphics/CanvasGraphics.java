@@ -6,9 +6,9 @@ import javax.microedition.lcdui.Image;
 import pl.zb3.freej2me.bridge.gles2.GLES2;
 
 public class CanvasGraphics extends javax.microedition.lcdui.Graphics {
-    static {
-        System.loadLibrary("libcanvasgraphics");
-    }
+    //static {
+    //    System.loadLibrary("libcanvasgraphics");
+    //}
 
     protected Object canvasHandle;
     protected Object ctxHandle;

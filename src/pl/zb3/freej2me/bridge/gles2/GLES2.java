@@ -14,9 +14,9 @@ class MatrixEntry {
 }
 
 public class GLES2 {
-    static {
-        System.loadLibrary("libgles2");
-	}
+    //static {
+    //    System.loadLibrary("libgles2");
+	//}
 
     public static boolean DEBUG = true;
     public static boolean bound = false;

@@ -15,7 +15,6 @@ let defaultSettings = {};
 async function main() {
     document.getElementById("loading").textContent = "Loading CheerpJ...";
     await cheerpjInit({
-        javaProperties: ["java.library.path="+cheerpjWebRoot+"/libjs/"],
         enableDebug: false
     });
 

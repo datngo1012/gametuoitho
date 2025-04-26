@@ -4,6 +4,15 @@ import { codeMap, KeyRepeatManager } from "./key.js";
 import { EventQueue } from "./eventqueue.js";
 import { initKbdListeners, setKbdHandler, kbdWidth, kbdHeight } from "./screenKbd.js";
 
+// we need to import natives here, don't use System.loadLibrary
+// since CheerpJ fails to load them in firefox and we can't set breakpoints
+import canvasFontNatives from "../libjs/libcanvasfont.js";
+import canvasGraphicsNatives from "../libjs/libcanvasgraphics.js";
+import gles2Natives from "../libjs/libgles2.js";
+import jsReferenceNatives from "../libjs/libjsreference.js";
+import mediaBridgeNatives from "../libjs/libmediabridge.js";
+import midiBridgeNatives from "../libjs/libmidibridge.js";
+
 const evtQueue = new EventQueue();
 const sp = new URLSearchParams(location.search);
 
@@ -228,9 +237,14 @@ async function init() {
     window.libmedia = new LibMedia();
 
     await cheerpjInit({
-        javaProperties: ["java.library.path="+cheerpjWebRoot+"/libjs/"],
         enableDebug: false,
         natives: {
+            ...canvasFontNatives,
+            ...canvasGraphicsNatives,
+            ...gles2Natives,
+            ...jsReferenceNatives,
+            ...mediaBridgeNatives,
+            ...midiBridgeNatives,
             async Java_pl_zb3_freej2me_bridge_shell_Shell_setTitle(lib, title) {
                 document.title = title;
             },

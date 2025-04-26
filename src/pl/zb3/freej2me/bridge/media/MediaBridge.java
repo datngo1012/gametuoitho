@@ -1,9 +1,9 @@
 package pl.zb3.freej2me.bridge.media;
 
 public class MediaBridge {
-    static {
-        System.loadLibrary("libmediabridge");
-    }
+    //static {
+    //    System.loadLibrary("libmediabridge");
+    //}
 
     public static native Object createMediaPlayer();
 

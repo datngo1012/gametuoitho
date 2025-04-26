@@ -3,9 +3,9 @@ package pl.zb3.freej2me.bridge.graphics;
 import javax.microedition.lcdui.Font;
 
 public class CanvasFont {
-    static {
-        System.loadLibrary("libcanvasfont");
-    }
+    //static {
+    //    System.loadLibrary("libcanvasfont");
+    //}
 
     protected String fontString = null;
     protected boolean underlined = false;
