@@ -275,10 +275,10 @@ async function init() {
                 }
             },
             async Java_pl_zb3_freej2me_bridge_shell_Shell_restart(lib) {
-                window.location.reload();
+                location.reload();
             },
             async Java_pl_zb3_freej2me_bridge_shell_Shell_exit(lib) {
-                location.href = 'index.html';
+                location.href = './';
             },
             async Java_pl_zb3_freej2me_bridge_shell_Shell_sthop(lib) {
                 debugger;
