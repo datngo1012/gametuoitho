@@ -220,17 +220,12 @@ async function init() {
 
     setListeners();
 
-    display.focus();
-
     window.libmidi = new LibMidi(createUnlockingAudioContext());
     await window.libmidi.init();
     window.libmidi.midiPlayer.addEventListener('end-of-media', e => {
         window.evtQueue.queueEvent({kind: 'player-eom', player: e.target});
     })
     window.libmedia = new LibMedia();
-
-
-
 
     await cheerpjInit({
         javaProperties: ["java.library.path="+cheerpjWebRoot+"/libjs/"],
@@ -252,6 +247,7 @@ async function init() {
                     document.getElementById('loading').hidden = true;
                     display.style.display = '';
                     scaleSet = true;
+                    display.focus();
                 }
                 screenCtx.canvas.width = width;
                 screenCtx.canvas.height = height;
