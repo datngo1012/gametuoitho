@@ -7,6 +7,8 @@ import { initKbdListeners, setKbdHandler, kbdWidth, kbdHeight } from "./screenKb
 const evtQueue = new EventQueue();
 const sp = new URLSearchParams(location.search);
 
+const cheerpjWebRoot = '/app'+location.pathname.replace(/\/[^/]*$/,'');
+
 let isMobile = sp.get('mobile');
 
 let display = null;
@@ -231,7 +233,7 @@ async function init() {
 
 
     await cheerpjInit({
-        javaProperties: ["java.library.path=/app/libjs/"],
+        javaProperties: ["java.library.path="+cheerpjWebRoot+"/libjs/"],
         enableDebug: false,
         natives: {
             async Java_pl_zb3_freej2me_bridge_shell_Shell_setTitle(lib, title) {
@@ -297,7 +299,7 @@ async function init() {
 
     document.getElementById("loading").textContent = "Loading...";
 
-    const lib = await cheerpjRunLibrary("/app/freej2me-web.jar");
+    const lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
 
     const FreeJ2ME = await lib.org.recompile.freej2me.FreeJ2ME;
 
@@ -306,7 +308,7 @@ async function init() {
     if (sp.get('app')) {
         args = ['app', sp.get('app')];
     } else {
-        args = ['jar', "/app/jar/" + (sp.get('jar') || "game.jar")];
+        args = ['jar', cheerpjWebRoot+"/jar/" + (sp.get('jar') || "game.jar")];
     }
 
     FreeJ2ME.main(args).catch(e => {

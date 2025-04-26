@@ -1,4 +1,5 @@
 // note that we can only call java stuff if thread not running..
+const cheerpjWebRoot = '/app'+location.pathname.replace(/\/$/,'');
 
 const emptyIcon = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
 
@@ -14,11 +15,11 @@ let defaultSettings = {};
 async function main() {
     document.getElementById("loading").textContent = "Loading CheerpJ...";
     await cheerpjInit({
-        javaProperties: ["java.library.path=/app/libjs/"],
+        javaProperties: ["java.library.path="+cheerpjWebRoot+"/libjs/"],
         enableDebug: false
     });
 
-    lib = await cheerpjRunLibrary("/app/freej2me-web.jar");
+    lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
 
     document.getElementById("loading").textContent = "Loading...";
 
