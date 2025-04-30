@@ -270,8 +270,10 @@ public final class Emulator3D {
 		viewportWidth = w;
 		viewportHeight = h;
 
-		GLES2.viewport(viewportX, targetHeight - viewportY - viewportHeight, viewportWidth, viewportHeight);
-		GLES2.scissor(viewportX, targetHeight - viewportY - viewportHeight, viewportWidth, viewportHeight);
+		if (GLES2.bound) {
+			GLES2.viewport(viewportX, targetHeight - viewportY - viewportHeight, viewportWidth, viewportHeight);
+			GLES2.scissor(viewportX, targetHeight - viewportY - viewportHeight, viewportWidth, viewportHeight);
+		}
 	}
 
 	public final synchronized void clearBackgound(Object bgObj) {
