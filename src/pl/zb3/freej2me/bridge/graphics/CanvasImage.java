@@ -71,6 +71,7 @@ public class CanvasImage extends Image {
 		}
 
         switch (transform) {
+            case Sprite.TRANS_MIRROR:
 			case Sprite.TRANS_MIRROR_ROT90:
 			case Sprite.TRANS_MIRROR_ROT180:
             case Sprite.TRANS_MIRROR_ROT270:
