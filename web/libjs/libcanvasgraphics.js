@@ -252,10 +252,10 @@ const CanvasGraphics = ({
     if (blend) {
       // this is not putImageData, we need to blend here
       ctx.canvas.width = width; ctx.canvas.height = height;
-      ctx.putImageData(new ImageData(castToUint8Clamped(rgba), width, height));
+      ctx.putImageData(new ImageData(castToUint8Clamped(rgba), width, height), 0, 0);
       targetCtx.drawImage(ctx.canvas, x, y);
     } else {
-      targetCtx.putImageData(new ImageData(castToUint8Clamped(rgba), width, height));
+      targetCtx.putImageData(new ImageData(castToUint8Clamped(rgba), width, height), x, y);
     }
   },
 
