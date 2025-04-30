@@ -167,6 +167,8 @@ public class TriangleStripArray extends IndexBuffer {
 	public void uploadToGL() {
 		if (bufferHandle != null) {
 			// the element array buffer binding is remembered by the VAO
+			// but if we're here, that particular VAO needs to have it bound
+			GLES2.bindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferHandle);
 			return;
 		}
 
