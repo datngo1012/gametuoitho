@@ -334,14 +334,14 @@ const CanvasGraphics = ({
 
   async Java_pl_zb3_freej2me_bridge_graphics_CanvasGraphics_drawArc(lib, ctx, x, y, width, height, start, arc) {
     ctx.beginPath();
-    ctx.ellipse(x+width/2+0.5, y+height/2+0.5, width/2, height/2, 0, -start*Math.PI/180, -start*Math.PI/180-arc*Math.PI/180, true);
+    ctx.ellipse(x+width/2+0.5, y+height/2+0.5, width/2, height/2, 0, -start*Math.PI/180, -start*Math.PI/180-arc*Math.PI/180, arc > 0);
     ctx.stroke();
   },
 
   async Java_pl_zb3_freej2me_bridge_graphics_CanvasGraphics_fillArc(lib, ctx, x, y, width, height, start, arc) {
     ctx.beginPath();
     ctx.moveTo(x+width/2, y+height/2);
-    ctx.ellipse(x+width/2, y+height/2, width/2, height/2, 0, -start*Math.PI/180, -start*Math.PI/180-arc*Math.PI/180, true);
+    ctx.ellipse(x+width/2, y+height/2, width/2, height/2, 0, -start*Math.PI/180, -start*Math.PI/180-arc*Math.PI/180, arc > 0);
     ctx.moveTo(x+width/2, y+height/2);
     ctx.fill();
   },
