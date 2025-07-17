@@ -8,6 +8,8 @@
 #include <libavcodec/avcodec.h>
 #include <libavutil/opt.h>
 #include <libswresample/swresample.h>
+#include <libavutil/channel_layout.h>
+
 #include <libswscale/swscale.h>
 #include <libavutil/audio_fifo.h>
 
@@ -465,8 +467,8 @@ int open_output(Output *output, Input *input, OutputBuffer *ob) {
             goto end;
         }
 
-        output->audio_ctx->sample_rate = 48000;
-        output->audio_ctx->ch_layout = input->audio_ctx->ch_layout;
+        output->audio_ctx->sample_rate = 48000; // aac only supports this
+        av_channel_layout_default(&output->audio_ctx->ch_layout, 2); // and stereo
         output->audio_ctx->sample_fmt = audio_enc->sample_fmts[0];
         output->audio_ctx->time_base = (AVRational){1, output->audio_ctx->sample_rate};
 

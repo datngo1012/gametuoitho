@@ -113,7 +113,7 @@ build_ffmpeg() {
   ff_opts+=(--enable-demuxer={mov,wav,mmf,mp3,amr,mpegps,mpegvideo})
 
   # for adpcm/pcm, pick any.. (mmf is yamaha adpcm)
-  ff_opts+=(--enable-decoder={aac{,_fixed,_latm},amr{nb,wb},adpcm_ima_wav,pcm_alaw,mp2,mp3,mpegvideo,mpeg4,h263})
+  ff_opts+=(--enable-decoder={aac{,_fixed,_latm},amr{nb,wb},adpcm_ima_wav,pcm_{mu,a}law,pcm_{u,s}8,pcm_s8_planar,pcm_{u,s}{16,24,32}{le,be},mp2,mp3,mpegvideo,mpeg4,h263})
 
   # we can't use cross-prefix since it doesn't find pkg-config
   ff_opts+=(--enable-cross-compile --nm=emnm --ar=emar --cc=emcc --cxx=em++ --ranlib=emranlib --strip=emstrip --arch=wasm --target-os=none --extra-cflags="$cflags" --extra-cxxflags="$cflags" --extra-ldflags="$ldflags" --pkg-config-flags="--static")
