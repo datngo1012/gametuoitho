@@ -201,4 +201,19 @@ public class LauncherUtil {
             e.printStackTrace();
         }
     }
+
+    public static void installFromBundle(String basePath, String appId) {
+        try {
+            Files.createDirectories(Paths.get(appId));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            byte[] appData = Files.readAllBytes(Paths.get(basePath, appId + ".zip"));
+            FilesUtil.unzipToDirectory(appId, appData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

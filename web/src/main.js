@@ -23,7 +23,7 @@ let isMobile = sp.get('mobile');
 let display = null;
 let screenCtx = null;
 
-let fractionScale = localStorage && localStorage.getItem("pl.zb3.freej2me.fractionScale") === "true";
+let fractionScale = sp.get('fractionScale') || (localStorage && localStorage.getItem("pl.zb3.freej2me.fractionScale") === "true");
 let scaleSet = false;
 
 const keyRepeatManager = new KeyRepeatManager();
@@ -221,6 +221,16 @@ function setFaviconFromBuffer(arrayBuffer) {
     reader.readAsDataURL(blob);
 }
 
+async function ensureAppInstalled(lib, appId) {
+    const appFile = await cjFileBlob(appId + "/app.jar");
+
+    if (!appFile) {
+        const launcherUtil = await lib.pl.zb3.freej2me.launcher.LauncherUtil;
+
+        await launcherUtil.installFromBundle(cheerpjWebRoot + "/apps/", appId);
+    }
+}
+
 async function init() {
     document.getElementById("loading").textContent = "Loading CheerpJ...";
 
@@ -316,6 +326,9 @@ async function init() {
     let args;
 
     if (sp.get('app')) {
+        const app = sp.get('app');
+        await ensureAppInstalled(lib, app);
+
         args = ['app', sp.get('app')];
     } else {
         args = ['jar', cheerpjWebRoot+"/jar/" + (sp.get('jar') || "game.jar")];

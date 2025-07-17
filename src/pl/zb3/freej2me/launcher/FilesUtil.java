@@ -91,8 +91,9 @@ public class FilesUtil {
 
         return success;
     }
-    public static void unzipToCurrentDirectory(byte[] zipData) throws IOException {
-        Path currentDir = Paths.get(".").toAbsolutePath().normalize();
+
+    public static void unzipToDirectory(String dirName, byte[] zipData) throws IOException {
+        Path currentDir = Paths.get(dirName).toAbsolutePath().normalize();
 
         try (ByteArrayInputStream bais = new ByteArrayInputStream(zipData);
              ZipInputStream zis = new ZipInputStream(bais)) {
@@ -125,5 +126,9 @@ public class FilesUtil {
                 zis.closeEntry();
             }
         }
+    }
+
+    public static void unzipToCurrentDirectory(byte[] zipData) throws IOException {
+        unzipToDirectory(".", zipData);
     }
 }
