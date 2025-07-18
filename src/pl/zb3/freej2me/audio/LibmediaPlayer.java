@@ -165,7 +165,7 @@ public class LibmediaPlayer extends BasePlayer implements VideoControl, StopList
 
 	@Override
 	public void doSetVolume(float vol) {
-		MediaBridge.playerSetVolume(playerHandle, vol);
+        if (playerHandle != null) MediaBridge.playerSetVolume(playerHandle, vol);
 	}
 
 	@Override
