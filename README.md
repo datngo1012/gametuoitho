@@ -87,3 +87,23 @@ npx serve -u web
 freej2me-web currently works in the browser thanks to CheerpJ. However, since CheerpJ is proprietary, it introduces some limitations.. notably freej2me-web will not work without an internet connection, and it can be a little slow..
 
 However, freej2me-web intentionally doesn't use its more advanced features like AWT GUI support or wasm JNI modules. In theory it should be possible to port it to a simpler (but most likely slower) VM if CheerpJ stops being available... but it's not planned for now.
+
+## Embedding
+To embed a specific game on your website, you first need to self-host this emulator. The `web` directory should be served, but ensure your server properly supports the `Range` header.
+
+When you want to embed a game, you of course want it to work.. however, a JAR file (even with a JAD descriptor) is often not enough to make it work, because the emulator needs to know the screen size, phone type, and potentially other specific configuration settings. You might even need to preload some RMS data..
+
+Therefore, you must first prepare a `.zip` file for each game as follows:
+
+1.  Install the game within the launcher screen.
+2.  Tweak emulator settings as needed.
+3.  Configure the game if necessary.
+4.  Click "Export Data".
+5.  Identify the App ID: Launch the application and observe the `app` parameter in the URL.
+6.  Locate the App ID folder**: Find the folder named after the App ID within the exported `.zip` file.
+7.  **Create the game's `.zip` file**: Compress all contents of that App ID folder into a new `.zip` file named after the App ID (`[app_id].zip`).
+8.  **Place the `.zip` file**: Put this newly created `.zip` file into the `apps` folder of your hosted emulator (`run.html` and the `apps` folder should be in the same directory)
+
+Once prepared, you can embed the game directly using `run.html?app=[app_id]` without requiring the user to visit the launcher page first.
+
+Note that your iframe dimensions should match the game's screen size or a multiple thereof. To match only the aspect ratio, pass the `fractionScale` parameter to `run.html`, for example: `run.html?app=[app_id]&fractionScale=1`.
