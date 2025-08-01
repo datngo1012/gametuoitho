@@ -36,6 +36,8 @@ public class GLES2 {
     private static Map<Object, Map<Object, Integer>> uniform1iCache = new HashMap<>();
     private static Map<Object, Map<Object, float[]>> uniform2fCache = new HashMap<>();
     private static Map<Object, Map<Object, float[]>> uniform4fCache = new HashMap<>();
+    private static Map<Object, Map<Object, float[]>> uniform3fvCache = new HashMap<>();
+    private static Map<Object, Map<Object, float[]>> uniform4fvCache = new HashMap<>();
     private static Map<Object, Map<Object, MatrixEntry>> uniformMatrix3Cache = new HashMap<>();
     private static Map<Object, Map<Object, MatrixEntry>> uniformMatrix4Cache = new HashMap<>();
     private static Set<Integer> enabledCache = new HashSet<>();
@@ -291,13 +293,42 @@ public class GLES2 {
     }
     public static native void uniform4f(Object handle, Object loc, float f1, float f2, float f3, float f4);
 
+
     public static void uniform3fv(Object loc, float[] fa) {
+        Map<Object, float[]> programCache = uniform3fvCache.get(program);
+        if (programCache == null) {
+            programCache = new HashMap<>();
+            uniform3fvCache.put(program, programCache);
+        }
+
+        float[] cached = programCache.get(loc);
+        if (cached != null && Arrays.equals(fa, cached)) {
+            return;
+        }
+
+        float[] copy = Arrays.copyOf(fa, fa.length);
+        programCache.put(loc, copy);
+
         uniform3fv(handle, loc, fa);
         checkException();
     }
     public static native void uniform3fv(Object handle, Object loc, float[] fa);
 
     public static void uniform4fv(Object loc, float[] fa) {
+        Map<Object, float[]> programCache = uniform4fvCache.get(program);
+        if (programCache == null) {
+            programCache = new HashMap<>();
+            uniform4fvCache.put(program, programCache);
+        }
+
+        float[] cached = programCache.get(loc);
+        if (cached != null && Arrays.equals(fa, cached)) {
+            return;
+        }
+
+        float[] copy = Arrays.copyOf(fa, fa.length);
+        programCache.put(loc, copy);
+
         uniform4fv(handle, loc, fa);
         checkException();
     }
