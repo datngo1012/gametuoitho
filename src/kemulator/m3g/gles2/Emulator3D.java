@@ -1022,7 +1022,7 @@ public final class Emulator3D {
 				uvRect[1] != spriteBufferArray[4 + 1] ||
 				uvRect[2] != spriteBufferArray[4 + 0] ||
 				uvRect[3] != spriteBufferArray[4 + 5]) {
-				GLES2.bindBuffer(GL_ARRAY_BUFFER, bgBuffer);
+				GLES2.bindBuffer(GL_ARRAY_BUFFER, spriteBuffer);
 
 				spriteBufferArray[4 + 0] = uvRect[2]; spriteBufferArray[4 + 1] = uvRect[1];
 				spriteBufferArray[4 + 2] = uvRect[0]; spriteBufferArray[4 + 3] = uvRect[1];
