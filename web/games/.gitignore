@@ -1,0 +1,6 @@
+# Ignore game files
+*.jar
+*.jad
+
+# Keep the structure
+!.gitkeep

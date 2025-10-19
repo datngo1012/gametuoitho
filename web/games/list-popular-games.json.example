@@ -1,0 +1,134 @@
+[
+  {
+    "filename": "asphalt2.jar",
+    "name": "Asphalt 2: Urban GT",
+    "jadFile": "asphalt2.jad",
+    "icon": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320",
+      "sound": "on",
+      "rotate": "off",
+      "fontSize": "0"
+    }
+  },
+  {
+    "filename": "diamond-rush.jar",
+    "name": "Diamond Rush",
+    "jadFile": null,
+    "icon": null,
+    "settings": {
+      "phone": "Standard",
+      "width": "176",
+      "height": "220",
+      "sound": "on",
+      "rotate": "off"
+    }
+  },
+  {
+    "filename": "bounce.jar",
+    "name": "Bounce",
+    "jadFile": null,
+    "icon": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "128",
+      "height": "160",
+      "sound": "on",
+      "rotate": "off"
+    }
+  },
+  {
+    "filename": "super-mario.jar",
+    "name": "Super Mario",
+    "jadFile": null,
+    "icon": null,
+    "settings": {
+      "phone": "Standard",
+      "width": "240",
+      "height": "320",
+      "sound": "on",
+      "rotate": "off"
+    }
+  },
+  {
+    "filename": "contra.jar",
+    "name": "Contra",
+    "jadFile": null,
+    "icon": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "176",
+      "height": "220",
+      "sound": "on",
+      "rotate": "off"
+    }
+  },
+  {
+    "filename": "prince-of-persia.jar",
+    "name": "Prince of Persia",
+    "jadFile": "prince-of-persia.jad",
+    "icon": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320",
+      "sound": "on",
+      "rotate": "off",
+      "queuedPaint": "on"
+    }
+  },
+  {
+    "filename": "need-for-speed.jar",
+    "name": "Need for Speed Underground",
+    "jadFile": null,
+    "icon": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "176",
+      "height": "220",
+      "sound": "on",
+      "rotate": "off"
+    }
+  },
+  {
+    "filename": "metal-slug.jar",
+    "name": "Metal Slug",
+    "jadFile": null,
+    "icon": null,
+    "settings": {
+      "phone": "Standard",
+      "width": "240",
+      "height": "320",
+      "sound": "on",
+      "rotate": "off"
+    }
+  },
+  {
+    "filename": "street-fighter.jar",
+    "name": "Street Fighter II",
+    "jadFile": null,
+    "icon": null,
+    "settings": {
+      "phone": "Standard",
+      "width": "176",
+      "height": "220",
+      "sound": "on",
+      "rotate": "off"
+    }
+  },
+  {
+    "filename": "pacman.jar",
+    "name": "Pac-Man",
+    "jadFile": null,
+    "icon": null,
+    "settings": {
+      "phone": "Standard",
+      "width": "128",
+      "height": "128",
+      "sound": "on",
+      "rotate": "off"
+    }
+  }
+]

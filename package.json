@@ -1,0 +1,24 @@
+{
+  "name": "freej2me-web-childhood-games",
+  "version": "1.0.0",
+  "description": "Website game tuổi thơ - Chơi game Java/J2ME ngay trên trình duyệt",
+  "main": "web/index.html",
+  "scripts": {
+    "start": "cd web && npx http-server -p 8080 -c-1",
+    "serve": "npm start"
+  },
+  "keywords": [
+    "j2me",
+    "java",
+    "games",
+    "emulator",
+    "freej2me",
+    "childhood-games",
+    "retro-games"
+  ],
+  "author": "",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

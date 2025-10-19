@@ -1,8 +1,21 @@
 # freej2me-web
+
 Here it is.. the browser version of my [fork of freej2me](https://github.com/zb3/freej2me)!  
 
 This uses [CheerpJ](https://cheerpj.com/) (pretty cool) to run Java in a web browser :)
 Running in the browser means you can now safely load any JAR file, since malicious JAR files won't be able to cause any damage thanks to the web platform sandbox.
+
+## 🎮 Website Game Tuổi Thơ / Childhood Games Website
+
+**[🇻🇳 Đọc hướng dẫn tiếng Việt](./web/README-VI.md)** | **[⚡ Quick Start](./QUICK-START.md)** | **[📋 Changelog](./CHANGELOG.md)**
+
+Phiên bản này đã được tùy chỉnh để tạo **website game tuổi thơ** - nơi bạn chỉ cần đặt file JAR vào thư mục và người dùng click để chơi ngay!
+
+### ⚡ Bắt đầu nhanh:
+1. Đặt file `.jar` vào `web/games/`
+2. Thêm vào `web/games/list.json`
+3. Chạy `start-server.bat` (Windows) hoặc `python -m http.server 8080` trong `web/`
+4. Mở http://localhost:8080 và chơi! 🎮
 
 ## Let's play!
 https://zb3.github.io/freej2me-web/

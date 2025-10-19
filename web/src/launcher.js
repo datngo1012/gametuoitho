@@ -9,19 +9,39 @@ let state = {
     currentGame: null,
     editedGameId: null,
     uploadedJars: 0,
+    preloadedGames: [], // Danh sách games từ thư mục
 };
 let defaultSettings = {};
 
+// Import GameLoader
+import { GameLoader } from './game-loader.js';
+const gameLoader = new GameLoader();
+
+function updateLoadingProgress(progress, text) {
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const loadingText = document.querySelector('.loading-text');
+    
+    if (progressBar) progressBar.style.width = progress + '%';
+    if (progressText) progressText.textContent = Math.round(progress) + '%';
+    if (loadingText) loadingText.textContent = text;
+}
+
 async function main() {
-    document.getElementById("loading").textContent = "Loading CheerpJ...";
+    updateLoadingProgress(10, 'Đang quét thư mục game...');
+    
+    // Load danh sách games từ thư mục trước
+    state.preloadedGames = await gameLoader.loadGamesFromDirectory();
+    
+    updateLoadingProgress(25, 'Khởi động máy ảo Java...');
     await cheerpjInit({
         enableDebug: false
     });
 
+    updateLoadingProgress(50, 'Đang tải thư viện...');
     lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
 
-    document.getElementById("loading").textContent = "Loading...";
-
+    updateLoadingProgress(70, 'Khởi tạo hệ thống...');
     launcherUtil = await lib.pl.zb3.freej2me.launcher.LauncherUtil;
 
     await launcherUtil.resetTmpDir();
@@ -29,10 +49,18 @@ async function main() {
     const Config = await lib.org.recompile.freej2me.Config;
     await javaToKv(Config.DEFAULT_SETTINGS, defaultSettings);
 
+    updateLoadingProgress(80, 'Cài đặt game...');
+    // Tự động cài đặt các game từ thư mục nếu chưa có
+    await autoInstallPreloadedGames();
+
+    updateLoadingProgress(95, 'Hoàn tất...');
     await reloadUI();
 
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("main").style.display = "";
+    updateLoadingProgress(100, 'Sẵn sàng!');
+    setTimeout(() => {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("main").style.display = "";
+    }, 300);
 
     document.getElementById("clear-current").onclick = setupAddMode;
 
@@ -42,6 +70,81 @@ async function main() {
 
     document.getElementById("import-data-file").onchange = doImportData;
     document.getElementById("export-data-btn").onclick = doExportData;
+    
+    // Setup search functionality
+    setupGameSearch();
+}
+
+function setupGameSearch() {
+    const searchInput = document.getElementById("game-search");
+    if (!searchInput) return;
+    
+    searchInput.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.toLowerCase().trim();
+        filterGames(searchTerm);
+    });
+}
+
+function filterGames(searchTerm) {
+    const gameItems = document.querySelectorAll(".game-item");
+    let visibleCount = 0;
+    
+    gameItems.forEach(item => {
+        const nameElement = item.querySelector(".game-info");
+        const originalName = nameElement.getAttribute('data-original-name') || nameElement.textContent;
+        const gameName = originalName.toLowerCase();
+        const matches = gameName.includes(searchTerm);
+        
+        if (matches) {
+            item.style.display = "flex";
+            visibleCount++;
+            
+            // Highlight search term or restore original
+            if (searchTerm) {
+                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                const highlightedText = originalName.replace(regex, '<span class="highlight">$1</span>');
+                nameElement.innerHTML = '▶ ' + highlightedText;
+            } else {
+                nameElement.textContent = originalName;
+                // Re-add the play icon
+                nameElement.innerHTML = '';
+                nameElement.textContent = originalName;
+            }
+        } else {
+            item.style.display = "none";
+        }
+    });
+    
+    // Update search count
+    const searchCount = document.getElementById("search-count");
+    const totalGames = gameItems.length;
+    
+    if (searchTerm && searchCount) {
+        searchCount.style.display = "block";
+        searchCount.textContent = `${visibleCount}/${totalGames}`;
+    } else if (searchCount) {
+        searchCount.style.display = "none";
+    }
+    
+    // Show "no results" message if no games match
+    const gameList = document.getElementById("game-list");
+    let noResultsDiv = gameList.querySelector(".no-results");
+    
+    if (visibleCount === 0 && searchTerm) {
+        if (!noResultsDiv) {
+            noResultsDiv = document.createElement("div");
+            noResultsDiv.className = "no-results";
+            noResultsDiv.innerHTML = `
+                <div class="no-results-icon">🔍</div>
+                <h3>Không tìm thấy game</h3>
+                <p>Không có game nào khớp với "<strong>${searchTerm}</strong>"</p>
+                <p>💡 Thử tìm kiếm với từ khóa khác</p>
+            `;
+            gameList.appendChild(noResultsDiv);
+        }
+    } else if (noResultsDiv) {
+        noResultsDiv.remove();
+    }
 }
 
 async function maybeReadCheerpJFileText(path) {
@@ -95,6 +198,82 @@ async function kvToJava(kv) {
     }
 
     return ret;
+}
+
+// Tự động cài đặt các game từ thư mục
+async function autoInstallPreloadedGames() {
+    if (state.preloadedGames.length === 0) {
+        return;
+    }
+
+    // Kiểm tra xem đã có game nào được cài chưa
+    const installedAppsBlob = await cjFileBlob("/files/apps.list");
+    const installedIds = installedAppsBlob 
+        ? (await installedAppsBlob.text()).trim().split("\n").filter(Boolean)
+        : [];
+
+    const totalGames = state.preloadedGames.length;
+    for (let i = 0; i < totalGames; i++) {
+        const game = state.preloadedGames[i];
+        try {
+            // Tải file JAR
+            const progress = 80 + (15 * (i / totalGames));
+            updateLoadingProgress(progress, `Đang cài đặt ${game.name}... (${i + 1}/${totalGames})`);
+            
+            const jarBuffer = await gameLoader.loadJarFile(game.jarPath);
+            const jadBuffer = game.jadPath ? await gameLoader.loadJadFile(game.jadPath) : null;
+
+            const MIDletLoader = await lib.org.recompile.mobile.MIDletLoader;
+            const File = await lib.java.io.File;
+
+            const jarFile = await new File(
+                "/files/_tmp/preload_" + game.filename
+            );
+
+            await launcherUtil.copyJar(new Int8Array(jarBuffer), jarFile);
+
+            const loader = await MIDletLoader.getMIDletLoader(jarFile);
+
+            // Nếu có JAD, load nó
+            if (jadBuffer) {
+                await launcherUtil.augementLoaderWithJAD(loader, new Int8Array(jadBuffer));
+            }
+
+            // Đảm bảo có appId
+            if (!(await loader.getAppId())) {
+                await launcherUtil.ensureAppId(loader, game.filename);
+            }
+
+            const appId = await loader.getAppId();
+
+            // Kiểm tra xem game đã được cài chưa
+            if (installedIds.includes(appId)) {
+                console.log(`Game ${game.name} đã được cài đặt`);
+                continue;
+            }
+
+            // Merge settings với default
+            const gameSettings = {
+                ...defaultSettings,
+                ...game.settings
+            };
+
+            const jsettings = await kvToJava(gameSettings);
+            
+            // Đọc properties từ loader
+            const appProps = {};
+            await javaToKv(loader.properties, appProps);
+            const jappProps = await kvToJava(appProps);
+            const jsysProps = await kvToJava({});
+
+            // Cài đặt game
+            await launcherUtil.initApp(jarFile, loader, jsettings, jappProps, jsysProps);
+            
+            console.log(`Đã cài đặt game: ${game.name}`);
+        } catch (error) {
+            console.error(`Lỗi khi cài đặt game ${game.name}:`, error);
+        }
+    }
 }
 
 async function loadGames() {
@@ -155,6 +334,20 @@ function fillGamesList(games) {
     const container = document.getElementById("game-list");
     container.innerHTML = "";
 
+    if (games.length === 0) {
+        const emptyDiv = document.createElement("div");
+        emptyDiv.className = "empty-games";
+        emptyDiv.innerHTML = `
+            <div class="empty-games-icon">�</div>
+            <h3>Chưa có game nào</h3>
+            <p>📁 Thêm file <code>.jar</code> vào thư mục <code>web/games/</code></p>
+            <p>📝 Cập nhật file <code>list.json</code></p>
+            <p>🔄 Refresh lại trang</p>
+        `;
+        container.appendChild(emptyDiv);
+        return;
+    }
+
     for (const game of games) {
         const item = document.createElement("div");
         item.className = "game-item";
@@ -167,14 +360,26 @@ function fillGamesList(games) {
             }
         });
 
-        const icon = document.createElement("img");
+        const icon = document.createElement("div");
         icon.className = "icon";
-        icon.src = game.icon;
+        
+        if (game.icon && game.icon !== emptyIcon) {
+            const img = document.createElement("img");
+            img.src = game.icon;
+            img.style.width = "100%";
+            img.style.height = "100%";
+            img.style.borderRadius = "10px";
+            icon.appendChild(img);
+        } else {
+            icon.classList.add("default-icon");
+        }
+        
         link.appendChild(icon);
 
         const info = document.createElement("div");
         info.className = "game-info";
         info.textContent = game.name;
+        info.setAttribute('data-original-name', game.name); // Store original name for search
         link.appendChild(info);
 
         item.appendChild(link);

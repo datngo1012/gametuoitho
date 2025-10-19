@@ -232,7 +232,7 @@ async function ensureAppInstalled(lib, appId) {
 }
 
 async function init() {
-    document.getElementById("loading").textContent = "Loading CheerpJ...";
+    document.getElementById("loading").textContent = "Đang tải...";
 
     display = document.getElementById('display');
     screenCtx = display.getContext('2d');
@@ -341,5 +341,81 @@ async function init() {
 
 
 }
+
+// Back to home button handler
+function setupBackButton() {
+    const backButton = document.getElementById('back-to-home');
+    if (backButton) {
+        backButton.onclick = () => {
+            if (confirm('Bạn có muốn thoát game và trở về trang chủ?')) {
+                location.href = './';
+            }
+        };
+    }
+}
+
+// Game list panel handler
+async function setupGameList() {
+    const toggleButton = document.getElementById('game-list-toggle');
+    const panel = document.getElementById('game-list-panel');
+    const container = document.getElementById('game-list-container');
+    const currentAppId = sp.get('app');
+
+    if (!toggleButton || !panel || !container) return;
+
+    // Toggle panel
+    toggleButton.onclick = () => {
+        panel.classList.toggle('open');
+    };
+
+    // Close panel when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!panel.contains(e.target) && !toggleButton.contains(e.target)) {
+            panel.classList.remove('open');
+        }
+    });
+
+    // Load game list
+    try {
+        const response = await fetch('games/list.json');
+        const games = await response.json();
+
+        if (games && games.length > 0) {
+            container.innerHTML = '';
+            
+            games.forEach(game => {
+                const item = document.createElement('a');
+                item.className = 'game-list-item';
+                item.href = `run?app=${game.filename.replace('.jar', '')}`;
+                
+                // Highlight current game
+                if (currentAppId && game.filename.replace('.jar', '') === currentAppId) {
+                    item.classList.add('active');
+                }
+
+                const icon = document.createElement('div');
+                icon.className = 'game-list-icon';
+                icon.textContent = '🎮';
+                
+                const name = document.createElement('div');
+                name.className = 'game-list-name';
+                name.textContent = game.name;
+
+                item.appendChild(icon);
+                item.appendChild(name);
+                container.appendChild(item);
+            });
+        } else {
+            container.innerHTML = '<div style="color: white; text-align: center; padding: 20px;">Chưa có game nào</div>';
+        }
+    } catch (error) {
+        console.error('Failed to load game list:', error);
+        container.innerHTML = '<div style="color: white; text-align: center; padding: 20px;">Không thể tải danh sách game</div>';
+    }
+}
+
+// Initialize UI elements
+setupBackButton();
+setupGameList();
 
 init();
