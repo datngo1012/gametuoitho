@@ -1,0 +1,83 @@
+# Apache configuration for shared hosting
+# Đặt file này trong thư mục web/
+
+# Enable CORS
+<IfModule mod_headers.c>
+    # Allow all origins
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "*"
+    
+    # Security headers
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Cache control for different file types
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Game files - cache for 1 year
+    ExpiresByType application/java-archive "access plus 1 year"
+    
+    # JavaScript and CSS - cache for 1 year
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    ExpiresByType text/css "access plus 1 year"
+    
+    # WASM files
+    ExpiresByType application/wasm "access plus 1 year"
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    
+    # HTML - don't cache
+    ExpiresByType text/html "access plus 0 seconds"
+    
+    # JSON - cache for 5 minutes
+    ExpiresByType application/json "access plus 300 seconds"
+</IfModule>
+
+# Alternative cache control using mod_headers
+<IfModule mod_headers.c>
+    # Cache game files for 1 year
+    <FilesMatch "\.(jar|jad)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # Cache static assets for 1 year
+    <FilesMatch "\.(js|css|wasm)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # Don't cache HTML
+    <FilesMatch "\.(html)$">
+        Header set Cache-Control "public, max-age=0, must-revalidate"
+    </FilesMatch>
+    
+    # Cache JSON for 5 minutes
+    <FilesMatch "\.(json)$">
+        Header set Cache-Control "public, max-age=300, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# Enable Gzip compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE text/xml
+</IfModule>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Custom error pages (optional)
+# ErrorDocument 404 /404.html
+# ErrorDocument 500 /500.html

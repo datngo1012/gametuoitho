@@ -1,5 +1,101 @@
 # 🚀 HƯỚNG DẪN DEPLOY
 
+## ⚙️ BUILD SETTINGS - Cấu hình quan trọng
+
+### 📋 Tóm tắt nhanh các Build Settings
+
+| Nền tảng | Base Directory | Build Command | Publish Directory |
+|----------|---------------|---------------|-------------------|
+| **Netlify** | `/` (root) | Để trống | `web` |
+| **Vercel** | `/` (root) | Để trống | `web` |
+| **GitHub Pages** | `/` (root) | Không cần | `web` |
+| **Cloudflare Pages** | `/` (root) | Để trống | `web` |
+
+### 🎯 Chi tiết từng nền tảng
+
+#### 1. NETLIFY Build Settings
+
+**Cách 1: Cấu hình qua giao diện web**
+```
+Site settings → Build & Deploy → Build settings:
+
+Base directory: (để trống)
+Build command: (để trống) 
+Publish directory: web
+```
+
+**Cách 2: Dùng file `netlify.toml`** (Đã tạo sẵn)
+```toml
+[build]
+  publish = "web"
+  command = ""
+```
+
+✅ File `netlify.toml` đã được tạo tự động!
+
+---
+
+#### 2. VERCEL Build Settings
+
+**Cách 1: Cấu hình qua giao diện web**
+```
+Project Settings → Build & Output Settings:
+
+Framework Preset: Other
+Build Command: (để trống)
+Output Directory: web
+Install Command: (để trống)
+```
+
+**Cách 2: Dùng file `vercel.json`** (Đã tạo sẵn)
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "web/**",
+      "use": "@vercel/static"
+    }
+  ]
+}
+```
+
+✅ File `vercel.json` đã được tạo tự động!
+
+---
+
+#### 3. GITHUB PAGES Build Settings
+
+**Cách 1: Settings trong GitHub repo**
+```
+Settings → Pages:
+
+Source: Deploy from a branch
+Branch: main
+Folder: /web
+```
+
+**Cách 2: Dùng GitHub Actions** (Tự động deploy)
+✅ File `.github/workflows/deploy-pages.yml` đã được tạo!
+
+Để sử dụng:
+1. Vào `Settings → Pages`
+2. Source: chọn `GitHub Actions`
+3. Push code lên → tự động deploy
+
+---
+
+#### 4. CLOUDFLARE PAGES Build Settings
+
+```
+Production branch: main
+Build command: (để trống)
+Build output directory: web
+Root directory: (để trống)
+```
+
+---
+
 ## Deploy lên Server
 
 ### 1. Deploy lên GitHub Pages (Miễn phí)
