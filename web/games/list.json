@@ -288,7 +288,7 @@
     }
   },
   {
-    "filename": "ninja1.jar",
+    "filename": "NinjaSchool_240.jar",
     "name": "Ninja School 1",
     "jadFile": null,
     "icon": null,
@@ -373,18 +373,6 @@
     }
   },
   {
-    "filename": "thachsanhv_em8np6lc.jar",
-    "name": "Thạch Sanh",
-    "jadFile": null,
-    "icon": null,
-    "settings": {
-      "phone": "Nokia",
-      "width": "240",
-      "height": "320",
-      "sound": "on"
-    }
-  },
-  {
     "filename": "Tom_Adn_Jerry.jar",
     "name": "Tom And Jerry",
     "jadFile": null,
@@ -415,20 +403,8 @@
     "icon": null,
     "settings": {
       "phone": "Nokia",
-      "width": "240",
-      "height": "320",
-      "sound": "on"
-    }
-  },
-  {
-    "filename": "x-masspuzz_v1sblrvj.jar",
-    "name": "X-Mas Puzzle",
-    "jadFile": null,
-    "icon": null,
-    "settings": {
-      "phone": "Nokia",
-      "width": "240",
-      "height": "320",
+      "width": "176",
+      "height": "220",
       "sound": "on"
     }
   }
