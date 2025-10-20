@@ -268,7 +268,11 @@ async function init() {
             },
             async Java_pl_zb3_freej2me_bridge_shell_Shell_setCanvasSize(lib, width, height) {
                 if (!scaleSet) {
-                    document.getElementById('loading').hidden = true;
+                    // Hide loading screen
+                    const loadingEl = document.getElementById('loading');
+                    if (loadingEl) {
+                        loadingEl.style.display = 'none';
+                    }
                     display.style.display = '';
                     scaleSet = true;
                     display.focus();
@@ -317,7 +321,12 @@ async function init() {
         }
     });
 
-    document.getElementById("loading").textContent = "Loading...";
+    document.getElementById("loading").innerHTML = `
+        <div class="loading-spinner">
+            <div class="loading-icon">🎮</div>
+        </div>
+        <div class="loading-text">Đang tải thư viện Java...</div>
+    `;
 
     const lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
 
@@ -336,7 +345,57 @@ async function init() {
 
     FreeJ2ME.main(args).catch(e => {
         e.printStackTrace();
-        document.getElementById('loading').textContent = 'Crash :(';
+        
+        // Show crash message with countdown
+        const loadingEl = document.getElementById('loading');
+        loadingEl.style.fontSize = '1.2em';
+        loadingEl.style.textAlign = 'center';
+        loadingEl.style.color = '#ff4444';
+        
+        let countdown = 5;
+        loadingEl.innerHTML = `
+            <div style="padding: 20px;">
+                <div style="font-size: 3em; margin-bottom: 10px;">💥</div>
+                <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">Game Crashed!</div>
+                <div style="font-size: 1em; color: #666; margin-bottom: 20px;">Có lỗi xảy ra khi chạy game</div>
+                <div style="font-size: 1em; color: white;">Tự động trở về trang chủ sau <span id="crash-countdown">${countdown}</span>s</div>
+                <button id="crash-back-now" style="
+                    margin-top: 20px;
+                    padding: 10px 30px;
+                    font-size: 1em;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    border: none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    font-weight: 600;
+                    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                ">Trở về ngay</button>
+            </div>
+        `;
+        
+        // Countdown timer
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            const countdownEl = document.getElementById('crash-countdown');
+            if (countdownEl) {
+                countdownEl.textContent = countdown;
+            }
+            
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = './';
+            }
+        }, 1000);
+        
+        // Back button
+        const backBtn = document.getElementById('crash-back-now');
+        if (backBtn) {
+            backBtn.onclick = () => {
+                clearInterval(countdownInterval);
+                window.location.href = './';
+            };
+        }
     });
 
 
@@ -354,68 +413,7 @@ function setupBackButton() {
     }
 }
 
-// Game list panel handler
-async function setupGameList() {
-    const toggleButton = document.getElementById('game-list-toggle');
-    const panel = document.getElementById('game-list-panel');
-    const container = document.getElementById('game-list-container');
-    const currentAppId = sp.get('app');
-
-    if (!toggleButton || !panel || !container) return;
-
-    // Toggle panel
-    toggleButton.onclick = () => {
-        panel.classList.toggle('open');
-    };
-
-    // Close panel when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!panel.contains(e.target) && !toggleButton.contains(e.target)) {
-            panel.classList.remove('open');
-        }
-    });
-
-    // Load game list
-    try {
-        const response = await fetch('games/list.json');
-        const games = await response.json();
-
-        if (games && games.length > 0) {
-            container.innerHTML = '';
-            
-            games.forEach(game => {
-                const item = document.createElement('a');
-                item.className = 'game-list-item';
-                item.href = `run?app=${game.filename.replace('.jar', '')}`;
-                
-                // Highlight current game
-                if (currentAppId && game.filename.replace('.jar', '') === currentAppId) {
-                    item.classList.add('active');
-                }
-
-                const icon = document.createElement('div');
-                icon.className = 'game-list-icon';
-                icon.textContent = '🎮';
-                
-                const name = document.createElement('div');
-                name.className = 'game-list-name';
-                name.textContent = game.name;
-
-                item.appendChild(icon);
-                item.appendChild(name);
-                container.appendChild(item);
-            });
-        } else {
-            container.innerHTML = '<div style="color: white; text-align: center; padding: 20px;">Chưa có game nào</div>';
-        }
-    } catch (error) {
-        console.error('Failed to load game list:', error);
-        container.innerHTML = '<div style="color: white; text-align: center; padding: 20px;">Không thể tải danh sách game</div>';
-    }
-}
-
 // Initialize UI elements
 setupBackButton();
-setupGameList();
 
 init();
