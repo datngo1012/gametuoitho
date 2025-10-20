@@ -413,7 +413,78 @@ function setupBackButton() {
     }
 }
 
+// Game info panel handler
+function setupGameInfoPanel() {
+    const toggleButton = document.getElementById('game-info-toggle');
+    const panel = document.getElementById('game-info-panel');
+    
+    if (!toggleButton || !panel) return;
+
+    // Toggle panel
+    toggleButton.onclick = () => {
+        panel.classList.toggle('open');
+    };
+
+    // Close panel when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!panel.contains(e.target) && !toggleButton.contains(e.target)) {
+            panel.classList.remove('open');
+        }
+    });
+
+    // Load game info from URL params or list.json
+    loadGameInfo();
+}
+
+// Load game information
+async function loadGameInfo() {
+    const appId = sp.get('app');
+    const jarFile = sp.get('jar');
+
+    try {
+        const response = await fetch('games/list.json');
+        const games = await response.json();
+        
+        let gameInfo = null;
+        
+        if (appId) {
+            gameInfo = games.find(g => g.filename.replace('.jar', '') === appId);
+        } else if (jarFile) {
+            gameInfo = games.find(g => g.filename === jarFile);
+        }
+
+        if (gameInfo) {
+            updateGameInfo(gameInfo);
+        }
+    } catch (error) {
+        console.log('Could not load game info:', error);
+    }
+}
+
+// Update game info display
+function updateGameInfo(gameInfo) {
+    const gameName = document.getElementById('game-name');
+    const screenSize = document.getElementById('game-screen-size');
+    const phoneType = document.getElementById('game-phone-type');
+
+    if (gameName && gameInfo.name) {
+        gameName.textContent = gameInfo.name;
+        document.title = gameInfo.name + ' - FreeJ2ME';
+    }
+
+    if (screenSize && gameInfo.settings) {
+        const width = gameInfo.settings.width || gameInfo.settings.screenWidth || '-';
+        const height = gameInfo.settings.height || gameInfo.settings.screenHeight || '-';
+        screenSize.textContent = width !== '-' ? `${width}x${height}` : '-';
+    }
+
+    if (phoneType && gameInfo.settings && gameInfo.settings.phone) {
+        phoneType.textContent = gameInfo.settings.phone;
+    }
+}
+
 // Initialize UI elements
 setupBackButton();
+setupGameInfoPanel();
 
 init();
