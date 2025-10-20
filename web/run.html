@@ -1,18 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>freej2me-web</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Chơi game Java/J2ME tuổi thơ ngay trên trình duyệt" />
+    <meta name="theme-color" content="#4a6cb3" />
+    <title id="game-title">🎮 Đang tải game...</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
 </head>
 <style>
     html, body {
         height: 100%;
-    }
-    body {
         margin: 0;
         padding: 0;
-        font-family: sans;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        background-attachment: fixed;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        overflow: hidden;
+    }
+
+    /* Loading styles */
+    .loading-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        z-index: 1000;
+    }
+
+    .loading-spinner {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .loading-spinner::before,
+    .loading-spinner::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        animation: pulse-ring 1.5s ease-out infinite;
+    }
+
+    .loading-spinner::before {
+        width: 100px;
+        height: 100px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .loading-spinner::after {
+        width: 100px;
+        height: 100px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        animation-delay: 0.75s;
+    }
+
+    .loading-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3em;
+        animation: bounce-icon 1s ease-in-out infinite;
+    }
+
+    @keyframes pulse-ring {
+        0% {
+            transform: scale(0.5);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.3);
+            opacity: 0;
+        }
+    }
+
+    @keyframes bounce-icon {
+        0%, 100% { 
+            transform: translate(-50%, -50%) scale(1); 
+        }
+        50% { 
+            transform: translate(-50%, -55%) scale(1.1); 
+        }
+    }
+
+    .loading-text {
+        font-size: 1.5em;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .loading-progress {
+        width: 80%;
+        max-width: 400px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+
+    .loading-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #ffd700, #ffed4e);
+        border-radius: 10px;
+        width: 0%;
+        transition: width 0.3s ease;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+
+    .loading-percentage {
+        font-size: 1.2em;
+        opacity: 0.9;
+    }
+
+    .loading-details {
+        font-size: 0.9em;
+        opacity: 0.8;
+        text-align: center;
+        max-width: 400px;
+        margin-top: 10px;
+    }
+
+    /* Error styles */
+    .error-container {
+        text-align: center;
+        color: #fff;
+        max-width: 500px;
+        padding: 30px;
+    }
+
+    .error-icon {
+        font-size: 4em;
+        margin-bottom: 20px;
+    }
+
+    .error-title {
+        font-size: 1.5em;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .error-message {
+        font-size: 1em;
+        opacity: 0.9;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .error-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .error-btn {
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .error-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
     }
     #screen-area {
         background-color: #eee;
@@ -374,7 +540,54 @@
             <button data-key="Maximize" class="key small-key small-key-right" aria-label="Maximize">⛶</button>
         </div>
     </div>
+    <!-- Loading screen -->
+    <div id="loading" class="loading-container">
+        <div class="loading-spinner">
+            <div class="loading-icon">🎮</div>
+        </div>
+        <div class="loading-text" id="loading-text">Đang khởi động game...</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="loading-percentage" id="progress-text">0%</div>
+        <div class="loading-details" id="loading-details">
+            Đang tải máy ảo Java...
+        </div>
+    </div>
+
+    <!-- Error screen -->
+    <div id="error" class="loading-container" style="display: none;">
+        <div class="error-container">
+            <div class="error-icon">❌</div>
+            <div class="error-title">Không thể tải game</div>
+            <div class="error-message" id="error-message">
+                Đã xảy ra lỗi khi tải game. Vui lòng thử lại sau.
+            </div>
+            <div class="error-actions">
+                <button class="error-btn" onclick="retryGame()">🔄 Thử lại</button>
+                <button class="error-btn" onclick="goBack()">← Quay lại</button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
-    <script type="module" src="src/main.js"></script>
+    <script type="module" src="src/game-runner.js"></script>
+
+    <script>
+        function goBack() {
+            history.back();
+        }
+
+        function retryGame() {
+            location.reload();
+        }
+
+        function sendKey(key) {
+            // This will be implemented by the game runner
+            if (window.gameRunner && window.gameRunner.sendKey) {
+                window.gameRunner.sendKey(key);
+            }
+        }
+    </script>
 </body>
 </html>

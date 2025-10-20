@@ -245,12 +245,141 @@
 
       .game-list {
         margin-bottom: 20px;
-        background-color: white;
-        overflow: hidden;
         border-radius: 12px;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
       }
 
+      /* Grid layout for games */
+      .games-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      @media (max-width: 480px) {
+        .games-grid {
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          gap: 15px;
+          padding: 15px;
+        }
+      }
+
+      /* Game card styling */
+      .game-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .game-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .game-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
+        border-color: rgba(102, 126, 234, 0.5);
+      }
+
+      .game-card:hover::before {
+        opacity: 1;
+      }
+
+      .game-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 15px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .game-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+      }
+
+      .game-icon.default-icon {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .game-card:hover .game-icon {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .game-name {
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 15px;
+        line-height: 1.4;
+        min-height: 2.8em;
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .play-button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        font-size: 0.9em;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+      }
+
+      .play-button:hover {
+        background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+      }
+
+      .play-button:active {
+        transform: translateY(0);
+      }
+
+      /* Legacy styles for old layout (kept for compatibility) */
       .game-item {
         display: flex;
         align-items: stretch;
@@ -987,7 +1116,7 @@
         </div>
       </div>
       
-      <!-- Phần này được ẩn hoàn toàn -->
+      <!-- Phần Add/Manage game được ẩn vì không cần thiết -->
       <div style="display: none;">
         <div class="add-edit-header">
           <h2 id="add-edit-text">Add new game</h2>
@@ -1157,7 +1286,7 @@
       
       <!-- Phần hướng dẫn -->
       <div class="guide-section">
-        <h3>� Cách thêm game vào website</h3>
+        <h3>� Website được tối ưu mới!</h3>
         <p>Chỉ cần <strong>4 bước đơn giản</strong> để thêm game mới:</p>
         <ol>
           <li>� <strong>Copy file JAR</strong> vào thư mục <code>web/games/</code></li>
@@ -1233,7 +1362,6 @@
       </div>
       <br /><br />
     </main>
-    <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
-    <script type="module" src="src/launcher.js"></script>
+    <script type="module" src="src/simple-launcher.js"></script>
   </body>
 </html>
