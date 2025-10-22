@@ -13,26 +13,46 @@ let state = {
 let defaultSettings = {};
 
 async function main() {
-    document.getElementById("loading").textContent = "Loading CheerpJ...";
+    const loadingText = document.getElementById("loading-text");
+    const progressBar = document.getElementById("progress-bar");
+    
+    loadingText.textContent = "Loading CheerpJ...";
+    progressBar.style.width = "10%";
+    
     await cheerpjInit({
         enableDebug: false
     });
 
+    loadingText.textContent = "Initializing Java Runtime...";
+    progressBar.style.width = "30%";
+
     lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
 
-    document.getElementById("loading").textContent = "Loading...";
+    loadingText.textContent = "Loading freej2me...";
+    progressBar.style.width = "50%";
 
     launcherUtil = await lib.pl.zb3.freej2me.launcher.LauncherUtil;
 
     await launcherUtil.resetTmpDir();
 
+    loadingText.textContent = "Loading configuration...";
+    progressBar.style.width = "70%";
+
     const Config = await lib.org.recompile.freej2me.Config;
     await javaToKv(Config.DEFAULT_SETTINGS, defaultSettings);
 
+    loadingText.textContent = "Preparing interface...";
+    progressBar.style.width = "90%";
+
     await reloadUI();
 
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("main").style.display = "";
+    loadingText.textContent = "Ready!";
+    progressBar.style.width = "100%";
+
+    setTimeout(() => {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("main").style.display = "";
+    }, 300);
 
     document.getElementById("clear-current").onclick = setupAddMode;
 
@@ -179,10 +199,10 @@ function fillGamesList(games) {
 
         item.appendChild(link);
 
-        const manageButton = document.createElement("button");
-        manageButton.textContent = "Manage";
-        manageButton.onclick = () => openEditGame(game);
-        item.appendChild(manageButton);
+        // const manageButton = document.createElement("button");
+        // manageButton.textContent = "Manage";
+        // manageButton.onclick = () => openEditGame(game);
+        // item.appendChild(manageButton);
 
         container.appendChild(item);
     }
@@ -199,32 +219,32 @@ function setupAddMode() {
         systemProperties: {},
     };
 
-    document.getElementById("add-edit-text").textContent = "Add new game";
+    // document.getElementById("add-edit-text").textContent = "Add new game";
 
-    document.getElementById("file-input-step").style.display = "";
-    document.getElementById("file-input-loading").style.display = "none";
-    document.getElementById("file-input-jad-step").style.display = "none";
-    document.getElementById("add-manage-step").style.display = "none";
+    // document.getElementById("file-input-step").style.display = "";
+    // document.getElementById("file-input-loading").style.display = "none";
+    // document.getElementById("file-input-jad-step").style.display = "none";
+    // document.getElementById("add-manage-step").style.display = "none";
 
-    document.getElementById("game-file-input").disabled = false;
-    document.getElementById("game-file-input").value = null;
+    // document.getElementById("game-file-input").disabled = false;
+    // document.getElementById("game-file-input").value = null;
 
-    document.getElementById("game-file-input").onchange = (e) => {
-        // read file to arraybuffer
-        const file = e.target.files[0];
-        if (file) {
-            document.getElementById("game-file-input").disabled = true;
-            document.getElementById("file-input-step").style.display = "none";
-            document.getElementById("file-input-loading").style.display = "";
+    // document.getElementById("game-file-input").onchange = (e) => {
+    //     // read file to arraybuffer
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         document.getElementById("game-file-input").disabled = true;
+    //         document.getElementById("file-input-step").style.display = "none";
+    //         document.getElementById("file-input-loading").style.display = "";
 
-            const reader = new FileReader();
-            reader.onload = async () => {
-                const arrayBuffer = reader.result;
-                await processGameFile(arrayBuffer, file.name);
-            };
-            reader.readAsArrayBuffer(file);
-        }
-    };
+    //         const reader = new FileReader();
+    //         reader.onload = async () => {
+    //             const arrayBuffer = reader.result;
+    //             await processGameFile(arrayBuffer, file.name);
+    //         };
+    //         reader.readAsArrayBuffer(file);
+    //     }
+    // };
 }
 
 async function processGameFile(fileBuffer, fileName) {

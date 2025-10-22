@@ -15,15 +15,133 @@
         font-family: sans;
     }
     #screen-area {
-        background-color: #eee;
+        background: 
+            linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%),
+            repeating-linear-gradient(45deg, 
+                rgba(255,255,255,0.03) 0px, 
+                rgba(255,255,255,0.03) 10px,
+                transparent 10px, 
+                transparent 20px
+            );
+        background-color: #2a1a4e;
         position: absolute;
-        top: 0;
+        top: 60px;
         left: 0;
         right: 0;
         bottom: 0;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    
+    #game-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        z-index: 1000;
+    }
+    
+    #game-title {
+        color: white;
+        font-size: 1.5em;
+        font-weight: bold;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        flex-grow: 1;
+    }
+    
+    #back-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background 0.2s;
+    }
+    
+    #back-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+    
+    #controls-panel {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 250px;
+        max-height: calc(100vh - 60px);
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        overflow-y: auto;
+        z-index: 999;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+    
+    #controls-panel.show {
+        transform: translateX(0);
+    }
+    
+    #controls-toggle {
+        position: fixed;
+        top: 70px;
+        right: 10px;
+        background: rgba(102, 126, 234, 0.9);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        z-index: 1001;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    #controls-toggle:hover {
+        background: rgba(102, 126, 234, 1);
+    }
+    
+    .control-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .control-item:last-child {
+        border-bottom: none;
+    }
+    
+    .control-key {
+        background: #f0f0f0;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9em;
+        font-weight: bold;
+        border: 1px solid #ccc;
+    }
+    
+    .control-label {
+        color: #666;
+        font-size: 0.9em;
+    }
+    
+    .controls-title {
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #333;
     }
     #display {
         background-color: white;
@@ -34,7 +152,133 @@
         outline: none;
     }
     #loading {
-        font-size: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px 50px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        min-width: 320px;
+    }
+    
+    .loading-icon {
+        font-size: 4.5em;
+        animation: bounce 1s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0) scale(1);
+        }
+        50% {
+            transform: translateY(-20px) scale(1.1);
+        }
+    }
+    
+    .loading-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .loading-text {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #333;
+        text-align: center;
+    }
+
+    .progress-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .progress-bar-wrapper {
+        width: 100%;
+        height: 8px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+    
+    .progress-percentage {
+        margin-top: 8px;
+        font-size: 0.9em;
+        color: #666;
+        font-weight: 500;
+    }
+    
+    .loading-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid #667eea;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        display: none;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.6;
+            transform: scale(1.1);
+        }
+    }
+
+    .loading-dots {
+        display: flex;
+        gap: 8px;
+    }
+
+    .loading-dot {
+        width: 10px;
+        height: 10px;
+        background-color: #667eea;
+        border-radius: 50%;
+        animation: dotPulse 1.4s ease-in-out infinite;
+    }
+
+    .loading-dot:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .loading-dot:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes dotPulse {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.5);
+            opacity: 0.5;
+        }
     }
 
     .keypad-part {
@@ -177,18 +421,112 @@
 
     body.kbd-portrait #screen-area {
         bottom: 220px;
+        top: 60px;
     }
 
     body.kbd-landscape #screen-area {
         left: 220px;
         right: 220px;
+        top: 60px;
+    }
+    
+    @media (max-width: 768px) {
+        #game-header {
+            padding: 0 10px;
+        }
+        
+        #game-title {
+            font-size: 1.2em;
+        }
+        
+        #controls-toggle {
+            top: 70px;
+            right: 5px;
+            padding: 8px 12px;
+            font-size: 0.9em;
+        }
+        
+        #controls-panel {
+            width: 200px;
+        }
     }
 
 </style>
 <body>
+    <div id="game-header">
+        <h1 id="game-title">🎮 Loading Game...</h1>
+        <button id="back-btn" onclick="window.location.href='index.html'">← Back</button>
+    </div>
+    
+    <button id="controls-toggle">🎮 Controls</button>
+    
+    <div id="controls-panel">
+        <div class="controls-title">🎮 Keyboard Controls</div>
+        <div class="control-item">
+            <span class="control-label">Move Up</span>
+            <span class="control-key">↑</span>
+        </div>
+        <div class="control-item">
+            <span class="control-label">Move Down</span>
+            <span class="control-key">↓</span>
+        </div>
+        <div class="control-item">
+            <span class="control-label">Move Left</span>
+            <span class="control-key">←</span>
+        </div>
+        <div class="control-item">
+            <span class="control-label">Move Right</span>
+            <span class="control-key">→</span>
+        </div>
+        <div class="control-item">
+            <span class="control-label">Action (OK)</span>
+            <span class="control-key">Enter</span>
+        </div>
+        <div class="control-item">
+            <span class="control-label">Left Soft Key</span>
+            <span class="control-key">F1 / Q</span>
+        </div>
+        <div class="control-item">
+            <span class="control-label">Right Soft Key</span>
+            <span class="control-key">F2 / W</span>
+        </div>
+        <div class="control-item">
+            <span class="control-label">Numbers</span>
+            <span class="control-key">0-9</span>
+        </div>
+        <div class="control-item">
+            <span class="control-label">Star</span>
+            <span class="control-key">* / E</span>
+        </div>
+        <div class="control-item">
+            <span class="control-label">Hash</span>
+            <span class="control-key"># / R</span>
+        </div>
+        <div class="control-item">
+            <span class="control-label">Menu</span>
+            <span class="control-key">Esc</span>
+        </div>
+    </div>
+    
     <div id="screen-area">
         <canvas tabindex="0" id="display" style="display: none;"></canvas>
-        <div id="loading">Loading...</div>
+        <div id="loading">
+            <div class="loading-icon">🎮</div>
+            <div class="loading-content">
+                <div class="loading-text" id="loading-text">Initializing...</div>
+                <div class="progress-container">
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+                    </div>
+                    <div class="progress-percentage" id="progress-percentage">0%</div>
+                </div>
+                <div class="loading-dots">
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="left-keys" class="keypad-part">
         <div class="key-grid left-grid">
@@ -220,6 +558,14 @@
         </div>
     </div>
     <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
+    <script>
+        // Toggle controls panel
+        document.getElementById('controls-toggle').addEventListener('click', function() {
+            const panel = document.getElementById('controls-panel');
+            panel.classList.toggle('show');
+            this.textContent = panel.classList.contains('show') ? '✕ Close' : '🎮 Controls';
+        });
+    </script>
     <script type="module" src="src/main.js"></script>
 </body>
 </html>

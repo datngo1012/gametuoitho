@@ -232,19 +232,33 @@ async function ensureAppInstalled(lib, appId) {
 }
 
 async function init() {
-    document.getElementById("loading").textContent = "Loading CheerpJ...";
+    const loadingText = document.getElementById("loading-text");
+    const progressBar = document.getElementById("progress-bar-fill");
+    const progressPercentage = document.getElementById("progress-percentage");
+    
+    function updateProgress(percent, text) {
+        if (progressBar) progressBar.style.width = percent + "%";
+        if (progressPercentage) progressPercentage.textContent = percent + "%";
+        if (loadingText) loadingText.textContent = text;
+    }
+    
+    updateProgress(5, "Loading CheerpJ...");
 
     display = document.getElementById('display');
     screenCtx = display.getContext('2d');
 
     setListeners();
 
+    updateProgress(15, "Initializing Audio...");
+    
     window.libmidi = new LibMidi(createUnlockingAudioContext());
     await window.libmidi.init();
     window.libmidi.midiPlayer.addEventListener('end-of-media', e => {
         window.evtQueue.queueEvent({kind: 'player-eom', player: e.target});
     })
     window.libmedia = new LibMedia();
+
+    updateProgress(30, "Starting Java Runtime...");
 
     await cheerpjInit({
         enableDebug: false,
@@ -257,6 +271,8 @@ async function init() {
             ...midiBridgeNatives,
             async Java_pl_zb3_freej2me_bridge_shell_Shell_setTitle(lib, title) {
                 document.title = title;
+                const gameTitle = document.getElementById('game-title');
+                if (gameTitle) gameTitle.textContent = '🎮 ' + title;
             },
             async Java_pl_zb3_freej2me_bridge_shell_Shell_setIcon(lib, iconBytes) {
                 if (iconBytes) {
@@ -268,7 +284,10 @@ async function init() {
             },
             async Java_pl_zb3_freej2me_bridge_shell_Shell_setCanvasSize(lib, width, height) {
                 if (!scaleSet) {
-                    document.getElementById('loading').hidden = true;
+                    const loadingEl = document.getElementById('loading');
+                    if (loadingEl) {
+                        loadingEl.style.display = 'none';
+                    }
                     display.style.display = '';
                     scaleSet = true;
                     display.focus();
@@ -317,9 +336,11 @@ async function init() {
         }
     });
 
-    document.getElementById("loading").textContent = "Loading...";
+    updateProgress(50, "Loading freej2me...");
 
     const lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
+
+    updateProgress(70, "Preparing game...");
 
     const FreeJ2ME = await lib.org.recompile.freej2me.FreeJ2ME;
 
@@ -334,9 +355,15 @@ async function init() {
         args = ['jar', cheerpjWebRoot+"/jar/" + (sp.get('jar') || "game.jar")];
     }
 
+    updateProgress(90, "Starting game...");
+
     FreeJ2ME.main(args).catch(e => {
         e.printStackTrace();
-        document.getElementById('loading').textContent = 'Crash :(';
+        const loadingEl = document.getElementById('loading');
+        if (loadingEl) {
+            loadingEl.querySelector('.loading-text').textContent = 'Crash :(';
+            loadingEl.querySelector('.progress-bar-fill').style.backgroundColor = '#e74c3c';
+        }
     });
 
 
