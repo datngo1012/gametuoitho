@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Chơi game Java/J2ME tuổi thơ ngay trên trình duyệt - Không cần cài đặt!" />
-    <meta name="keywords" content="game java, j2me, game tuổi thơ, game mobile, game điện thoại" />
-    <meta name="theme-color" content="#4a6cb3" />
-    <title>🎮 Game Tuổi Thơ - FreeJ2ME</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>freej2me-web</title>
   </head>
 
   <body>
@@ -20,168 +16,28 @@
       body {
         margin: 0;
         padding: 0;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-        background-attachment: fixed;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        min-height: 100vh;
-        position: relative;
-      }
-
-      body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-          radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 40% 20%, rgba(102, 126, 234, 0.3) 0%, transparent 50%);
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      main {
-        position: relative;
-        z-index: 1;
+        background-color: #eee;
+        font-family: sans;
       }
 
       #loading {
         position: absolute;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
         inset: 0;
-        font-size: 1.5em;
-        gap: 20px;
-        color: var(--primary);
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      }
-
-      .loading-spinner {
-        width: 80px;
-        height: 80px;
-        position: relative;
-      }
-
-      .loading-spinner::before,
-      .loading-spinner::after {
-        content: '';
-        position: absolute;
-        border-radius: 50%;
-        animation: pulse-ring 1.5s ease-out infinite;
-      }
-
-      .loading-spinner::before {
-        width: 80px;
-        height: 80px;
-        border: 3px solid rgba(255, 255, 255, 0.3);
-      }
-
-      .loading-spinner::after {
-        width: 80px;
-        height: 80px;
-        border: 3px solid rgba(255, 255, 255, 0.3);
-        animation-delay: 0.75s;
-      }
-
-      @keyframes pulse-ring {
-        0% {
-          transform: scale(0.5);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1.3);
-          opacity: 0;
-        }
-      }
-
-      .loading-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 2.5em;
-        animation: bounce-icon 1s ease-in-out infinite;
-      }
-
-      @keyframes bounce-icon {
-        0%, 100% { transform: translate(-50%, -50%) scale(1); }
-        50% { transform: translate(-50%, -55%) scale(1.1); }
-      }
-
-      .loading-text {
-        text-align: center;
-        color: white;
-        font-size: 0.7em;
-        font-weight: 500;
-      }
-
-      .loading-progress {
-        width: 80%;
-        max-width: 300px;
-        height: 6px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-        overflow: hidden;
-        margin-top: 10px;
-      }
-
-      .loading-progress-bar {
-        height: 100%;
-        background: linear-gradient(90deg, #ffd700, #ffed4e);
-        border-radius: 10px;
-        width: 0%;
-        transition: width 0.3s ease;
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-      }
-
-      .loading-percentage {
-        color: white;
-        font-size: 0.5em;
-        margin-top: 5px;
-        opacity: 0.9;
+        font-size: 2em;
       }
 
       main {
         margin: auto;
         width: 100%;
         max-width: 360px;
-        padding: 20px 15px;
-        position: relative;
-        z-index: 1;
       }
 
       @media (min-width: 480px) {
         main {
-          max-width: 640px;
-          padding: 30px 20px;
-        }
-      }
-
-      @media (min-width: 1024px) {
-        main {
-          max-width: 1200px;
-        }
-      }
-
-      @media (min-width: 1280px) {
-        main {
-          max-width: 1400px;
-        }
-      }
-
-      /* Animated background particles */
-      @keyframes particle-float {
-        0%, 100% { 
-          transform: translate(0, 0) rotate(0deg);
-          opacity: 0.3;
-        }
-        50% { 
-          transform: translate(50px, -50px) rotate(180deg);
-          opacity: 0.6;
+          max-width: 480px;
         }
       }
 
@@ -204,26 +60,9 @@
         --warning-color: #ffc107;
       }
 
-      h1 {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin: 0;
-        font-size: 2em;
-        font-weight: 700;
-      }
-
       h2 {
         font-size: 1.3em;
-        margin-bottom: 0.8em;
-        color: var(--text);
-        font-weight: 600;
-      }
-
-      h3 {
-        color: var(--text);
-        margin-top: 0;
+        margin-bottom: 0.5em;
       }
 
       input,
@@ -237,13 +76,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 25px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 15px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        margin-bottom: 20px;
       }
 
       .data-controls {
@@ -257,130 +90,52 @@
 
       .game-list {
         margin-bottom: 20px;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-
-      @media (min-width: 640px) {
-        .game-list {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      @media (min-width: 1024px) {
-        .game-list {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      @media (min-width: 1280px) {
-        .game-list {
-          grid-template-columns: repeat(4, 1fr);
-        }
+        background-color: white;
+        /* need overflow: hidden for border-radius */
+        overflow: hidden;
+        border-radius: 8px;
       }
 
       .game-item {
-        background-color: white;
-        border-radius: 12px;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
         display: flex;
-        flex-direction: column;
-      }
-
-      .game-item::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 4px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-      }
-
-      .game-item:hover::before {
-        transform: scaleX(1);
+        align-items: stretch;
+        justify-content: space-between;
       }
 
       .game-item a {
         display: flex;
-        flex-direction: column;
         align-items: center;
+        justify-content: space-between;
         text-decoration: none;
         color: #222;
         flex-grow: 1;
-        padding: 20px;
-        transition: all 0.3s ease;
-        text-align: center;
+        padding: 8px;
       }
 
       .game-item a:hover {
-        background-color: #f0f7ff;
-        transform: translateY(-2px);
-      }
-
-      .game-item:hover {
-        box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+        background-color: #f8f9fa;
       }
 
       .game-item .icon,
       .preview-icon {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 12px;
-        border-radius: 15px;
-        object-fit: cover;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 40px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        transition: transform 0.3s ease;
-      }
-
-      .game-item:hover .icon {
-        transform: scale(1.1);
-      }
-
-      .game-item .icon.default-icon {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      }
-
-      .game-item .icon.default-icon::before {
-        content: '🎮';
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
       }
 
       .game-item .game-info {
         flex-grow: 1;
-        width: 100%;
       }
 
       .game-item button {
-        padding: 8px 12px;
+        padding: 5px 10px;
         background-color: hsl(211, 80%, 97%);
         border: none;
         cursor: pointer;
-        transition: background-color 0.2s;
-        font-size: 0.9em;
-        display: none; /* Ẩn nút Manage */
       }
 
       .game-item button:hover {
         background-color: hsl(211, 70%, 92%);
-      }
-
-      .game-info {
-        font-size: 0.95em;
-        font-weight: 600;
-        color: #2d3748;
-        line-height: 1.4;
-        word-break: break-word;
       }
 
       .btn {
@@ -690,290 +445,41 @@
       }
 
       .keyboard-controls {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 20px;
-        border-radius: 15px;
+        background: white;
+        padding: 12px;
+        border-radius: 8px;
         margin-top: 20px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
       }
 
       .keyboard-controls h3 {
-        margin: 0 0 15px 0;
-        font-size: 1.2em;
-        color: var(--primary);
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        margin: 0;
+        font-size: 1.05em;
       }
 
       .keyboard-controls table {
         margin-top: 10px;
         width: 100%;
-        border-collapse: collapse;
-      }
-
-      .keyboard-controls table tr {
-        border-bottom: 1px solid #f0f0f0;
-      }
-
-      .keyboard-controls table tr:last-child {
-        border-bottom: none;
       }
 
       .keyboard-controls table td {
-        padding: 10px 5px;
-        text-align: left;
-      }
-
-      .keyboard-controls table td:first-child {
-        width: 40%;
-        font-weight: 500;
+        text-align: center;
       }
 
       .keyboard-controls .key {
-        display: inline-block;
-        background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
-        border: 2px solid #ccc;
-        border-bottom-width: 3px;
-        border-radius: 5px;
-        padding: 4px 10px;
-        font-family: 'Segoe UI', monospace;
-        font-size: 13px;
-        font-weight: 600;
-        color: #333;
-        box-shadow: 0 2px 0 rgba(0,0,0,0.1);
-        margin: 0 3px;
-      }
-
-      .guide-section {
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
-        color: white;
-        padding: 25px;
-        border-radius: 15px;
-        margin-top: 20px;
-        box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .guide-section h3 {
-        margin-top: 0;
-        color: white;
-        font-size: 1.4em;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .guide-section pre {
-        background: rgba(0, 0, 0, 0.2);
-        padding: 15px;
-        border-radius: 8px;
-        overflow-x: auto;
-        font-size: 0.85em;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #fff;
-      }
-
-      .guide-section code {
-        background: rgba(255, 255, 255, 0.2);
-        padding: 3px 8px;
-        border-radius: 4px;
-        font-size: 0.9em;
-        color: #ffd700;
-        font-weight: 500;
-      }
-
-      .guide-section ol, .guide-section ul {
-        padding-left: 25px;
-      }
-
-      .guide-section li {
-        margin: 10px 0;
-        line-height: 1.6;
-      }
-
-      .guide-section p {
-        line-height: 1.7;
-        opacity: 0.95;
-      }
-
-      .guide-section strong {
-        color: #ffd700;
-      }
-
-      #loading {
-        font-size: 1.5em;
-        color: var(--primary);
-      }
-
-      .empty-games {
-        text-align: center;
-        padding: 60px 20px;
-        color: var(--text-light);
-      }
-
-      .empty-games-icon {
-        font-size: 4em;
-        margin-bottom: 15px;
-        animation: bounce 2s infinite;
-      }
-
-      @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-      }
-
-      .empty-games h3 {
-        color: var(--text);
-        margin: 10px 0;
-      }
-
-      .empty-games p {
-        margin: 10px 0;
-        line-height: 1.8;
-        font-size: 0.95em;
-      }
-
-      /* Icon styling in text */
-      h2, h3 {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      /* Search box styling */
-      .game-section-header {
-        margin-bottom: 15px;
-      }
-
-      .search-box {
-        margin-top: 10px;
-        position: relative;
-      }
-
-      .search-count {
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: var(--primary);
-        color: white;
-        padding: 4px 12px;
-        border-radius: 15px;
-        font-size: 0.85em;
-        font-weight: 600;
-        pointer-events: none;
-      }
-
-      #game-search {
-        width: 100%;
-        padding: 12px 20px;
-        font-size: 1em;
-        border: 2px solid rgba(102, 126, 234, 0.3);
-        border-radius: 25px;
-        background: white;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        outline: none;
-      }
-
-      #game-search:focus {
-        border-color: var(--primary);
-        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-        transform: translateY(-2px);
-      }
-
-      #game-search::placeholder {
-        color: #999;
-      }
-
-      /* No results message */
-      .no-results {
-        text-align: center;
-        padding: 40px 20px;
-        color: var(--text-light);
-        background: white;
-        border-radius: 12px;
-        margin-top: 20px;
-      }
-
-      .no-results-icon {
-        font-size: 3em;
-        margin-bottom: 15px;
-      }
-
-      /* Highlight search term */
-      .highlight {
-        background-color: #ffd700;
-        padding: 2px 4px;
+        background-color: #f5f5f5;
+        border: 1px solid #9e9e9e;
         border-radius: 3px;
-        font-weight: 600;
-      }
-
-      /* Glass morphism effect for game list */
-      .game-list {
-        backdrop-filter: blur(10px);
-        background: rgba(255, 255, 255, 0.95);
-      }
-
-      /* Floating animation */
-      @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-      }
-
-      .header {
-        animation: float 3s ease-in-out infinite;
-      }
-
-      /* Fade in animation for game items */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .game-item {
-        animation: fadeIn 0.3s ease-out;
-      }
-
-      /* Search box focus effect */
-      @keyframes glow {
-        0%, 100% {
-          box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-        }
-        50% {
-          box-shadow: 0 4px 30px rgba(102, 126, 234, 0.5);
-        }
-      }
-
-      #game-search:focus {
-        animation: glow 2s ease-in-out infinite;
+        padding: 2px 6px;
+        font-family: monospace;
+        font-size: 12px;
       }
     </style>
-    <div id="loading">
-      <div class="loading-spinner">
-        <div class="loading-icon">🎮</div>
-      </div>
-      <div class="loading-text">Đang khởi động...</div>
-      <div class="loading-progress">
-        <div class="loading-progress-bar" id="progress-bar"></div>
-      </div>
-      <div class="loading-percentage" id="progress-text">0%</div>
-    </div>
+    <div id="loading">Loading...</div>
     <main id="main" style="display: none">
       <div class="header">
-        <h1>🕹️ Game Tuổi Thơ</h1>
+        <h1>freej2me-web</h1>
         <div class="data-controls">
-          <button class="btn btn-outline" id="import-data-btn" style="display: none;">
+          <button class="btn btn-outline" id="import-data-btn">
             Import Data
           </button>
           <input
@@ -982,7 +488,7 @@
             style="display: none"
             accept=".zip"
           />
-          <button class="btn btn-outline" id="export-data-btn" style="display: none;">
+          <button class="btn btn-outline" id="export-data-btn">
             Export Data
           </button>
           <a
@@ -993,18 +499,7 @@
           >
         </div>
       </div>
-      <div class="game-section-header">
-        <h2>🎮 Danh Sách Game</h2>
-        <div class="search-box">
-          <input 
-            type="text" 
-            id="game-search" 
-            placeholder="🔍 Tìm kiếm game..." 
-            autocomplete="off"
-          />
-          <span class="search-count" id="search-count" style="display: none;"></span>
-        </div>
-      </div>
+      <h2>Installed Games</h2>
       <div id="game-list" class="game-list">
         <div class="game-item">
           <a href="run">
@@ -1014,39 +509,39 @@
           <button>Manage</button>
         </div>
       </div>
-      
-      <!-- Phần này được ẩn hoàn toàn -->
-      <div style="display: none;">
-        <div class="add-edit-header">
-          <h2 id="add-edit-text">Add new game</h2>
-          <button id="clear-current" class="btn btn-outline">Clear</button>
+      <div class="add-edit-header">
+        <h2 id="add-edit-text">Add new game</h2>
+        <button id="clear-current" class="btn btn-outline">Clear</button>
+      </div>
+      <div id="file-input-step">
+        <div class="form-group">
+          <label for="game-file-input">Select JAR file</label>
+          <input type="file" id="game-file-input" accept=".jar" />
         </div>
-        <div id="file-input-step">
-          <div class="form-group">
-            <label for="game-file-input">Select JAR file</label>
-            <input type="file" id="game-file-input" accept=".jar" />
-          </div>
+      </div>
+      <div id="file-input-jad-step" style="display: none">
+        <div id="warning-message" class="warning-message">
+          <span>⚠️</span>
+          <span
+            >This game requires a JAD file to function properly. Please upload
+            one.</span
+          >
         </div>
-        <div id="file-input-jad-step">
-          <div id="warning-message" class="warning-message">
-            <span>⚠️</span>
-            <span>This game requires a JAD file to function properly. Please upload one.</span>
-          </div>
-          <div class="form-group">
-            <label for="upload-descriptor-file-input">Select JAD file</label>
-            <input type="file" id="upload-descriptor-file-input" accept=".jad" />
-          </div>
-          <div class="form-group">
-            <button id="continue-without-jad" class="btn btn-outline btn-full">
-              Continue without JAD file (might not work)
-            </button>
-          </div>
+        <div class="form-group">
+          <label for="upload-descriptor-file-input">Select JAD file</label>
+          <input type="file" id="upload-descriptor-file-input" accept=".jad" />
         </div>
-        <div class="loading" id="file-input-loading">
-          <div class="spinner"></div>
-          <span>Analyzing file...</span>
+        <div class="form-group">
+          <button id="continue-without-jad" class="btn btn-outline btn-full">
+            Continue without JAD file (might not work)
+          </button>
         </div>
-      <div id="add-manage-step">
+      </div>
+      <div class="loading" id="file-input-loading" style="display: none">
+        <div class="spinner"></div>
+        <span>Analyzing file...</span>
+      </div>
+      <div id="add-manage-step" style="display: none">
         <div id="preview" class="preview-container">
           <img class="preview-icon" />
           <span class="preview-name">Game name</span>
@@ -1182,82 +677,58 @@
         </div>
         <button class="save-button" id="add-save-button">Add game</button>
       </div>
-      
-      <!-- Phần hướng dẫn -->
-      <div class="guide-section">
-        <h3>� Cách thêm game vào website</h3>
-        <p>Chỉ cần <strong>4 bước đơn giản</strong> để thêm game mới:</p>
-        <ol>
-          <li>� <strong>Copy file JAR</strong> vào thư mục <code>web/games/</code></li>
-          <li>✏️ <strong>Chỉnh sửa</strong> file <code>web/games/list.json</code></li>
-          <li>🔄 <strong>Refresh</strong> trang web</li>
-          <li>🚀 <strong>Chơi ngay!</strong> Game tự động được cài đặt</li>
-        </ol>
-        <p><strong>Ví dụ cấu hình:</strong></p>
-        <pre>{
-  "filename": "ninja3.jar",
-  "name": "Ninja School 3",
-  "jadFile": null,
-  "settings": {
-    "phone": "Nokia",
-    "width": "240",
-    "height": "320",
-    "sound": "on"
-  }
-}</pre>
-        <p>💡 <strong>Tip:</strong> Hầu hết game chạy tốt với <code>Nokia</code> và kích thước <code>240x320</code></p>
-      </div>
-      
       <div class="keyboard-controls">
-        <h3>⌨️ Phím điều khiển trên PC</h3>
+        <h3>Keyboard controls</h3>
         <table>
           <tr>
-            <td><strong>🎮 Điều hướng</strong></td>
-            <td></td>
+            <td><span class="key">Esc</span></td>
+            <td>Enter/exit freej2me options</td>
           </tr>
           <tr>
-            <td><span class="key">↑</span> <span class="key">↓</span> <span class="key">←</span> <span class="key">→</span></td>
-            <td>Di chuyển (Lên/Xuống/Trái/Phải)</td>
+            <td><span class="key">F1</span> or <span class="key">Q</span></td>
+            <td>Left soft key</td>
+          </tr>
+          <tr>
+            <td><span class="key">F2</span> or <span class="key">W</span></td>
+            <td>Right soft key</td>
+          </tr>
+          <tr>
+            <td><span class="key">0</span> to <span class="key">9</span></td>
+            <td>Keypad numbers</td>
+          </tr>
+          <tr>
+            <td>Numpad keys</td>
+            <td>Numbers with keys 123 and 789 swaped</td>
+          </tr>
+          <tr>
+            <td><span class="key">E</span></td>
+            <td>*</td>
+          </tr>
+          <tr>
+            <td><span class="key">R</span></td>
+            <td>#</td>
+          </tr>
+          <tr>
+            <td><span class="key">↑</span></td>
+            <td>Up</td>
+          </tr>
+          <tr>
+            <td><span class="key">↓</span></td>
+            <td>Down</td>
+          </tr>
+          <tr>
+            <td><span class="key">←</span></td>
+            <td>Left</td>
+          </tr>
+          <tr>
+            <td><span class="key">→</span></td>
+            <td>Right</td>
           </tr>
           <tr>
             <td><span class="key">⏎ Enter</span></td>
-            <td>Nút OK / Xác nhận</td>
-          </tr>
-          <tr>
-            <td><span class="key">Esc</span></td>
-            <td>Mở/đóng menu tùy chọn</td>
-          </tr>
-          <tr>
-            <td colspan="2" style="padding-top: 15px;"><strong>📱 Bàn phím điện thoại</strong></td>
-          </tr>
-          <tr>
-            <td><span class="key">0</span> đến <span class="key">9</span></td>
-            <td>Phím số 0-9</td>
-          </tr>
-          <tr>
-            <td><span class="key">E</span> hoặc <span class="key">*</span></td>
-            <td>Phím <strong>*</strong> (sao)</td>
-          </tr>
-          <tr>
-            <td><span class="key">R</span> hoặc <span class="key">#</span></td>
-            <td>Phím <strong>#</strong> (thăng)</td>
-          </tr>
-          <tr>
-            <td><span class="key">F1</span> hoặc <span class="key">Q</span></td>
-            <td>Phím mềm trái (Soft Left)</td>
-          </tr>
-          <tr>
-            <td><span class="key">F2</span> hoặc <span class="key">W</span></td>
-            <td>Phím mềm phải (Soft Right)</td>
-          </tr>
-          <tr>
-            <td>Numpad (0-9)</td>
-            <td>Bàn phím số (với 123 và 789 hoán đổi)</td>
+            <td>Action key (OK button)</td>
           </tr>
         </table>
-        <p style="margin-top: 15px; opacity: 0.9; font-size: 0.9em;">
-          💡 <strong>Lưu ý:</strong> Phím <span class="key">*</span> và <span class="key">#</span> được dùng trong nhiều game để mở menu, chuyển vũ khí, hoặc các tính năng đặc biệt.
-        </p>
       </div>
       <br /><br />
     </main>
