@@ -242,14 +242,14 @@ async function init() {
         if (loadingText) loadingText.textContent = text;
     }
     
-    updateProgress(5, "Loading CheerpJ...");
+    updateProgress(5, "Đang tải...");
 
     display = document.getElementById('display');
     screenCtx = display.getContext('2d');
 
     setListeners();
 
-    updateProgress(15, "Initializing Audio...");
+    updateProgress(15, "Đang khởi tạo âm thanh...");
     
     window.libmidi = new LibMidi(createUnlockingAudioContext());
     await window.libmidi.init();
@@ -258,7 +258,7 @@ async function init() {
     })
     window.libmedia = new LibMedia();
 
-    updateProgress(30, "Starting Java Runtime...");
+    updateProgress(30, "Đang khởi động...");
 
     await cheerpjInit({
         enableDebug: false,
@@ -336,11 +336,11 @@ async function init() {
         }
     });
 
-    updateProgress(50, "Loading freej2me...");
+    updateProgress(50, "Đang tải game...");
 
     const lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
 
-    updateProgress(70, "Preparing game...");
+    updateProgress(70, "Đang chuẩn bị...");
 
     const FreeJ2ME = await lib.org.recompile.freej2me.FreeJ2ME;
 
@@ -355,13 +355,13 @@ async function init() {
         args = ['jar', cheerpjWebRoot+"/jar/" + (sp.get('jar') || "game.jar")];
     }
 
-    updateProgress(90, "Starting game...");
+    updateProgress(90, "Đang khởi chạy game...");
 
     FreeJ2ME.main(args).catch(e => {
         e.printStackTrace();
         const loadingEl = document.getElementById('loading');
         if (loadingEl) {
-            loadingEl.querySelector('.loading-text').textContent = 'Crash :(';
+            loadingEl.querySelector('.loading-text').textContent = 'Lỗi :(';
             loadingEl.querySelector('.progress-bar-fill').style.backgroundColor = '#e74c3c';
         }
     });

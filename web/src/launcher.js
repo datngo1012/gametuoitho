@@ -16,37 +16,37 @@ async function main() {
     const loadingText = document.getElementById("loading-text");
     const progressBar = document.getElementById("progress-bar");
     
-    loadingText.textContent = "Loading CheerpJ...";
+    loadingText.textContent = "Đang tải...";
     progressBar.style.width = "10%";
     
     await cheerpjInit({
         enableDebug: false
     });
 
-    loadingText.textContent = "Initializing Java Runtime...";
+    loadingText.textContent = "Đang khởi động...";
     progressBar.style.width = "30%";
 
     lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
 
-    loadingText.textContent = "Loading freej2me...";
+    loadingText.textContent = "Đang tải game...";
     progressBar.style.width = "50%";
 
     launcherUtil = await lib.pl.zb3.freej2me.launcher.LauncherUtil;
 
     await launcherUtil.resetTmpDir();
 
-    loadingText.textContent = "Loading configuration...";
+    loadingText.textContent = "Đang tải cấu hình...";
     progressBar.style.width = "70%";
 
     const Config = await lib.org.recompile.freej2me.Config;
     await javaToKv(Config.DEFAULT_SETTINGS, defaultSettings);
 
-    loadingText.textContent = "Preparing interface...";
+    loadingText.textContent = "Đang chuẩn bị...";
     progressBar.style.width = "90%";
 
     await reloadUI();
 
-    loadingText.textContent = "Ready!";
+    loadingText.textContent = "Hoàn tất!";
     progressBar.style.width = "100%";
 
     setTimeout(() => {

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>freej2me-web</title>
+    <title>Game Tuổi Thơ - Đang chơi game</title>
 </head>
 <style>
     html, body {
@@ -454,52 +454,52 @@
 </style>
 <body>
     <div id="game-header">
-        <h1 id="game-title">🎮 Loading Game...</h1>
-        <button id="back-btn" onclick="window.location.href='index.html'">← Back</button>
+        <h1 id="game-title">🎮 Đang tải game...</h1>
+        <button id="back-btn" onclick="window.location.href='index.html'">← Quay lại</button>
     </div>
     
-    <button id="controls-toggle">🎮 Controls</button>
+    <button id="controls-toggle">🎮 Điều khiển</button>
     
     <div id="controls-panel">
-        <div class="controls-title">🎮 Keyboard Controls</div>
+        <div class="controls-title">🎮 Phím điều khiển</div>
         <div class="control-item">
-            <span class="control-label">Move Up</span>
+            <span class="control-label">Di chuyển lên</span>
             <span class="control-key">↑</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Move Down</span>
+            <span class="control-label">Di chuyển xuống</span>
             <span class="control-key">↓</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Move Left</span>
+            <span class="control-label">Di chuyển trái</span>
             <span class="control-key">←</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Move Right</span>
+            <span class="control-label">Di chuyển phải</span>
             <span class="control-key">→</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Action (OK)</span>
+            <span class="control-label">Xác nhận (OK)</span>
             <span class="control-key">Enter</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Left Soft Key</span>
+            <span class="control-label">Phím trái</span>
             <span class="control-key">F1 / Q</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Right Soft Key</span>
+            <span class="control-label">Phím phải</span>
             <span class="control-key">F2 / W</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Numbers</span>
+            <span class="control-label">Số</span>
             <span class="control-key">0-9</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Star</span>
+            <span class="control-label">Dấu sao</span>
             <span class="control-key">* / E</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Hash</span>
+            <span class="control-label">Dấu thăng</span>
             <span class="control-key"># / R</span>
         </div>
         <div class="control-item">
@@ -513,7 +513,7 @@
         <div id="loading">
             <div class="loading-icon">🎮</div>
             <div class="loading-content">
-                <div class="loading-text" id="loading-text">Initializing...</div>
+                <div class="loading-text" id="loading-text">Đang khởi động...</div>
                 <div class="progress-container">
                     <div class="progress-bar-wrapper">
                         <div class="progress-bar-fill" id="progress-bar-fill"></div>
@@ -563,7 +563,7 @@
         document.getElementById('controls-toggle').addEventListener('click', function() {
             const panel = document.getElementById('controls-panel');
             panel.classList.toggle('show');
-            this.textContent = panel.classList.contains('show') ? '✕ Close' : '🎮 Controls';
+            this.textContent = panel.classList.contains('show') ? '✕ Đóng' : '🎮 Điều khiển';
         });
     </script>
     <script type="module" src="src/main.js"></script>
