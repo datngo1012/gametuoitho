@@ -221,13 +221,31 @@ function setFaviconFromBuffer(arrayBuffer) {
     reader.readAsDataURL(blob);
 }
 
-async function ensureAppInstalled(lib, appId) {
-    const appFile = await cjFileBlob(appId + "/app.jar");
+async function loadGameInfo(appId) {
+    try {
+        const res = await fetch("games/list.json");
+        const gamesList = await res.json();
+        const gameInfo = gamesList.find(g => g.id === appId);
+        return gameInfo || null;
+    } catch (error) {
+        console.error("Error loading game info:", error);
+        return null;
+    }
+}
 
-    if (!appFile) {
-        const launcherUtil = await lib.pl.zb3.freej2me.launcher.LauncherUtil;
-
-        await launcherUtil.installFromBundle(cheerpjWebRoot + "/apps/", appId);
+function showGameDescription(gameInfo) {
+    if (!gameInfo || !gameInfo.description) return;
+    
+    const loadingEl = document.getElementById('loading');
+    if (loadingEl) {
+        const descEl = document.createElement('div');
+        descEl.className = 'game-description';
+        descEl.innerHTML = `
+            <h3>📖 ${gameInfo.name}</h3>
+            <p>${gameInfo.description}</p>
+            ${gameInfo.tags ? `<div class="desc-tags">${gameInfo.tags.map(t => `<span class="desc-tag">${t}</span>`).join('')}</div>` : ''}
+        `;
+        loadingEl.appendChild(descEl);
     }
 }
 
@@ -345,15 +363,47 @@ async function init() {
     const FreeJ2ME = await lib.org.recompile.freej2me.FreeJ2ME;
 
     let args;
+    let gameInfo = null;
 
     if (sp.get('app')) {
         const app = sp.get('app');
-        await ensureAppInstalled(lib, app);
-
-        args = ['app', sp.get('app')];
+        
+        // Load game info from JSON
+        gameInfo = await loadGameInfo(app);
+        if (gameInfo) {
+            showGameDescription(gameInfo);
+            
+            // Use JAR path from games folder
+            if (gameInfo.filename) {
+                args = ['jar', cheerpjWebRoot + "/games/" + gameInfo.filename];
+                console.log('[Game Load] Path:', cheerpjWebRoot + "/games/" + gameInfo.filename);
+            } else {
+                // Fallback if filename not in JSON
+                args = ['jar', cheerpjWebRoot + "/games/" + app + ".jar"];
+                console.log('[Game Load] Fallback path:', cheerpjWebRoot + "/games/" + app + ".jar");
+            }
+        } else {
+            // Fallback if game info not found
+            args = ['jar', cheerpjWebRoot + "/games/" + app + ".jar"];
+            console.log('[Game Load] No game info, fallback path:', cheerpjWebRoot + "/games/" + app + ".jar");
+        }
+    } else if (sp.get('jar')) {
+        // Direct JAR file parameter
+        const jarFile = sp.get('jar');
+        if (jarFile.startsWith('games/')) {
+            args = ['jar', cheerpjWebRoot + "/" + jarFile];
+        } else {
+            args = ['jar', cheerpjWebRoot + "/games/" + jarFile];
+        }
+        console.log('[Game Load] Direct JAR path:', args[1]);
     } else {
-        args = ['jar', cheerpjWebRoot+"/jar/" + (sp.get('jar') || "game.jar")];
+        // Default fallback
+        args = ['jar', cheerpjWebRoot + "/games/game.jar"];
+        console.log('[Game Load] Default path:', args[1]);
     }
+
+    console.log('[Game Load] cheerpjWebRoot:', cheerpjWebRoot);
+    console.log('[Game Load] Final args:', args);
 
     updateProgress(90, "Đang khởi chạy game...");
 

@@ -1,7 +1,8 @@
 // note that we can only call java stuff if thread not running..
 const cheerpjWebRoot = '/app'+location.pathname.replace(/\/$/,'');
 
-const emptyIcon = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+// Better default icon using SVG
+const emptyIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23667eea'/%3E%3Ctext x='40' y='50' font-family='Arial' font-size='40' text-anchor='middle' fill='white'%3E🎮%3C/text%3E%3C/svg%3E";
 
 let lib = null, launcherUtil = null;
 let state = {
@@ -54,14 +55,28 @@ async function main() {
         document.getElementById("main").style.display = "";
     }, 300);
 
-    document.getElementById("clear-current").onclick = setupAddMode;
+    // Only set onclick if elements exist
+    const clearCurrentBtn = document.getElementById("clear-current");
+    if (clearCurrentBtn) {
+        clearCurrentBtn.onclick = setupAddMode;
+    }
 
-    document.getElementById("import-data-btn").addEventListener("click", () => {
-        document.getElementById("import-data-file").click();
-    });
+    const importDataBtn = document.getElementById("import-data-btn");
+    if (importDataBtn) {
+        importDataBtn.addEventListener("click", () => {
+            document.getElementById("import-data-file").click();
+        });
+    }
 
-    document.getElementById("import-data-file").onchange = doImportData;
-    document.getElementById("export-data-btn").onclick = doExportData;
+    const importDataFile = document.getElementById("import-data-file");
+    if (importDataFile) {
+        importDataFile.onchange = doImportData;
+    }
+
+    const exportDataBtn = document.getElementById("export-data-btn");
+    if (exportDataBtn) {
+        exportDataBtn.onclick = doExportData;
+    }
 }
 
 async function maybeReadCheerpJFileText(path) {
@@ -120,52 +135,43 @@ async function kvToJava(kv) {
 async function loadGames() {
     const apps = [];
 
-    let installedAppsBlob = await cjFileBlob("/files/apps.list");
-    if (!installedAppsBlob) {
-        const res = await fetch("init.zip");
-        const ab = await res.arrayBuffer();
-        await launcherUtil.importData(new Int8Array(ab));
-
-        installedAppsBlob = await cjFileBlob("/files/apps.list");
-    }
-
-    if (installedAppsBlob) {
-        const installedIds = (await installedAppsBlob.text()).trim().split("\n");
-
-        for (const appId of installedIds) {
+    try {
+        // Load game list from JSON file
+        const res = await fetch("games/list.json");
+        const gamesList = await res.json();
+        
+        // Convert JSON games to app format
+        for (const game of gamesList) {
             const napp = {
-                appId,
-                name: appId,
+                appId: game.id,
+                name: game.name,
+                filename: game.filename,
                 icon: emptyIcon,
-                settings: { ...defaultSettings },
+                settings: game.settings || { ...defaultSettings },
                 appProperties: {},
                 systemProperties: {},
+                description: game.description || "",
+                gameplay: game.gameplay || "",
+                genre: game.genre || [],
+                tags: game.tags || [],
+                year: game.year || "",
+                rating: game.rating || 0,
+                jarPath: "games/" + game.filename // Path to JAR file in games folder
             };
 
-            const name = await maybeReadCheerpJFileText("/files/" + appId + "/name");
-            if (name) napp.name = name;
-
-            const iconBlob = await cjFileBlob("/files/" + appId + "/icon");
-            if (iconBlob) {
-                const dataUrl = await getDataUrlFromBlob(iconBlob);
-                if (dataUrl) {
-                    napp.icon = dataUrl;
-                }
-            }
-
-            for (const [fname, keyName] of [
-                ["/files/" + appId + "/config/settings.conf", "settings"],
-                ["/files/" + appId + "/config/appproperties.conf", "appProperties"],
-                ["/files/" + appId + "/config/systemproperties.conf", "systemProperties"],
-            ]) {
-                const content = await maybeReadCheerpJFileText(fname);
-                if (content) {
-                    readToKv(content, napp[keyName]);
-                }
+            // Set icon path - use direct path, browser will handle loading
+            if (game.icon) {
+                // Use icon from JSON if specified
+                napp.icon = game.icon;
+            } else if (game.id) {
+                // Try default icon path based on game ID
+                napp.icon = "games/" + game.id + "/icon.png";
             }
 
             apps.push(napp);
         }
+    } catch (error) {
+        console.error("Error loading games from list.json:", error);
     }
 
     return apps;
@@ -175,21 +181,38 @@ function fillGamesList(games) {
     const container = document.getElementById("game-list");
     container.innerHTML = "";
 
+    if (!games || games.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">🎮</div>
+                <div class="empty-state-text">Chưa có game nào</div>
+                <div class="empty-state-subtext">Thêm game để bắt đầu chơi!</div>
+            </div>
+        `;
+        return;
+    }
+
     for (const game of games) {
         const item = document.createElement("div");
         item.className = "game-item";
 
         const link = document.createElement("a");
-        link.href = "run?app=" + game.appId;
+        // Use app ID for URL parameter
+        link.href = "run.html?app=" + game.appId;
         link.addEventListener('pointerdown', e => {
             if (e.pointerType === 'touch') {
-                link.href = "run?app=" + game.appId + "&mobile=1";
+                link.href = "run.html?app=" + game.appId + "&mobile=1";
             }
         });
 
         const icon = document.createElement("img");
         icon.className = "icon";
         icon.src = game.icon;
+        icon.alt = game.name;
+        // Fallback to empty icon if image fails to load
+        icon.onerror = function() {
+            this.src = emptyIcon;
+        };
         link.appendChild(icon);
 
         const info = document.createElement("div");
@@ -197,12 +220,30 @@ function fillGamesList(games) {
         info.textContent = game.name;
         link.appendChild(info);
 
-        item.appendChild(link);
+        // Add tags if available
+        if (game.tags && game.tags.length > 0) {
+            const tagsContainer = document.createElement("div");
+            tagsContainer.className = "game-tags";
+            
+            game.tags.slice(0, 3).forEach(tag => {
+                const tagEl = document.createElement("span");
+                tagEl.className = "game-tag";
+                tagEl.textContent = tag;
+                tagsContainer.appendChild(tagEl);
+            });
+            
+            link.appendChild(tagsContainer);
+        }
 
-        // const manageButton = document.createElement("button");
-        // manageButton.textContent = "Manage";
-        // manageButton.onclick = () => openEditGame(game);
-        // item.appendChild(manageButton);
+        // Add rating if available
+        if (game.rating) {
+            const ratingEl = document.createElement("div");
+            ratingEl.className = "game-rating";
+            ratingEl.innerHTML = `⭐ ${game.rating.toFixed(1)}`;
+            link.appendChild(ratingEl);
+        }
+
+        item.appendChild(link);
 
         container.appendChild(item);
     }

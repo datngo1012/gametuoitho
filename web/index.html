@@ -311,6 +311,30 @@
         word-break: break-word;
         color: #2a1a4e;
       }
+
+      .game-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+
+      .game-tag {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.75em;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .game-rating {
+        margin-top: 8px;
+        font-size: 0.9em;
+        color: #f39c12;
+        font-weight: 600;
+      }
       
       .empty-state {
         text-align: center;
@@ -376,7 +400,6 @@
       <div class="header">
         <h1>Game Tuổi Thơ</h1>
       </div>
-      <h2>📱 Your Game Collection</h2>
       <div id="game-list" class="game-list">
         <!-- Games will be loaded here -->
       </div>
