@@ -1,0 +1,23 @@
+# robots.txt cho Game Tuổi Thơ
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gametuoitho.cc/sitemap.xml
+
+# Cho phép tất cả các bot tìm kiếm
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Không cho phép crawl các file hệ thống
+Disallow: /libjs/
+Disallow: /libmedia/
+Disallow: /libmidi/
+Disallow: /src/
+Disallow: *.jar$
