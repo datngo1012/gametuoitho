@@ -1,0 +1,189 @@
+[
+  {
+    "id": "CallOfDuty2",
+    "filename": "CallOfDuty2_240x320.jar",
+    "name": "Call of Duty 2",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Call of Duty 2 là một game bắn súng từ góc nhìn thứ nhất lấy bối cảnh Chiến tranh Thế giới thứ hai. Người chơi sẽ tham gia vào các chiến dịch của quân Đồng minh, chiến đấu chống lại quân Phát xít qua các màn chơi đa dạng, sử dụng vũ khí thời kỳ và hoàn thành nhiệm vụ để tiến triển câu chuyện.",
+    "gameplay": "Trong Call of Duty 2, người chơi điều khiển binh sĩ qua các mission như 'Not One Step Backwards', 'Downtown Assault', 'Operation Supercharge', và nhiều hơn nữa. Gameplay tập trung vào việc bắn súng góc nhìn thứ nhất, di chuyển qua môi trường chiến trường, tiêu diệt kẻ thù bằng súng trường, súng máy, lựu đạn, và các vũ khí khác. Người chơi phải hoàn thành các objective như chiếm cứ vị trí, phá hủy mục tiêu, hoặc sống sót qua các đợt tấn công. Trò chơi có yếu tố hành động nhanh, với AI kẻ thù thông minh, và các yếu tố như hồi máu tự động ở một số phiên bản di động.",
+    "genre": ["shooter", "action", "war"],
+    "tags": ["Bắn súng", "Hành động", "Chiến tranh"],
+    "year": 2005,
+    "rating": 4.7
+  },
+  {
+    "id": "DiamondRush",
+    "filename": "DiamondRush_240x320.jar",
+    "name": "Diamond Rush",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Diamond Rush là trò chơi phiêu lưu nơi bạn vào vai một nhà thám hiểm tìm kiếm kim cương qua các địa danh cổ xưa như Angkor Wat, Bavaria và Tibet. Người chơi phải giải các câu đố phức tạp, tránh bẫy nguy hiểm, thu thập đá quý và đối mặt với các thử thách để hoàn thành hành trình.",
+    "gameplay": "Gameplay của Diamond Rush là kiểu phiêu lưu 2D, nơi người chơi di chuyển nhân vật qua các màn chơi dạng mê cung, sử dụng phím điều hướng để nhảy, đẩy vật thể, và tương tác với môi trường. Người chơi cần giải puzzle như di chuyển đá để mở đường, tránh bẫy như gai nhọn, rắn, lửa, và thu thập kim cương cũng như item hỗ trợ. Có các secret areas và alternative routes để khám phá lại level. Các boss fight như chống lại rắn khổng lồ hoặc lửa đòi hỏi timing chính xác và chiến lược để đánh bại.",
+    "genre": ["adventure", "puzzle", "platform"],
+    "tags": ["Phiêu lưu", "Giải đố", "Platform"],
+    "year": 2004,
+    "rating": 4.6
+  },
+  {
+    "id": "Disco",
+    "filename": "Disco_240x320.jar",
+    "name": "Disco",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Disco là trò chơi nhịp điệu và nhảy múa theo nhạc disco cổ điển. Người chơi phải nhấn phím đúng lúc để thực hiện các động tác nhảy, theo nhịp điệu âm nhạc sôi động, tích điểm và mở khóa các cấp độ mới trong không khí sàn nhảy vui nhộn.",
+    "gameplay": "Trong Disco, gameplay là kiểu rhythm game nơi người chơi nhấn các phím mũi tên hoặc số tương ứng với các icon xuất hiện trên màn hình, đồng bộ với nhịp nhạc disco. Mỗi level có bài hát khác nhau, và người chơi phải đạt combo cao để tích điểm, mở khóa trang phục hoặc sàn nhảy mới. Có chế độ single player hoặc challenge, với độ khó tăng dần đòi hỏi phản xạ nhanh và chính xác để hoàn thành routine nhảy mà không miss beat.",
+    "genre": ["rhythm", "music", "casual"],
+    "tags": ["Nhịp điệu", "Âm nhạc", "Giải trí"],
+    "year": 2006,
+    "rating": 4.3
+  },
+  {
+    "id": "NinjaSchool2",
+    "filename": "NinjaSchool2_240x320.jar",
+    "name": "Ninja School 2",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Ninja School 2 là game nhập vai RPG nơi bạn hóa thân thành học viên trường ninja, rèn luyện kỹ năng, chiến đấu với quái vật và thực hiện nhiệm vụ để giải cứu ngôi làng Toyotomi. Trò chơi tập trung vào việc lên cấp, học chiêu thức và khám phá thế giới ninja đầy phiêu lưu.",
+    "gameplay": "Gameplay của Ninja School 2 là RPG 2D side-scrolling, nơi người chơi điều khiển ninja di chuyển qua bản đồ, chiến đấu thời gian thực với quái vật bằng cách sử dụng kỹ năng như ném shuriken, kiếm thuật, hoặc phép thuật. Người chơi nhận quest từ NPC, farm item để lên level, học skill mới tại trường ninja, và tham gia boss fight. Có yếu tố multiplayer-like qua kết nối, nhưng chủ yếu là single player với hệ thống lên cấp và customize nhân vật.",
+    "genre": ["rpg", "action", "adventure"],
+    "tags": ["Nhập vai", "Hành động", "Ninja"],
+    "year": 2008,
+    "rating": 4.8
+  },
+  {
+    "id": "NinjaSchool3",
+    "filename": "NinjaSchool3_240x320.jar",
+    "name": "Ninja School 3",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Ninja School 3 là game nhập vai RPG lấy bối cảnh mùa đông tại trường ninja Ko-ninjustu Hirosaki, nơi bạn là học viên nhỏ tuổi được đào tạo để trở thành ninja thực thụ. Người chơi sẽ học tập, chiến đấu, hoàn thành nhiệm vụ và khám phá câu chuyện hấp dẫn trong thế giới ninja.",
+    "gameplay": "Tương tự Ninja School 2, gameplay là RPG platformer nơi người chơi khám phá thế giới mở, nhận nhiệm vụ để lên cấp, học kỹ năng ninja như nhẫn thuật, chiến đấu với kẻ thù và quái vật. Người chơi có thể chọn class khác nhau, customize vũ khí, và tham gia các event như săn boss hoặc PvP. Độ khó tăng dần với các level mùa đông, đòi hỏi chiến lược trong combat thời gian thực và quản lý tài nguyên.",
+    "genre": ["rpg", "action", "adventure"],
+    "tags": ["Nhập vai", "Hành động", "Ninja"],
+    "year": 2009,
+    "rating": 4.9
+  },
+  {
+    "id": "Worms",
+    "filename": "Worms_176x220.jar",
+    "name": "Worms",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "176",
+      "height": "220"
+    },
+    "description": "Worms là trò chơi chiến lược theo lượt nơi bạn điều khiển đội giun sử dụng các vũ khí hài hước và độc đáo để tiêu diệt đội đối phương trên bản đồ 2D. Trò chơi nhấn mạnh vào chiến thuật, vật lý và yếu tố hài hước trong các trận chiến vui nhộn.",
+    "gameplay": "Gameplay của Worms là turn-based strategy, nơi người chơi điều khiển đội giun (tối đa 4) trên bản đồ 2D. Mỗi lượt, chọn một giun, di chuyển nó, chọn vũ khí như bazooka, lựu đạn, hoặc vũ khí điên rồ như sheep bomb, nhắm bắn sử dụng vật lý (góc, lực), và gây sát thương cho đối phương. Mục tiêu là tiêu diệt hết giun địch. Có training missions, solo missions, deathmatch, và AI thông minh chọn vũ khí chiến lược.",
+    "genre": ["strategy", "turnbased", "comedy"],
+    "tags": ["Chiến lược", "Theo lượt", "Hài hước"],
+    "year": 2004,
+    "rating": 4.7
+  },
+  {
+    "id": "BounceTales",
+    "filename": "BounceTales_240x320.jar",
+    "name": "Bounce Tales",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Bounce Tales là trò chơi phiêu lưu cổ điển nơi bạn điều khiển quả bóng đỏ Bounce qua các cấp độ đầy thử thách, thu thập vật phẩm và đánh bại kẻ thù để cứu thế giới khỏi bóng tối.",
+    "gameplay": "Gameplay là platformer 2D, người chơi di chuyển quả bóng bằng cách nhảy, lăn và sử dụng các khả năng đặc biệt như bật cao hoặc biến hình. Thu thập sao, tránh chướng ngại vật và giải puzzle đơn giản qua các thế giới khác nhau.",
+    "genre": ["adventure", "platformer", "casual"],
+    "tags": ["Phiêu lưu", "Platform", "Giải trí"],
+    "year": 2006,
+    "rating": 4.5
+  },
+  {
+    "id": "Asphalt4",
+    "filename": "Asphalt4_240x320.jar",
+    "name": "Asphalt 4: Elite Racing",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Asphalt 4: Elite Racing là game đua xe đường phố với đồ họa 3D ấn tượng, cho phép người chơi lái các siêu xe hàng đầu và tham gia cuộc đua gay cấn trên toàn thế giới.",
+    "gameplay": "Người chơi chọn xe, nâng cấp, và đua qua các đường phố, sử dụng nitro để tăng tốc, drift để tích điểm, và tránh cảnh sát. Có chế độ career, multiplayer, và các thử thách đặc biệt.",
+    "genre": ["racing", "action", "3d"],
+    "tags": ["Đua xe", "Hành động", "3D"],
+    "year": 2008,
+    "rating": 4.6
+  },
+  {
+    "id": "PrinceOfPersia",
+    "filename": "PrinceOfPersia_240x320.jar",
+    "name": "Prince of Persia Classic",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Prince of Persia Classic là phiên bản làm lại của game cổ điển, nơi hoàng tử phải cứu công chúa khỏi phù thủy xấu xa qua các mê cung đầy bẫy và kẻ thù.",
+    "gameplay": "Gameplay là action-adventure 2D, với chạy nhảy, leo trèo, chiến đấu kiếm thuật, và giải puzzle thời gian. Người chơi có thời gian giới hạn để hoàn thành các level.",
+    "genre": ["adventure", "action", "puzzle"],
+    "tags": ["Phiêu lưu", "Hành động", "Giải đố"],
+    "year": 2007,
+    "rating": 4.8
+  },
+  {
+    "id": "ZombieInfection",
+    "filename": "ZombieInfection_240x320.jar",
+    "name": "Zombie Infection",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Zombie Infection là game hành động bắn zombie nơi người chơi vào vai đặc vụ chiến đấu chống lại đại dịch zombie ở New York, hoàn thành nhiệm vụ để cứu thế giới.",
+    "gameplay": "Gameplay là third-person shooter, di chuyển qua thành phố, bắn zombie bằng vũ khí đa dạng, hoàn thành 36 mission với boss fight và yếu tố survival.",
+    "genre": ["action", "shooter", "horror"],
+    "tags": ["Hành động", "Bắn súng", "Kinh dị"],
+    "year": 2008,
+    "rating": 4.4
+  },
+  {
+    "id": "GalaxyOnFire",
+    "filename": "GalaxyOnFire_240x320.jar",
+    "name": "Galaxy On Fire",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Galaxy On Fire là game mô phỏng không gian với yếu tố RPG, nơi bạn là phi công tàu vũ trụ chiến đấu chống lại kẻ thù ngoài hành tinh và khám phá thiên hà.",
+    "gameplay": "Gameplay bao gồm bay tàu, chiến đấu không gian 3D, buôn bán hàng hóa, nâng cấp tàu, và hoàn thành nhiệm vụ trong thế giới mở với cốt truyện hấp dẫn.",
+    "genre": ["simulation", "rpg", "space"],
+    "tags": ["Mô phỏng", "RPG", "Không gian"],
+    "year": 2006,
+    "rating": 4.7
+  }
+]

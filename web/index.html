@@ -310,12 +310,36 @@
         line-height: 1.4;
         word-break: break-word;
         color: #2a1a4e;
+        margin-bottom: 12px;
+      }
+      
+      .game-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        justify-content: center;
+        margin-top: auto;
+      }
+      
+      .game-tag {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.75em;
+        font-weight: 500;
+        white-space: nowrap;
+        box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
       }
       
       .empty-state {
+        grid-column: 1 / -1;
         text-align: center;
         padding: 60px 20px;
         color: white;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
       }
       
       .empty-state-icon {
@@ -327,6 +351,7 @@
       .empty-state-text {
         font-size: 1.3em;
         margin-bottom: 10px;
+        font-weight: 600;
       }
       
       .empty-state-subtext {
