@@ -231,6 +231,163 @@ async function ensureAppInstalled(lib, appId) {
     }
 }
 
+async function loadGameInfo(appId) {
+    try {
+        console.log('[loadGameInfo] Loading game info for appId:', appId);
+        
+        // Try to load from saved file
+        const gameInfoBlob = await cjFileBlob("/files/" + appId + "/gameinfo.json");
+        if (gameInfoBlob) {
+            const gameInfoText = await gameInfoBlob.text();
+            const parsed = JSON.parse(gameInfoText);
+            console.log('[loadGameInfo] Loaded from saved file:', parsed);
+            return parsed;
+        }
+        
+        console.log('[loadGameInfo] No saved file, trying games/list.json');
+        
+        // Fallback: try to load from games/list.json
+        const response = await fetch('games/list.json');
+        if (response.ok) {
+            const gamesList = await response.json();
+            console.log('[loadGameInfo] Games list loaded, count:', gamesList.length);
+            
+            const gameFromList = gamesList.find(g => {
+                if (!g.filename) return false;
+                
+                const fileNameBase = g.filename.replace(/\.jar$/, '').toLowerCase();
+                const appIdLower = appId.toLowerCase();
+                
+                // Direct match
+                if (fileNameBase === appIdLower) return true;
+                
+                // Check if filename contains appId
+                if (fileNameBase.includes(appIdLower)) return true;
+                
+                // Check if appId contains filename base
+                if (appIdLower.includes(fileNameBase)) return true;
+                
+                // Check by id field
+                if (g.id && g.id.toLowerCase() === appIdLower) return true;
+                
+                return false;
+            });
+            
+            if (gameFromList) {
+                console.log('[loadGameInfo] Found game:', gameFromList.name);
+                return {
+                    description: gameFromList.description || '',
+                    gameplay: gameFromList.gameplay || '',
+                    tags: gameFromList.tags || [],
+                    genre: gameFromList.genre || [],
+                    year: gameFromList.year || 0,
+                    rating: gameFromList.rating || 0
+                };
+            } else {
+                console.warn('[loadGameInfo] No match found for appId:', appId);
+            }
+        } else {
+            console.error('[loadGameInfo] Failed to fetch games/list.json');
+        }
+    } catch (error) {
+        console.error('[loadGameInfo] Error:', error);
+    }
+    
+    return null;
+}
+
+function displayGameInfo(gameName, gameInfo) {
+    console.log('[displayGameInfo] Called with:', gameName, gameInfo);
+    
+    if (!gameInfo) {
+        console.warn('[displayGameInfo] No gameInfo provided');
+        return;
+    }
+    
+    // Show info button
+    const infoBtn = document.getElementById('info-btn');
+    if (infoBtn) {
+        infoBtn.style.display = '';
+        console.log('[displayGameInfo] Info button shown');
+    } else {
+        console.warn('[displayGameInfo] Info button not found');
+    }
+    
+    // Fill modal with game info
+    const modalGameName = document.getElementById('modal-game-name');
+    if (modalGameName) {
+        modalGameName.textContent = gameName;
+    }
+    
+    // Tags
+    const modalGameTags = document.getElementById('modal-game-tags');
+    if (modalGameTags && gameInfo.tags && gameInfo.tags.length > 0) {
+        modalGameTags.innerHTML = '';
+        gameInfo.tags.forEach(tag => {
+            const tagElement = document.createElement('span');
+            tagElement.className = 'game-info-tag';
+            tagElement.textContent = tag;
+            modalGameTags.appendChild(tagElement);
+        });
+        console.log('[displayGameInfo] Tags added:', gameInfo.tags.length);
+    }
+    
+    // Meta info
+    const modalGameMeta = document.getElementById('modal-game-meta');
+    if (modalGameMeta) {
+        modalGameMeta.innerHTML = '';
+        
+        if (gameInfo.year) {
+            const yearItem = document.createElement('div');
+            yearItem.className = 'game-info-meta-item';
+            yearItem.innerHTML = `<span>📅</span> <strong>Năm:</strong> ${gameInfo.year}`;
+            modalGameMeta.appendChild(yearItem);
+        }
+        
+        if (gameInfo.rating) {
+            const ratingItem = document.createElement('div');
+            ratingItem.className = 'game-info-meta-item';
+            ratingItem.innerHTML = `<span>⭐</span> <strong>Đánh giá:</strong> ${gameInfo.rating}/5`;
+            modalGameMeta.appendChild(ratingItem);
+        }
+        
+        if (gameInfo.genre && gameInfo.genre.length > 0) {
+            const genreItem = document.createElement('div');
+            genreItem.className = 'game-info-meta-item';
+            genreItem.innerHTML = `<span>🎭</span> <strong>Thể loại:</strong> ${gameInfo.genre.join(', ')}`;
+            modalGameMeta.appendChild(genreItem);
+        }
+    }
+    
+    // Description
+    const modalDescriptionSection = document.getElementById('modal-description-section');
+    const modalGameDescription = document.getElementById('modal-game-description');
+    if (modalGameDescription && gameInfo.description) {
+        modalGameDescription.textContent = gameInfo.description;
+        if (modalDescriptionSection) {
+            modalDescriptionSection.style.display = '';
+        }
+        console.log('[displayGameInfo] Description added');
+    } else {
+        console.warn('[displayGameInfo] No description or element not found');
+    }
+    
+    // Gameplay
+    const modalGameplaySection = document.getElementById('modal-gameplay-section');
+    const modalGameGameplay = document.getElementById('modal-game-gameplay');
+    if (modalGameGameplay && gameInfo.gameplay) {
+        modalGameGameplay.textContent = gameInfo.gameplay;
+        if (modalGameplaySection) {
+            modalGameplaySection.style.display = '';
+        }
+        console.log('[displayGameInfo] Gameplay added');
+    } else {
+        console.warn('[displayGameInfo] No gameplay or element not found');
+    }
+    
+    console.log('[displayGameInfo] Complete');
+}
+
 async function init() {
     const loadingText = document.getElementById("loading-text");
     const progressBar = document.getElementById("progress-bar-fill");
@@ -345,12 +502,24 @@ async function init() {
     const FreeJ2ME = await lib.org.recompile.freej2me.FreeJ2ME;
 
     let args;
+    let currentAppId = null;
 
     if (sp.get('app')) {
         const app = sp.get('app');
+        currentAppId = app;
         await ensureAppInstalled(lib, app);
 
         args = ['app', sp.get('app')];
+        
+        // Load and display game info
+        updateProgress(75, "Đang tải thông tin game...");
+        const gameInfo = await loadGameInfo(app);
+        if (gameInfo) {
+            // Get game name from files
+            const nameBlob = await cjFileBlob("/files/" + app + "/name");
+            const gameName = nameBlob ? await nameBlob.text() : app;
+            displayGameInfo(gameName, gameInfo);
+        }
     } else {
         args = ['jar', cheerpjWebRoot+"/jar/" + (sp.get('jar') || "game.jar")];
     }

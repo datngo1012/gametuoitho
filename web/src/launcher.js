@@ -117,22 +117,181 @@ async function kvToJava(kv) {
     return ret;
 }
 
+async function loadGamesFromJson() {
+    try {
+        const response = await fetch('games/list.json');
+        if (!response.ok) {
+            console.error('Failed to load games/list.json');
+            return [];
+        }
+        const gamesList = await response.json();
+        return gamesList;
+    } catch (error) {
+        console.error('Error loading games list:', error);
+        return [];
+    }
+}
+
+async function installGameFromJson(gameInfo) {
+    try {
+        const MIDletLoader = await lib.org.recompile.mobile.MIDletLoader;
+        const File = await lib.java.io.File;
+
+        // Load JAR file
+        const jarResponse = await fetch('games/' + gameInfo.filename);
+        if (!jarResponse.ok) {
+            console.error('Failed to load game:', gameInfo.filename);
+            return null;
+        }
+        const jarArrayBuffer = await jarResponse.arrayBuffer();
+
+        // Create temp JAR file
+        const jarFile = await new File("/files/_tmp/" + Date.now() + ".jar");
+        await launcherUtil.copyJar(new Int8Array(jarArrayBuffer), jarFile);
+
+        // Load the JAR
+        const loader = await MIDletLoader.getMIDletLoader(jarFile);
+
+        // Load JAD file if specified
+        if (gameInfo.jadFile) {
+            try {
+                const jadResponse = await fetch('games/' + gameInfo.jadFile);
+                if (jadResponse.ok) {
+                    const jadArrayBuffer = await jadResponse.arrayBuffer();
+                    await launcherUtil.augementLoaderWithJAD(
+                        loader,
+                        new Int8Array(jadArrayBuffer)
+                    );
+                }
+            } catch (error) {
+                console.warn('Failed to load JAD file for', gameInfo.name, error);
+            }
+        }
+
+        // Ensure app has an ID
+        await launcherUtil.ensureAppId(loader, gameInfo.filename);
+        const appId = await loader.getAppId();
+        
+        // Set name
+        if (gameInfo.name) {
+            loader.name = gameInfo.name;
+        }
+
+        // Get icon
+        const iconBytes = await loader.getIconBytes();
+
+        // Prepare settings
+        const settings = { ...defaultSettings };
+        if (gameInfo.settings) {
+            if (gameInfo.settings.phone) settings.phone = gameInfo.settings.phone;
+            if (gameInfo.settings.width) settings.width = gameInfo.settings.width;
+            if (gameInfo.settings.height) settings.height = gameInfo.settings.height;
+        }
+
+        // Get app properties from loader
+        const appProperties = {};
+        await javaToKv(loader.properties, appProperties);
+
+        // Convert to Java objects
+        const jsettings = await kvToJava(settings);
+        const jappProps = await kvToJava(appProperties);
+        const jsysProps = await kvToJava({});
+
+        // Install the game
+        await launcherUtil.initApp(jarFile, loader, jsettings, jappProps, jsysProps);
+
+        // Save game info to a file for later retrieval
+        const gameInfoJson = JSON.stringify({
+            description: gameInfo.description || '',
+            gameplay: gameInfo.gameplay || '',
+            tags: gameInfo.tags || [],
+            genre: gameInfo.genre || [],
+            year: gameInfo.year || 0,
+            rating: gameInfo.rating || 0
+        });
+        
+        try {
+            const File = await lib.java.io.File;
+            const FileOutputStream = await lib.java.io.FileOutputStream;
+            const gameInfoFile = await new File("/files/" + appId + "/gameinfo.json");
+            const fos = await new FileOutputStream(gameInfoFile);
+            const gameInfoBytes = new TextEncoder().encode(gameInfoJson);
+            await fos.write(gameInfoBytes);
+            await fos.close();
+        } catch (error) {
+            console.warn('Failed to save gameinfo.json for', appId, error);
+        }
+
+        // Clean up
+        await loader.close();
+
+        return {
+            appId: appId,
+            name: gameInfo.name || appId,
+            icon: iconBytes ? await getDataUrlFromBlob(new Blob([iconBytes])) : emptyIcon,
+            settings: settings,
+            appProperties: appProperties,
+            systemProperties: {},
+            gameInfo: {
+                description: gameInfo.description || '',
+                gameplay: gameInfo.gameplay || '',
+                tags: gameInfo.tags || [],
+                genre: gameInfo.genre || [],
+                year: gameInfo.year || 0,
+                rating: gameInfo.rating || 0
+            }
+        };
+    } catch (error) {
+        console.error('Error installing game:', gameInfo.name, error);
+        return null;
+    }
+}
+
 async function loadGames() {
     const apps = [];
+    const gamesList = await loadGamesFromJson(); // Load for reference
 
+    // Check if games are already installed
     let installedAppsBlob = await cjFileBlob("/files/apps.list");
+    
     if (!installedAppsBlob) {
-        const res = await fetch("init.zip");
-        const ab = await res.arrayBuffer();
-        await launcherUtil.importData(new Int8Array(ab));
-
-        installedAppsBlob = await cjFileBlob("/files/apps.list");
+        // No games installed, load from games/list.json and install them
+        if (gamesList.length > 0) {
+            // Update loading text
+            const loadingText = document.getElementById("loading-text");
+            const progressBar = document.getElementById("progress-bar");
+            
+            for (let i = 0; i < gamesList.length; i++) {
+                const gameInfo = gamesList[i];
+                if (loadingText) {
+                    loadingText.textContent = `Đang cài đặt game ${i + 1}/${gamesList.length}: ${gameInfo.name}`;
+                }
+                if (progressBar) {
+                    const progress = 50 + (40 * (i + 1) / gamesList.length);
+                    progressBar.style.width = progress + "%";
+                }
+                
+                const installedGame = await installGameFromJson(gameInfo);
+                if (installedGame) {
+                    apps.push(installedGame);
+                }
+            }
+            
+            // Reload apps list after installation
+            installedAppsBlob = await cjFileBlob("/files/apps.list");
+        }
     }
-
+    
+    // Load installed games
     if (installedAppsBlob) {
         const installedIds = (await installedAppsBlob.text()).trim().split("\n");
 
         for (const appId of installedIds) {
+            // Skip if already loaded during installation
+            if (apps.some(app => app.appId === appId)) {
+                continue;
+            }
+
             const napp = {
                 appId,
                 name: appId,
@@ -140,6 +299,7 @@ async function loadGames() {
                 settings: { ...defaultSettings },
                 appProperties: {},
                 systemProperties: {},
+                gameInfo: null,
             };
 
             const name = await maybeReadCheerpJFileText("/files/" + appId + "/name");
@@ -150,6 +310,57 @@ async function loadGames() {
                 const dataUrl = await getDataUrlFromBlob(iconBlob);
                 if (dataUrl) {
                     napp.icon = dataUrl;
+                }
+            }
+
+            // Load game info from saved file
+            const gameInfoText = await maybeReadCheerpJFileText("/files/" + appId + "/gameinfo.json");
+            if (gameInfoText) {
+                try {
+                    napp.gameInfo = JSON.parse(gameInfoText);
+                    console.log('Loaded gameInfo from file for', appId, napp.gameInfo);
+                } catch (error) {
+                    console.warn('Failed to parse gameinfo.json for', appId);
+                }
+            }
+
+            // If no saved game info, try to find it in the list
+            if (!napp.gameInfo && gamesList.length > 0) {
+                console.log('Trying to find gameInfo in list for appId:', appId);
+                const gameFromList = gamesList.find(g => {
+                    // Try multiple matching strategies
+                    if (!g.filename) return false;
+                    
+                    const fileNameBase = g.filename.replace(/\.jar$/, '').toLowerCase();
+                    const appIdLower = appId.toLowerCase();
+                    
+                    // Direct match
+                    if (fileNameBase === appIdLower) return true;
+                    
+                    // Check if filename contains appId
+                    if (fileNameBase.includes(appIdLower)) return true;
+                    
+                    // Check if appId contains filename base
+                    if (appIdLower.includes(fileNameBase)) return true;
+                    
+                    // Check by id field
+                    if (g.id && g.id.toLowerCase() === appIdLower) return true;
+                    
+                    return false;
+                });
+                
+                if (gameFromList) {
+                    console.log('Found game in list:', gameFromList.name);
+                    napp.gameInfo = {
+                        description: gameFromList.description || '',
+                        gameplay: gameFromList.gameplay || '',
+                        tags: gameFromList.tags || [],
+                        genre: gameFromList.genre || [],
+                        year: gameFromList.year || 0,
+                        rating: gameFromList.rating || 0
+                    };
+                } else {
+                    console.warn('No match found for appId:', appId);
                 }
             }
 
@@ -175,6 +386,19 @@ function fillGamesList(games) {
     const container = document.getElementById("game-list");
     container.innerHTML = "";
 
+    if (games.length === 0) {
+        // Show empty state
+        const emptyState = document.createElement("div");
+        emptyState.className = "empty-state";
+        emptyState.innerHTML = `
+            <div class="empty-state-icon">🎮</div>
+            <div class="empty-state-text">Chưa có game nào</div>
+            <div class="empty-state-subtext">Vui lòng kiểm tra file games/list.json</div>
+        `;
+        container.appendChild(emptyState);
+        return;
+    }
+
     for (const game of games) {
         const item = document.createElement("div");
         item.className = "game-item";
@@ -197,12 +421,23 @@ function fillGamesList(games) {
         info.textContent = game.name;
         link.appendChild(info);
 
-        item.appendChild(link);
+        // Add tags if available
+        console.log('Game:', game.name, 'gameInfo:', game.gameInfo); // Debug log
+        if (game.gameInfo && game.gameInfo.tags && game.gameInfo.tags.length > 0) {
+            const tagsContainer = document.createElement("div");
+            tagsContainer.className = "game-tags";
+            
+            game.gameInfo.tags.forEach(tag => {
+                const tagElement = document.createElement("span");
+                tagElement.className = "game-tag";
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+            });
+            
+            link.appendChild(tagsContainer);
+        }
 
-        // const manageButton = document.createElement("button");
-        // manageButton.textContent = "Manage";
-        // manageButton.onclick = () => openEditGame(game);
-        // item.appendChild(manageButton);
+        item.appendChild(link);
 
         container.appendChild(item);
     }
