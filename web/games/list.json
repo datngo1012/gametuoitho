@@ -1,22 +1,5 @@
 [
   {
-    "id": "CallOfDuty2",
-    "filename": "CallOfDuty2_240x320.jar",
-    "name": "Call of Duty 2",
-    "jadFile": null,
-    "settings": {
-      "phone": "Nokia",
-      "width": "240",
-      "height": "320"
-    },
-    "description": "Call of Duty 2 là một game bắn súng từ góc nhìn thứ nhất lấy bối cảnh Chiến tranh Thế giới thứ hai. Người chơi sẽ tham gia vào các chiến dịch của quân Đồng minh, chiến đấu chống lại quân Phát xít qua các màn chơi đa dạng, sử dụng vũ khí thời kỳ và hoàn thành nhiệm vụ để tiến triển câu chuyện.",
-    "gameplay": "Trong Call of Duty 2, người chơi điều khiển binh sĩ qua các mission như 'Not One Step Backwards', 'Downtown Assault', 'Operation Supercharge', và nhiều hơn nữa. Gameplay tập trung vào việc bắn súng góc nhìn thứ nhất, di chuyển qua môi trường chiến trường, tiêu diệt kẻ thù bằng súng trường, súng máy, lựu đạn, và các vũ khí khác. Người chơi phải hoàn thành các objective như chiếm cứ vị trí, phá hủy mục tiêu, hoặc sống sót qua các đợt tấn công. Trò chơi có yếu tố hành động nhanh, với AI kẻ thù thông minh, và các yếu tố như hồi máu tự động ở một số phiên bản di động.",
-    "genre": ["shooter", "action", "war"],
-    "tags": ["Bắn súng", "Hành động", "Chiến tranh"],
-    "year": 2005,
-    "rating": 4.7
-  },
-  {
     "id": "DiamondRush",
     "filename": "DiamondRush_240x320.jar",
     "name": "Diamond Rush",
@@ -119,23 +102,6 @@
     "rating": 4.5
   },
   {
-    "id": "Asphalt4",
-    "filename": "Asphalt4_240x320.jar",
-    "name": "Asphalt 4: Elite Racing",
-    "jadFile": null,
-    "settings": {
-      "phone": "Nokia",
-      "width": "240",
-      "height": "320"
-    },
-    "description": "Asphalt 4: Elite Racing là game đua xe đường phố với đồ họa 3D ấn tượng, cho phép người chơi lái các siêu xe hàng đầu và tham gia cuộc đua gay cấn trên toàn thế giới.",
-    "gameplay": "Người chơi chọn xe, nâng cấp, và đua qua các đường phố, sử dụng nitro để tăng tốc, drift để tích điểm, và tránh cảnh sát. Có chế độ career, multiplayer, và các thử thách đặc biệt.",
-    "genre": ["racing", "action", "3d"],
-    "tags": ["Đua xe", "Hành động", "3D"],
-    "year": 2008,
-    "rating": 4.6
-  },
-  {
     "id": "PrinceOfPersia",
     "filename": "PrinceOfPersia_240x320.jar",
     "name": "Prince of Persia Classic",
@@ -168,22 +134,5 @@
     "tags": ["Hành động", "Bắn súng", "Kinh dị"],
     "year": 2008,
     "rating": 4.4
-  },
-  {
-    "id": "GalaxyOnFire",
-    "filename": "GalaxyOnFire_240x320.jar",
-    "name": "Galaxy On Fire",
-    "jadFile": null,
-    "settings": {
-      "phone": "Nokia",
-      "width": "240",
-      "height": "320"
-    },
-    "description": "Galaxy On Fire là game mô phỏng không gian với yếu tố RPG, nơi bạn là phi công tàu vũ trụ chiến đấu chống lại kẻ thù ngoài hành tinh và khám phá thiên hà.",
-    "gameplay": "Gameplay bao gồm bay tàu, chiến đấu không gian 3D, buôn bán hàng hóa, nâng cấp tàu, và hoàn thành nhiệm vụ trong thế giới mở với cốt truyện hấp dẫn.",
-    "genre": ["simulation", "rpg", "space"],
-    "tags": ["Mô phỏng", "RPG", "Không gian"],
-    "year": 2006,
-    "rating": 4.7
   }
 ]
