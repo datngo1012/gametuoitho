@@ -313,59 +313,59 @@ function displayGameInfo(gameName, gameInfo) {
         console.warn('[displayGameInfo] Info button not found');
     }
     
-    // Fill modal with game info
-    const modalGameName = document.getElementById('modal-game-name');
-    if (modalGameName) {
-        modalGameName.textContent = gameName;
+    // Fill panel with game info
+    const panelGameName = document.getElementById('panel-game-name');
+    if (panelGameName) {
+        panelGameName.textContent = gameName;
     }
     
     // Tags
-    const modalGameTags = document.getElementById('modal-game-tags');
-    if (modalGameTags && gameInfo.tags && gameInfo.tags.length > 0) {
-        modalGameTags.innerHTML = '';
+    const panelGameTags = document.getElementById('panel-game-tags');
+    if (panelGameTags && gameInfo.tags && gameInfo.tags.length > 0) {
+        panelGameTags.innerHTML = '';
         gameInfo.tags.forEach(tag => {
             const tagElement = document.createElement('span');
             tagElement.className = 'game-info-tag';
             tagElement.textContent = tag;
-            modalGameTags.appendChild(tagElement);
+            panelGameTags.appendChild(tagElement);
         });
         console.log('[displayGameInfo] Tags added:', gameInfo.tags.length);
     }
     
     // Meta info
-    const modalGameMeta = document.getElementById('modal-game-meta');
-    if (modalGameMeta) {
-        modalGameMeta.innerHTML = '';
+    const panelGameMeta = document.getElementById('panel-game-meta');
+    if (panelGameMeta) {
+        panelGameMeta.innerHTML = '';
         
         if (gameInfo.year) {
             const yearItem = document.createElement('div');
             yearItem.className = 'game-info-meta-item';
             yearItem.innerHTML = `<span>📅</span> <strong>Năm:</strong> ${gameInfo.year}`;
-            modalGameMeta.appendChild(yearItem);
+            panelGameMeta.appendChild(yearItem);
         }
         
         if (gameInfo.rating) {
             const ratingItem = document.createElement('div');
             ratingItem.className = 'game-info-meta-item';
             ratingItem.innerHTML = `<span>⭐</span> <strong>Đánh giá:</strong> ${gameInfo.rating}/5`;
-            modalGameMeta.appendChild(ratingItem);
+            panelGameMeta.appendChild(ratingItem);
         }
         
         if (gameInfo.genre && gameInfo.genre.length > 0) {
             const genreItem = document.createElement('div');
             genreItem.className = 'game-info-meta-item';
             genreItem.innerHTML = `<span>🎭</span> <strong>Thể loại:</strong> ${gameInfo.genre.join(', ')}`;
-            modalGameMeta.appendChild(genreItem);
+            panelGameMeta.appendChild(genreItem);
         }
     }
     
     // Description
-    const modalDescriptionSection = document.getElementById('modal-description-section');
-    const modalGameDescription = document.getElementById('modal-game-description');
-    if (modalGameDescription && gameInfo.description) {
-        modalGameDescription.textContent = gameInfo.description;
-        if (modalDescriptionSection) {
-            modalDescriptionSection.style.display = '';
+    const panelDescriptionSection = document.getElementById('panel-description-section');
+    const panelGameDescription = document.getElementById('panel-game-description');
+    if (panelGameDescription && gameInfo.description) {
+        panelGameDescription.textContent = gameInfo.description;
+        if (panelDescriptionSection) {
+            panelDescriptionSection.style.display = '';
         }
         console.log('[displayGameInfo] Description added');
     } else {
@@ -373,12 +373,12 @@ function displayGameInfo(gameName, gameInfo) {
     }
     
     // Gameplay
-    const modalGameplaySection = document.getElementById('modal-gameplay-section');
-    const modalGameGameplay = document.getElementById('modal-game-gameplay');
-    if (modalGameGameplay && gameInfo.gameplay) {
-        modalGameGameplay.textContent = gameInfo.gameplay;
-        if (modalGameplaySection) {
-            modalGameplaySection.style.display = '';
+    const panelGameplaySection = document.getElementById('panel-gameplay-section');
+    const panelGameGameplay = document.getElementById('panel-game-gameplay');
+    if (panelGameGameplay && gameInfo.gameplay) {
+        panelGameGameplay.textContent = gameInfo.gameplay;
+        if (panelGameplaySection) {
+            panelGameplaySection.style.display = '';
         }
         console.log('[displayGameInfo] Gameplay added');
     } else {

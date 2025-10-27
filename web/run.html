@@ -37,7 +37,7 @@
         background-color: #2a1a4e;
         position: absolute;
         top: 60px;
-        left: 0;
+        left: 320px;
         right: 0;
         bottom: 0;
         display: flex;
@@ -68,22 +68,6 @@
         flex-grow: 1;
     }
     
-    #info-btn {
-        background: rgba(255, 255, 255, 0.2);
-        border: none;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: 500;
-        transition: background 0.2s;
-        margin-right: 10px;
-    }
-    
-    #info-btn:hover {
-        background: rgba(255, 255, 255, 0.3);
-    }
-    
     #back-btn {
         background: rgba(255, 255, 255, 0.2);
         border: none;
@@ -99,144 +83,96 @@
         background: rgba(255, 255, 255, 0.3);
     }
     
-    #game-info-modal {
-        display: none;
+    #game-info-panel {
         position: fixed;
-        top: 0;
+        top: 60px;
         left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 2000;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        backdrop-filter: blur(5px);
-    }
-    
-    #game-info-modal.show {
-        display: flex;
-    }
-    
-    .game-info-content {
+        width: 320px;
+        max-height: calc(100vh - 60px);
         background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
-        border-radius: 20px;
-        max-width: 600px;
-        width: 100%;
-        max-height: 80vh;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
         overflow-y: auto;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        animation: slideIn 0.3s ease-out;
-    }
-    
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateY(-30px) scale(0.95);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+        z-index: 998;
     }
     
     .game-info-header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 25px;
-        border-radius: 20px 20px 0 0;
+        padding: 20px;
         color: white;
-        position: relative;
     }
     
     .game-info-header h2 {
         margin: 0 0 10px 0;
-        font-size: 1.8em;
+        font-size: 1.4em;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     
     .game-info-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 12px;
+        gap: 6px;
+        margin-top: 10px;
     }
     
     .game-info-tag {
         background: rgba(255, 255, 255, 0.25);
         backdrop-filter: blur(10px);
-        padding: 6px 12px;
-        border-radius: 15px;
-        font-size: 0.85em;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8em;
         font-weight: 500;
         border: 1px solid rgba(255, 255, 255, 0.3);
     }
     
-    .game-info-close {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: rgba(255, 255, 255, 0.2);
-        border: none;
-        color: white;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        font-size: 1.5em;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-    }
-    
-    .game-info-close:hover {
-        background: rgba(255, 255, 255, 0.3);
-    }
-    
     .game-info-body {
-        padding: 25px;
+        padding: 20px;
     }
     
     .game-info-section {
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
     
     .game-info-section h3 {
         color: #667eea;
-        font-size: 1.2em;
-        margin: 0 0 10px 0;
+        font-size: 1.1em;
+        margin: 0 0 8px 0;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
     }
     
     .game-info-section p {
         color: #555;
-        line-height: 1.7;
+        line-height: 1.6;
         margin: 0;
         text-align: justify;
+        font-size: 0.9em;
     }
     
     .game-info-meta {
         display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 12px;
         padding: 15px;
         background: rgba(102, 126, 234, 0.1);
         border-radius: 12px;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
     
     .game-info-meta-item {
         display: flex;
         align-items: center;
         gap: 8px;
-        font-size: 0.95em;
+        font-size: 0.85em;
         color: #666;
     }
     
     .game-info-meta-item strong {
         color: #333;
+    }
+    
+    #game-info-modal {
+        display: none;
     }
     
     #controls-panel {
@@ -589,6 +525,7 @@
     body.kbd-portrait #screen-area {
         bottom: 220px;
         top: 60px;
+        left: 0;
     }
 
     body.kbd-landscape #screen-area {
@@ -598,17 +535,20 @@
     }
     
     @media (max-width: 768px) {
+        #game-info-panel {
+            display: none;
+        }
+        
+        #screen-area {
+            left: 0 !important;
+        }
+        
         #game-header {
             padding: 0 10px;
         }
         
         #game-title {
             font-size: 1.2em;
-        }
-        
-        #info-btn {
-            padding: 6px 10px;
-            font-size: 0.85em;
         }
         
         #back-btn {
@@ -664,29 +604,7 @@
 <body>
     <div id="game-header">
         <h1 id="game-title">🎮 Đang tải game...</h1>
-        <button id="info-btn" style="display: none;">ℹ️ Thông tin</button>
         <button id="back-btn" onclick="window.location.href='index.html'">← Quay lại</button>
-    </div>
-    
-    <div id="game-info-modal">
-        <div class="game-info-content">
-            <div class="game-info-header">
-                <button class="game-info-close" onclick="document.getElementById('game-info-modal').classList.remove('show')">×</button>
-                <h2 id="modal-game-name">Tên Game</h2>
-                <div class="game-info-tags" id="modal-game-tags"></div>
-            </div>
-            <div class="game-info-body">
-                <div class="game-info-meta" id="modal-game-meta"></div>
-                <div class="game-info-section" id="modal-description-section" style="display: none;">
-                    <h3>📖 Mô tả</h3>
-                    <p id="modal-game-description"></p>
-                </div>
-                <div class="game-info-section" id="modal-gameplay-section" style="display: none;">
-                    <h3>🎮 Gameplay</h3>
-                    <p id="modal-game-gameplay"></p>
-                </div>
-            </div>
-        </div>
     </div>
     
     <button id="controls-toggle">🎮 Điều khiển</button>

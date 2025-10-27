@@ -422,7 +422,6 @@ function fillGamesList(games) {
         link.appendChild(info);
 
         // Add tags if available
-        console.log('Game:', game.name, 'gameInfo:', game.gameInfo); // Debug log
         if (game.gameInfo && game.gameInfo.tags && game.gameInfo.tags.length > 0) {
             const tagsContainer = document.createElement("div");
             tagsContainer.className = "game-tags";
@@ -438,6 +437,50 @@ function fillGamesList(games) {
         }
 
         item.appendChild(link);
+
+        // Add game info section below the link
+        if (game.gameInfo) {
+            const gameInfoSection = document.createElement("div");
+            gameInfoSection.className = "game-details";
+            
+            // Description
+            if (game.gameInfo.description) {
+                const descElement = document.createElement("p");
+                descElement.className = "game-description";
+                descElement.textContent = game.gameInfo.description;
+                gameInfoSection.appendChild(descElement);
+            }
+            
+            // Gameplay
+            if (game.gameInfo.gameplay) {
+                const gameplayElement = document.createElement("p");
+                gameplayElement.className = "game-gameplay";
+                gameplayElement.innerHTML = `<strong>🎯 Cách chơi:</strong> ${game.gameInfo.gameplay}`;
+                gameInfoSection.appendChild(gameplayElement);
+            }
+            
+            // Metadata (genre, year, rating)
+            const metaInfo = [];
+            if (game.gameInfo.genre && game.gameInfo.genre.length > 0) {
+                metaInfo.push(`<span class="game-meta-item">📂 ${game.gameInfo.genre.join(', ')}</span>`);
+            }
+            if (game.gameInfo.year) {
+                metaInfo.push(`<span class="game-meta-item">📅 ${game.gameInfo.year}</span>`);
+            }
+            if (game.gameInfo.rating) {
+                const stars = '⭐'.repeat(Math.round(game.gameInfo.rating));
+                metaInfo.push(`<span class="game-meta-item">${stars} (${game.gameInfo.rating}/5)</span>`);
+            }
+            
+            if (metaInfo.length > 0) {
+                const metaElement = document.createElement("div");
+                metaElement.className = "game-meta";
+                metaElement.innerHTML = metaInfo.join(' • ');
+                gameInfoSection.appendChild(metaElement);
+            }
+            
+            item.appendChild(gameInfoSection);
+        }
 
         container.appendChild(item);
     }

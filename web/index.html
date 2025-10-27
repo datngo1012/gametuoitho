@@ -332,6 +332,46 @@
         box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
       }
       
+      .game-details {
+        padding: 0 24px 24px 24px;
+        color: #2a1a4e;
+        font-size: 0.9em;
+        line-height: 1.6;
+        border-top: 1px solid rgba(42, 26, 78, 0.1);
+        margin-top: 16px;
+        padding-top: 16px;
+      }
+      
+      .game-description {
+        margin: 0 0 12px 0;
+        color: #4a4a4a;
+        font-style: italic;
+      }
+      
+      .game-gameplay {
+        margin: 0 0 12px 0;
+        color: #2a1a4e;
+      }
+      
+      .game-gameplay strong {
+        color: #667eea;
+      }
+      
+      .game-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        font-size: 0.85em;
+        color: #666;
+        margin-top: 8px;
+      }
+      
+      .game-meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      
       .empty-state {
         grid-column: 1 / -1;
         text-align: center;
@@ -369,11 +409,67 @@
         font-weight: bold;
         font-size: 0.9em;
       }
+      
+      .welcome-section {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 50px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        color: #2a1a4e;
+        line-height: 1.8;
+      }
+      
+      .welcome-section h2 {
+        color: #2a1a4e;
+        text-shadow: none;
+        text-align: center;
+      }
+      
+      .welcome-section p {
+        font-size: 1.05em;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      
+      .welcome-footer {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 30px;
+        border-left: 4px solid #667eea;
+      }
+      
+      .welcome-footer p {
+        margin-bottom: 10px;
+        text-align: left;
+      }
+      
+      .welcome-footer p:last-child {
+        margin-bottom: 0;
+      }
+      
+      @media (max-width: 768px) {
+        .welcome-section {
+          padding: 25px 20px;
+        }
+        
+        .welcome-section h2 {
+          font-size: 1.5em;
+        }
+        
+        .welcome-section p {
+          font-size: 0.95em;
+        }
+      }
     </style>
     <div id="loading">
       <div class="loading-container">
         <div class="loading-icon-main">🎮</div>
         <div class="loading-text" id="loading-text">Đang khởi động...</div>
+        <div class="loading-subtext" id="loading-subtext" style="font-size: 0.9em; color: #666; text-align: center; margin-top: -10px;">
+⏳ Thông báo: Lần truy cập đầu tiên có thể mất nhiều thời gian hơn bình thường do hệ thống cần tải thư viện và nội dung game.
+Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nhanh hơn đáng kể.        </div>
         <div class="progress-bar-container">
           <div class="progress-bar" id="progress-bar"></div>
         </div>
@@ -401,6 +497,24 @@
       <div class="header">
         <h1>Game Tuổi Thơ</h1>
       </div>
+      
+      <div class="welcome-section">
+        <h2 style="font-size: 2em; margin-bottom: 20px;">🎮 Chào mừng bạn đến với thế giới Game Java huyền thoại!</h2>
+        
+        <p>Nếu bạn từng gắn bó với những chiếc điện thoại Nokia, Sony Ericsson hay Motorola ngày xưa, chắc hẳn bạn vẫn nhớ cảm giác háo hức khi mở một trò chơi Java với những hình ảnh pixel đơn giản mà vui bất tận.</p>
+        
+        <p>Tại đây, chúng tôi mang những ký ức ấy trở lại — nơi bạn có thể chơi lại các tựa game Java huyền thoại ngay trên trình duyệt, không cần cài đặt, không cần giả lập.<br>
+        Hãy cùng sống lại tuổi thơ, cùng cười, cùng "try hard" như ngày nào!</p>
+        
+        <p style="font-size: 1.1em; font-weight: 600;">🕹️ Bắt đầu ngay – tuổi thơ đang chờ bạn khám phá lại!</p>
+        
+        <div class="welcome-footer">
+          <p><strong>📢 Tôi sẽ liên tục cập nhật thêm nhiều game mới trong thời gian tới.</strong></p>
+          <p>Nếu bạn có yêu cầu thêm game hoặc phát hiện lỗi, hãy bình luận để tôi biết nhé!<br>
+          Cảm ơn bạn đã ghé thăm và ủng hộ trang web này ❤️</p>
+        </div>
+      </div>
+      
       <h2>📱 Your Game Collection</h2>
       <div id="game-list" class="game-list">
         <!-- Games will be loaded here -->
