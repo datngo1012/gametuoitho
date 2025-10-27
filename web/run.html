@@ -17,6 +17,44 @@
     <link rel="icon" type="image/png" href="favicon.png" />
 </head>
 <style>
+    :root {
+        /* Light theme colors (default) */
+        --bg-primary: #f5f3ff;
+        --bg-gradient-start: #667eea;
+        --bg-gradient-end: #764ba2;
+        --bg-pattern-opacity: 0.03;
+        --text-primary: #2a1a4e;
+        --text-secondary: #5a4a7e;
+        --header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --panel-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 246, 255, 0.95));
+        --panel-text: #2a1a4e;
+        --panel-secondary-text: #5a4a7e;
+        --loading-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --shadow-color: rgba(102, 126, 234, 0.15);
+        --border-color: rgba(102, 126, 234, 0.15);
+        --accent-purple: #667eea;
+        --accent-violet: #764ba2;
+    }
+    
+    body.dark-theme {
+        /* Dark theme colors */
+        --bg-primary: #0a0a15;
+        --bg-gradient-start: #1a1a3e;
+        --bg-gradient-end: #2a2a4e;
+        --bg-pattern-opacity: 0.05;
+        --text-primary: #e8e6f0;
+        --text-secondary: #b8b6c8;
+        --header-bg: linear-gradient(135deg, #1a1a3e 0%, #2a2a4e 100%);
+        --panel-bg: linear-gradient(145deg, rgba(26, 26, 46, 0.98), rgba(18, 18, 36, 0.95));
+        --panel-text: #e8e6f0;
+        --panel-secondary-text: #b8b6c8;
+        --loading-bg: linear-gradient(135deg, #1a1a3e 0%, #2a2a4e 100%);
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --border-color: rgba(102, 126, 234, 0.2);
+        --accent-purple: #8892ea;
+        --accent-violet: #9878c2;
+    }
+    
     html, body {
         height: 100%;
     }
@@ -24,17 +62,21 @@
         margin: 0;
         padding: 0;
         font-family: sans;
+        transition: all 0.5s ease;
     }
     #screen-area {
         background: 
-            linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%),
+            radial-gradient(circle at 20% 50%, var(--bg-gradient-start) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, var(--bg-gradient-end) 0%, transparent 50%),
             repeating-linear-gradient(45deg, 
-                rgba(255,255,255,0.03) 0px, 
-                rgba(255,255,255,0.03) 10px,
-                transparent 10px, 
-                transparent 20px
-            );
-        background-color: #2a1a4e;
+                rgba(102, 126, 234, var(--bg-pattern-opacity)) 0px, 
+                rgba(102, 126, 234, var(--bg-pattern-opacity)) 2px,
+                transparent 2px, 
+                transparent 12px
+            ),
+            linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-primary) 100%);
+        background-color: var(--bg-primary);
+        background-attachment: fixed;
         position: absolute;
         top: 60px;
         left: 320px;
@@ -43,6 +85,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: all 0.5s ease;
     }
     
     #game-header {
@@ -51,36 +94,58 @@
         left: 0;
         right: 0;
         height: 60px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        background: var(--header-bg);
+        box-shadow: 0 2px 10px var(--shadow-color);
         display: flex;
         align-items: center;
         padding: 0 20px;
         z-index: 1000;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
     }
     
     #game-title {
-        color: white;
+        color: var(--text-primary);
         font-size: 1.5em;
         font-weight: bold;
         margin: 0;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        text-shadow: 0 2px 4px var(--shadow-color);
         flex-grow: 1;
+        transition: color 0.3s ease;
     }
     
     #back-btn {
         background: rgba(255, 255, 255, 0.2);
         border: none;
-        color: white;
+        color: var(--text-primary);
         padding: 8px 16px;
         border-radius: 6px;
         cursor: pointer;
         font-weight: 500;
-        transition: background 0.2s;
+        transition: background 0.2s, color 0.3s ease;
+        margin-right: 10px;
     }
     
     #back-btn:hover {
         background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .theme-toggle-run {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: var(--text-primary);
+        padding: 8px 14px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .theme-toggle-run:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
     }
     
     #game-info-panel {
@@ -89,16 +154,19 @@
         left: 0;
         width: 320px;
         max-height: calc(100vh - 60px);
-        background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        background: var(--panel-bg);
+        box-shadow: 2px 0 10px var(--shadow-color);
         overflow-y: auto;
         z-index: 998;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+        border-right: 1px solid var(--border-color);
     }
     
     .game-info-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: var(--header-bg);
         padding: 20px;
-        color: white;
+        color: var(--text-primary);
+        transition: background 0.3s ease, color 0.3s ease;
     }
     
     .game-info-header h2 {
@@ -126,6 +194,8 @@
     
     .game-info-body {
         padding: 20px;
+        color: var(--panel-text);
+        transition: color 0.3s ease;
     }
     
     .game-info-section {
@@ -133,7 +203,7 @@
     }
     
     .game-info-section h3 {
-        color: #667eea;
+        color: var(--accent-purple);
         font-size: 1.1em;
         margin: 0 0 8px 0;
         display: flex;
@@ -142,11 +212,12 @@
     }
     
     .game-info-section p {
-        color: #555;
+        color: var(--panel-secondary-text);
         line-height: 1.6;
         margin: 0;
         text-align: justify;
         font-size: 0.9em;
+        transition: color 0.3s ease;
     }
     
     .game-info-meta {
@@ -164,11 +235,13 @@
         align-items: center;
         gap: 8px;
         font-size: 0.85em;
-        color: #666;
+        color: var(--panel-secondary-text);
+        transition: color 0.3s ease;
     }
     
     .game-info-meta-item strong {
-        color: #333;
+        color: var(--panel-text);
+        transition: color 0.3s ease;
     }
     
     #game-info-modal {
@@ -181,13 +254,15 @@
         right: 0;
         width: 250px;
         max-height: calc(100vh - 60px);
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+        background: var(--panel-bg);
+        box-shadow: -2px 0 10px var(--shadow-color);
         padding: 20px;
         overflow-y: auto;
         z-index: 999;
         transform: translateX(100%);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        color: var(--panel-text);
+        border-left: 1px solid var(--border-color);
     }
     
     #controls-panel.show {
@@ -236,15 +311,17 @@
     }
     
     .control-label {
-        color: #666;
+        color: var(--panel-secondary-text);
         font-size: 0.9em;
+        transition: color 0.3s ease;
     }
     
     .controls-title {
         font-size: 1.1em;
         font-weight: bold;
         margin-bottom: 15px;
-        color: #333;
+        color: var(--panel-text);
+        transition: color 0.3s ease;
     }
     #display {
         background-color: white;
@@ -605,6 +682,9 @@
     <div id="game-header">
         <h1 id="game-title">🎮 Đang tải game...</h1>
         <button id="back-btn" onclick="window.location.href='index.html'">← Quay lại</button>
+        <button class="theme-toggle-run" id="theme-toggle-run" aria-label="Toggle theme">
+            <span id="theme-icon-run">🌙</span>
+        </button>
     </div>
     
     <button id="controls-toggle">🎮 Điều khiển</button>
@@ -708,6 +788,33 @@
     </div>
     <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
     <script>
+        // Theme toggle functionality
+        const themeToggleRun = document.getElementById('theme-toggle-run');
+        const themeIconRun = document.getElementById('theme-icon-run');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        // Apply saved theme on page load
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-theme');
+            themeIconRun.textContent = '☀️';
+        }
+        
+        // Theme toggle click handler
+        themeToggleRun.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            
+            if (body.classList.contains('dark-theme')) {
+                themeIconRun.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIconRun.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
         // Toggle controls panel
         document.getElementById('controls-toggle').addEventListener('click', function() {
             const panel = document.getElementById('controls-panel');
