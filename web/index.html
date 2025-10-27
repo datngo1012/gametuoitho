@@ -583,6 +583,160 @@
           display: none;
         }
       }
+      
+      .site-footer {
+        background: var(--welcome-bg);
+        border-top: 2px solid var(--border-color);
+        margin-top: 60px;
+        padding: 40px 20px 30px;
+        transition: background 0.3s ease, border-color 0.3s ease;
+      }
+      
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 30px;
+      }
+      
+      .footer-section h3 {
+        color: var(--accent-purple);
+        font-size: 1.2em;
+        margin: 0 0 15px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .footer-section p {
+        color: var(--card-secondary-text);
+        line-height: 1.6;
+        margin: 0 0 10px 0;
+        transition: color 0.3s ease;
+      }
+      
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+      
+      .footer-links a {
+        color: var(--card-text);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .footer-links a:hover {
+        color: var(--accent-purple);
+      }
+      
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--card-text);
+        transition: color 0.3s ease;
+      }
+      
+      .contact-item a {
+        color: var(--accent-purple);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+      
+      .contact-item a:hover {
+        color: var(--accent-violet);
+        text-decoration: underline;
+      }
+      
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+      }
+      
+      .social-link {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent-purple), var(--accent-violet));
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 1.2em;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 2px 8px var(--shadow-color);
+      }
+      
+      .social-link:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 4px 15px var(--shadow-hover);
+      }
+      
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid var(--border-color);
+        color: var(--card-secondary-text);
+        transition: color 0.3s ease, border-color 0.3s ease;
+      }
+      
+      .footer-bottom p {
+        margin: 5px 0;
+        font-size: 0.95em;
+      }
+      
+      .footer-heart {
+        color: #e74c3c;
+        animation: heartbeat 1.5s ease-in-out infinite;
+      }
+      
+      @keyframes heartbeat {
+        0%, 100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.1);
+        }
+        50% {
+          transform: scale(1);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        
+        .site-footer {
+          padding: 30px 15px 20px;
+          margin-top: 40px;
+        }
+        
+        .footer-section h3 {
+          font-size: 1.1em;
+        }
+      }
     </style>
     <div id="loading">
       <div class="loading-container">
@@ -644,6 +798,53 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
       <div id="game-list" class="game-list">
         <!-- Games will be loaded here -->
       </div>
+      
+      <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>🎮 Game Tuổi Thơ</h3>
+            <p>Mang ký ức tuổi thơ trở lại với những tựa game Java huyền thoại. Chơi ngay trên trình duyệt, không cần cài đặt!</p>
+            <div class="social-links">
+              <a href="#" class="social-link" title="Facebook" aria-label="Facebook">📘</a>
+              <a href="#" class="social-link" title="Twitter" aria-label="Twitter">🐦</a>
+              <a href="#" class="social-link" title="YouTube" aria-label="YouTube">📺</a>
+              <a href="#" class="social-link" title="Tiktok" aria-label="TikTok">🎵</a>
+            </div>
+          </div>
+          
+          <div class="footer-section">
+            <h3>🔗 Liên kết nhanh</h3>
+            <ul class="footer-links">
+              <li><a href="#game-list">📱 Danh sách game</a></li>
+              <!-- <li><a href="https://github.com" target="_blank">💻 Source Code</a></li> -->
+              <li><a href="#" onclick="document.getElementById('theme-toggle').click(); return false;">🌙 Đổi giao diện</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h3>📧 Liên hệ</h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <span>📬</span>
+                <span>Email: <a href="mailto:dtuyt0@gmail.com">dtuyt0@gmail.com</a></span>
+              </div>
+              <!-- <div class="contact-item">
+                <span>💬</span>
+                <span>Hỗ trợ: <a href="mailto:dtuyt0@gmail.com">dtuyt0@gmail.com</a></span>
+              </div>
+              <div class="contact-item">
+                <span>🐛</span>
+                <span>Báo lỗi: <a href="mailto:dtuyt0@gmail.com">bug@gametuoitho.cc</a></span>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>© 2025 Game Tuổi Thơ. Made with <span class="footer-heart">❤️</span> for nostalgic gamers.</p>
+          <p>Tất cả các game thuộc bản quyền của nhà phát triển gốc.</p>
+        </div>
+      </footer>
     </main>
     <script>
       // Theme toggle functionality
