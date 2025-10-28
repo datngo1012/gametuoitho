@@ -821,18 +821,6 @@
             panel.classList.toggle('show');
             this.textContent = panel.classList.contains('show') ? '✕ Đóng' : '🎮 Điều khiển';
         });
-        
-        // Toggle game info modal
-        document.getElementById('info-btn').addEventListener('click', function() {
-            document.getElementById('game-info-modal').classList.add('show');
-        });
-        
-        // Close modal when clicking outside
-        document.getElementById('game-info-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('show');
-            }
-        });
     </script>
     <script type="module" src="src/main.js"></script>
 </body>

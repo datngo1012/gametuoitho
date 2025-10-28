@@ -495,45 +495,56 @@ async function init() {
 
     updateProgress(50, "Đang tải game...");
 
-    const lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
+    // Không await - chạy trong background
+    (async () => {
+        try {
+            const lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
 
-    updateProgress(70, "Đang chuẩn bị...");
+            updateProgress(70, "Đang chuẩn bị...");
 
-    const FreeJ2ME = await lib.org.recompile.freej2me.FreeJ2ME;
+            const FreeJ2ME = await lib.org.recompile.freej2me.FreeJ2ME;
 
-    let args;
-    let currentAppId = null;
+            let args;
+            let currentAppId = null;
 
-    if (sp.get('app')) {
-        const app = sp.get('app');
-        currentAppId = app;
-        await ensureAppInstalled(lib, app);
+            if (sp.get('app')) {
+                const app = sp.get('app');
+                currentAppId = app;
+                await ensureAppInstalled(lib, app);
 
-        args = ['app', sp.get('app')];
-        
-        // Load and display game info
-        updateProgress(75, "Đang tải thông tin game...");
-        const gameInfo = await loadGameInfo(app);
-        if (gameInfo) {
-            // Get game name from files
-            const nameBlob = await cjFileBlob("/files/" + app + "/name");
-            const gameName = nameBlob ? await nameBlob.text() : app;
-            displayGameInfo(gameName, gameInfo);
+                args = ['app', sp.get('app')];
+                
+                // Load and display game info
+                updateProgress(75, "Đang tải thông tin game...");
+                const gameInfo = await loadGameInfo(app);
+                if (gameInfo) {
+                    // Get game name from files
+                    const nameBlob = await cjFileBlob("/files/" + app + "/name");
+                    const gameName = nameBlob ? await nameBlob.text() : app;
+                    displayGameInfo(gameName, gameInfo);
+                }
+            } else {
+                args = ['jar', cheerpjWebRoot+"/jar/" + (sp.get('jar') || "game.jar")];
+            }
+
+            updateProgress(90, "Đang khởi chạy game...");
+
+            await FreeJ2ME.main(args);
+        } catch (e) {
+            if (e.printStackTrace) {
+                e.printStackTrace();
+            } else {
+                console.error(e);
+            }
+            const loadingEl = document.getElementById('loading');
+            if (loadingEl) {
+                const loadingText = loadingEl.querySelector('.loading-text');
+                const progressBarFill = loadingEl.querySelector('.progress-bar-fill');
+                if (loadingText) loadingText.textContent = 'Lỗi :(';
+                if (progressBarFill) progressBarFill.style.backgroundColor = '#e74c3c';
+            }
         }
-    } else {
-        args = ['jar', cheerpjWebRoot+"/jar/" + (sp.get('jar') || "game.jar")];
-    }
-
-    updateProgress(90, "Đang khởi chạy game...");
-
-    FreeJ2ME.main(args).catch(e => {
-        e.printStackTrace();
-        const loadingEl = document.getElementById('loading');
-        if (loadingEl) {
-            loadingEl.querySelector('.loading-text').textContent = 'Lỗi :(';
-            loadingEl.querySelector('.progress-bar-fill').style.backgroundColor = '#e74c3c';
-        }
-    });
+    })();
 
 
 }
