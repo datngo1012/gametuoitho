@@ -120,3 +120,6 @@ Therefore, you must first prepare a `.zip` file for each game as follows:
 Once prepared, you can embed the game directly using `run.html?app=[app_id]` without requiring the user to visit the launcher page first.
 
 Note that your iframe dimensions should match the game's screen size or a multiple thereof. To match only the aspect ratio, pass the `fractionScale` parameter to `run.html`, for example: `run.html?app=[app_id]&fractionScale=1`.
+
+
+npx serve -u web
