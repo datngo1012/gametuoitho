@@ -215,7 +215,7 @@ body.dark-theme .comment-form textarea {
 
 .primary-btn {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  color: #ffffff !important;
+  color: var(--accent-primary) !important;
   border: none;
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--border-radius-sm);

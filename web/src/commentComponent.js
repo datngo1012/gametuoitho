@@ -185,7 +185,8 @@ class CommentComponent {
     `;
   }
 
-  attachEventListeners() {
+  async attachEventListeners() {
+    await this.loadComments();
     // Login button
     const loginBtn = document.getElementById('login-btn');
     if (loginBtn) {
@@ -251,7 +252,6 @@ class CommentComponent {
     UserSession.saveUser(username);
     this.currentUser = username;
     this.render();
-    await this.loadComments();
   }
 
   handleLogout() {
@@ -299,7 +299,13 @@ class CommentComponent {
       this.showSuccess('Bình luận đã được gửi!');
     } catch (error) {
       console.error('Error submitting comment:', error);
-      this.showError('Không thể gửi bình luận. Vui lòng thử lại.');
+      this.showError('Không thể gửi bình luận. Vui lòng thử lại. Đảm bảo đã đăng nhập.');
+    } finally {
+      const btn = parentId 
+        ? document.querySelector(`.submit-comment-btn[data-parent-id="${parentId}"]`)
+        : document.querySelector('.submit-comment-btn:not([data-parent-id])');
+      btn.disabled = false;
+      btn.textContent = parentId ? '💬 Gửi trả lời' : '📤 Gửi bình luận';
     }
   }
 
