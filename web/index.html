@@ -34,6 +34,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://gametuoitho.cc/" />
     
+    <!-- Comment System Styles -->
+    <link rel="stylesheet" href="src/commentStyles.css" />
+    
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -378,10 +381,21 @@
           inset -2px -2px 4px var(--neu-shadow-light);
       }
       
+      input::placeholder {
+        color: var(--text-tertiary);
+        opacity: 0.7;
+      }
+      
       body.dark-theme input,
       body.dark-theme button,
       body.dark-theme select {
         border-color: rgba(255, 255, 255, 0.2);
+        color: var(--text-primary);
+      }
+      
+      body.dark-theme input::placeholder {
+        color: var(--text-tertiary);
+        opacity: 0.8;
       }
       
       input:focus,
@@ -1289,6 +1303,9 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
         <!-- Games will be loaded here -->
       </div>
       
+      <!-- Comment Section -->
+      <div id="comment-container"></div>
+      
       <footer class="site-footer">
         <div class="footer-content">
           <div class="footer-section">
@@ -1369,6 +1386,18 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
       });
     </script>
     <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
+    <script type="module">
+      // Initialize Comment System
+      import CommentComponent from './src/commentComponent.js';
+      
+      // Wait for DOM to be ready
+      document.addEventListener('DOMContentLoaded', () => {
+        // Initialize comments after a short delay to let the page load
+        setTimeout(() => {
+          new CommentComponent('comment-container');
+        }, 500);
+      });
+    </script>
     <script type="module" src="src/launcher.js"></script>
   </body>
 </html>
