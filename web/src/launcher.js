@@ -331,7 +331,7 @@ async function loadGames() {
                     // Try multiple matching strategies
                     if (!g.filename) return false;
                     
-                    const fileNameBase = g.filename.replace(/\.jar$/, '').toLowerCase();
+                    const fileNameBase = g.name.replace(/\.jar$/, '').toLowerCase();
                     const appIdLower = appId.toLowerCase();
                     
                     // Direct match
