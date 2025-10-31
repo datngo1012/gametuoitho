@@ -455,7 +455,7 @@
 
       .header {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         margin-bottom: var(--spacing-2xl);
         padding: var(--spacing-xl);
@@ -508,6 +508,7 @@
         align-items: center;
         gap: var(--spacing-md);
         letter-spacing: -0.02em;
+        flex: 1;
       }
       
       .header h1::before {
@@ -517,8 +518,6 @@
       }
       
       .theme-toggle {
-        position: absolute;
-        right: var(--spacing-lg);
         background: var(--bg-secondary);
         border: none;
         color: var(--text-secondary);
@@ -538,6 +537,7 @@
           -6px -6px 12px var(--neu-shadow-light);
         overflow: hidden;
         position: relative;
+        flex-shrink: 0;
       }
       
       .theme-toggle::before {
