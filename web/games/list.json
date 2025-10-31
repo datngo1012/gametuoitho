@@ -9,25 +9,25 @@
       "width": "240",
       "height": "320"
     },
-    "description": "Diamond Rush là trò chơi phiêu lưu nơi bạn vào vai một nhà thám hiểm tìm kiếm kim cương qua các địa danh cổ xưa như Angkor Wat, Bavaria và Tibet. Người chơi phải giải các câu đố phức tạp, tránh bẫy nguy hiểm, thu thập đá quý và đối mặt với các thử thách để hoàn thành hành trình.",
-    "gameplay": "Gameplay của Diamond Rush là kiểu phiêu lưu 2D, nơi người chơi di chuyển nhân vật qua các màn chơi dạng mê cung, sử dụng phím điều hướng để nhảy, đẩy vật thể, và tương tác với môi trường. Người chơi cần giải puzzle như di chuyển đá để mở đường, tránh bẫy như gai nhọn, rắn, lửa, và thu thập kim cương cũng như item hỗ trợ. Có các secret areas và alternative routes để khám phá lại level. Các boss fight như chống lại rắn khổng lồ hoặc lửa đòi hỏi timing chính xác và chiến lược để đánh bại.",
+    "description": "Diamond Rush là trò chơi phiêu lưu cổ điển, nơi bạn vào vai một nhà thám hiểm tìm kiếm kim cương qua các địa danh cổ xưa như Angkor Wat, Bavaria và Tibet. Người chơi phải giải các câu đố phức tạp, tránh bẫy nguy hiểm, thu thập đá quý và vượt qua vô số thử thách để hoàn thành hành trình.",
+    "gameplay": "Gameplay của Diamond Rush là kiểu phiêu lưu 2D, nơi người chơi di chuyển nhân vật qua các màn chơi dạng mê cung, sử dụng phím điều hướng để nhảy, đẩy vật thể và tương tác với môi trường. Người chơi cần giải puzzle như di chuyển đá để mở đường, tránh bẫy như gai nhọn, rắn, lửa, và thu thập kim cương cũng như vật phẩm hỗ trợ. Có các khu vực bí mật và đường ẩn để khám phá lại level. Các trận boss như rắn khổng lồ hoặc quái vật lửa đòi hỏi phản xạ và chiến lược chính xác để vượt qua.",
     "genre": ["adventure", "puzzle", "platform"],
     "tags": ["Phiêu lưu", "Giải đố", "Platform"],
     "year": 2004,
     "rating": 4.6
   },
   {
-    "id": "Disco",
+    "id": "DiscoInferno",
     "filename": "Disco_240x320.jar",
-    "name": "Disco",
+    "name": "Disco Inferno",
     "jadFile": null,
     "settings": {
       "phone": "Nokia",
       "width": "240",
       "height": "320"
     },
-    "description": "Disco là trò chơi nhịp điệu và nhảy múa theo nhạc disco cổ điển. Người chơi phải nhấn phím đúng lúc để thực hiện các động tác nhảy, theo nhịp điệu âm nhạc sôi động, tích điểm và mở khóa các cấp độ mới trong không khí sàn nhảy vui nhộn.",
-    "gameplay": "Trong Disco, gameplay là kiểu rhythm game nơi người chơi nhấn các phím mũi tên hoặc số tương ứng với các icon xuất hiện trên màn hình, đồng bộ với nhịp nhạc disco. Mỗi level có bài hát khác nhau, và người chơi phải đạt combo cao để tích điểm, mở khóa trang phục hoặc sàn nhảy mới. Có chế độ single player hoặc challenge, với độ khó tăng dần đòi hỏi phản xạ nhanh và chính xác để hoàn thành routine nhảy mà không miss beat.",
+    "description": "Disco Inferno là trò chơi nhịp điệu và khiêu vũ theo phong cách disco thập niên 70. Người chơi phải nhấn phím đúng thời điểm để thực hiện các động tác nhảy ăn khớp với nhịp điệu sôi động, tích điểm và mở khóa các cấp độ mới trong bầu không khí sàn nhảy rực rỡ ánh đèn.",
+    "gameplay": "Gameplay là kiểu rhythm game, nơi người chơi nhấn các phím mũi tên hoặc số tương ứng với các icon xuất hiện trên màn hình, đồng bộ với nhịp nhạc disco. Mỗi màn có bài hát khác nhau, và người chơi phải đạt combo cao để tích điểm, mở khóa trang phục hoặc sàn nhảy mới. Có chế độ single hoặc challenge, độ khó tăng dần đòi hỏi phản xạ nhanh và chính xác để hoàn thành routine nhảy mà không bỏ lỡ nhịp.",
     "genre": ["rhythm", "music", "casual"],
     "tags": ["Nhịp điệu", "Âm nhạc", "Giải trí"],
     "year": 2006,
@@ -43,8 +43,8 @@
       "width": "240",
       "height": "320"
     },
-    "description": "Ninja School 2 là game nhập vai RPG nơi bạn hóa thân thành học viên trường ninja, rèn luyện kỹ năng, chiến đấu với quái vật và thực hiện nhiệm vụ để giải cứu ngôi làng Toyotomi. Trò chơi tập trung vào việc lên cấp, học chiêu thức và khám phá thế giới ninja đầy phiêu lưu.",
-    "gameplay": "Gameplay của Ninja School 2 là RPG 2D side-scrolling, nơi người chơi điều khiển ninja di chuyển qua bản đồ, chiến đấu thời gian thực với quái vật bằng cách sử dụng kỹ năng như ném shuriken, kiếm thuật, hoặc phép thuật. Người chơi nhận quest từ NPC, farm item để lên level, học skill mới tại trường ninja, và tham gia boss fight. Có yếu tố multiplayer-like qua kết nối, nhưng chủ yếu là single player với hệ thống lên cấp và customize nhân vật.",
+    "description": "Ninja School 2 là game nhập vai hành động 2D do TeaMobi phát triển, nơi bạn hóa thân thành học viên trường ninja, rèn luyện kỹ năng, chiến đấu với quái vật và thực hiện nhiệm vụ để bảo vệ ngôi làng Toyotomi. Trò chơi tập trung vào việc lên cấp, học chiêu thức và khám phá thế giới ninja đầy phiêu lưu.",
+    "gameplay": "Gameplay là RPG 2D side-scrolling, nơi người chơi điều khiển ninja di chuyển qua bản đồ, chiến đấu thời gian thực với quái vật bằng cách sử dụng kỹ năng như ném shuriken, kiếm thuật hoặc phép thuật. Người chơi nhận nhiệm vụ từ NPC, farm item để lên level, học skill mới tại trường ninja và tham gia các trận boss. Hệ thống lên cấp, trang bị và kỹ năng đa dạng mang lại chiều sâu RPG thực thụ.",
     "genre": ["rpg", "action", "adventure"],
     "tags": ["Nhập vai", "Hành động", "Ninja"],
     "year": 2008,
@@ -60,8 +60,8 @@
       "width": "240",
       "height": "320"
     },
-    "description": "Ninja School 3 là game nhập vai RPG lấy bối cảnh mùa đông tại trường ninja Ko-ninjustu Hirosaki, nơi bạn là học viên nhỏ tuổi được đào tạo để trở thành ninja thực thụ. Người chơi sẽ học tập, chiến đấu, hoàn thành nhiệm vụ và khám phá câu chuyện hấp dẫn trong thế giới ninja.",
-    "gameplay": "Tương tự Ninja School 2, gameplay là RPG platformer nơi người chơi khám phá thế giới mở, nhận nhiệm vụ để lên cấp, học kỹ năng ninja như nhẫn thuật, chiến đấu với kẻ thù và quái vật. Người chơi có thể chọn class khác nhau, customize vũ khí, và tham gia các event như săn boss hoặc PvP. Độ khó tăng dần với các level mùa đông, đòi hỏi chiến lược trong combat thời gian thực và quản lý tài nguyên.",
+    "description": "Ninja School 3 là phần tiếp theo của series nhập vai nổi tiếng do TeaMobi phát triển. Người chơi tiếp tục hành trình huấn luyện ninja, hoàn thành nhiệm vụ, chiến đấu với quái vật và khám phá thế giới ninja trong bối cảnh mùa đông tuyết phủ.",
+    "gameplay": "Tương tự phần 2, gameplay là RPG side-scrolling nơi người chơi khám phá thế giới mở, nhận nhiệm vụ để lên cấp, học kỹ năng ninja như nhẫn thuật, chiến đấu với kẻ thù và quái vật. Có thể chọn lớp nhân vật khác nhau, tùy chỉnh vũ khí, và tham gia các sự kiện đặc biệt như săn boss. Độ khó tăng dần đòi hỏi chiến lược và khả năng điều khiển linh hoạt.",
     "genre": ["rpg", "action", "adventure"],
     "tags": ["Nhập vai", "Hành động", "Ninja"],
     "year": 2009,
@@ -77,8 +77,8 @@
       "width": "176",
       "height": "220"
     },
-    "description": "Worms là trò chơi chiến lược theo lượt nơi bạn điều khiển đội giun sử dụng các vũ khí hài hước và độc đáo để tiêu diệt đội đối phương trên bản đồ 2D. Trò chơi nhấn mạnh vào chiến thuật, vật lý và yếu tố hài hước trong các trận chiến vui nhộn.",
-    "gameplay": "Gameplay của Worms là turn-based strategy, nơi người chơi điều khiển đội giun (tối đa 4) trên bản đồ 2D. Mỗi lượt, chọn một giun, di chuyển nó, chọn vũ khí như bazooka, lựu đạn, hoặc vũ khí điên rồ như sheep bomb, nhắm bắn sử dụng vật lý (góc, lực), và gây sát thương cho đối phương. Mục tiêu là tiêu diệt hết giun địch. Có training missions, solo missions, deathmatch, và AI thông minh chọn vũ khí chiến lược.",
+    "description": "Worms là trò chơi chiến lược theo lượt, nơi bạn điều khiển đội giun sử dụng các vũ khí độc đáo và hài hước để tiêu diệt đối phương trên bản đồ 2D. Trò chơi nổi tiếng với yếu tố vật lý, chiến thuật và sự vui nhộn trong mỗi trận chiến.",
+    "gameplay": "Gameplay là turn-based strategy, nơi người chơi điều khiển đội giun (tối đa 4) trên bản đồ 2D. Mỗi lượt, người chơi chọn một giun, di chuyển, chọn vũ khí như bazooka, lựu đạn, hoặc các vũ khí điên rồ như sheep bomb, rồi tính toán góc và lực bắn để gây sát thương. Mục tiêu là tiêu diệt hết giun địch. Có các chế độ training, solo mission, deathmatch và AI thông minh có chiến thuật riêng.",
     "genre": ["strategy", "turnbased", "comedy"],
     "tags": ["Chiến lược", "Theo lượt", "Hài hước"],
     "year": 2004,
@@ -94,8 +94,8 @@
       "width": "240",
       "height": "320"
     },
-    "description": "Bounce Tales là trò chơi phiêu lưu cổ điển nơi bạn điều khiển quả bóng đỏ Bounce qua các cấp độ đầy thử thách, thu thập vật phẩm và đánh bại kẻ thù để cứu thế giới khỏi bóng tối.",
-    "gameplay": "Gameplay là platformer 2D, người chơi di chuyển quả bóng bằng cách nhảy, lăn và sử dụng các khả năng đặc biệt như bật cao hoặc biến hình. Thu thập sao, tránh chướng ngại vật và giải puzzle đơn giản qua các thế giới khác nhau.",
+    "description": "Bounce Tales là trò chơi phiêu lưu cổ điển do RedLynx phát triển và Nokia phát hành, nơi bạn điều khiển quả bóng đỏ Bounce qua các cấp độ đầy thử thách để cứu thế giới khỏi bóng tối.",
+    "gameplay": "Gameplay là platformer 2D, người chơi điều khiển quả bóng bằng cách nhảy, lăn và sử dụng các khả năng đặc biệt như bật cao hoặc biến hình. Nhiệm vụ là thu thập sao, tránh chướng ngại vật và giải các câu đố đơn giản qua nhiều thế giới khác nhau.",
     "genre": ["adventure", "platformer", "casual"],
     "tags": ["Phiêu lưu", "Platform", "Giải trí"],
     "year": 2006,
@@ -111,28 +111,28 @@
       "width": "240",
       "height": "320"
     },
-    "description": "Prince of Persia Classic là phiên bản làm lại của game cổ điển, nơi hoàng tử phải cứu công chúa khỏi phù thủy xấu xa qua các mê cung đầy bẫy và kẻ thù.",
-    "gameplay": "Gameplay là action-adventure 2D, với chạy nhảy, leo trèo, chiến đấu kiếm thuật, và giải puzzle thời gian. Người chơi có thời gian giới hạn để hoàn thành các level.",
+    "description": "Prince of Persia Classic là phiên bản làm lại của trò chơi kinh điển, nơi hoàng tử phải cứu công chúa khỏi tay tên phù thủy độc ác qua các mê cung đầy bẫy và kẻ thù nguy hiểm.",
+    "gameplay": "Gameplay là hành động phiêu lưu 2D, người chơi chạy nhảy, leo trèo, chiến đấu bằng kiếm và giải các câu đố trong giới hạn thời gian để hoàn thành màn chơi. Cơ chế vật lý và hoạt ảnh mượt mà tạo cảm giác chân thực như game console cổ điển.",
     "genre": ["adventure", "action", "puzzle"],
     "tags": ["Phiêu lưu", "Hành động", "Giải đố"],
     "year": 2007,
     "rating": 4.8
   },
   {
-    "id": "ZombieInfection",
-    "filename": "ZombieInfection_240x320.jar",
-    "name": "Zombie Infection",
+    "id": "AssassinCreedBrotherhood",
+    "filename": "assassin-creed-brotherhood-320x240.jar",
+    "name": "Assassin's Creed Brotherhood",
     "jadFile": null,
     "settings": {
       "phone": "Nokia",
-      "width": "240",
-      "height": "320"
+      "width": "320",
+      "height": "240"
     },
-    "description": "Zombie Infection là game hành động bắn zombie nơi người chơi vào vai đặc vụ chiến đấu chống lại đại dịch zombie ở New York, hoàn thành nhiệm vụ để cứu thế giới.",
-    "gameplay": "Gameplay là third-person shooter, di chuyển qua thành phố, bắn zombie bằng vũ khí đa dạng, hoàn thành 36 mission với boss fight và yếu tố survival.",
-    "genre": ["action", "shooter", "horror"],
-    "tags": ["Hành động", "Bắn súng", "Kinh dị"],
-    "year": 2008,
-    "rating": 4.4
+    "description": "Assassin's Creed Brotherhood là game hành động phiêu lưu 2D nơi người chơi vào vai Ezio Auditore trong cuộc chiến chống lại Templar tại Rome. Game tái hiện tinh thần của series nổi tiếng trên nền tảng di động.",
+    "gameplay": "Gameplay là hành động phiêu lưu side-scrolling. Người chơi điều khiển Ezio di chuyển qua các màn chơi tuyến tính, leo tường, ẩn nấp, ám sát lính canh và tránh bẫy. Game có hệ thống nhiệm vụ, chiến đấu cận chiến và lén lút, mang lại trải nghiệm Assassin’s Creed chân thực trên thiết bị di động cổ điển.",
+    "genre": ["action", "adventure", "platformer"],
+    "tags": ["Hành động", "Phiêu lưu", "Platform"],
+    "year": 2010,
+    "rating": 4.6
   }
 ]
