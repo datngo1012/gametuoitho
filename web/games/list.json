@@ -187,21 +187,39 @@
     "rating": 4.5
   },
   {
-  "id": "TribalPrehistoric",
-  "filename": "Bolacthoitiensu.jar",
-  "name": "Bộ Lạc Thời Tiền Sử",
-  "jadFile": null,
-  "settings": {
-    "phone": "Nokia",
-    "width": "240",
-    "height": "320"
+    "id": "TribalPrehistoric",
+    "filename": "Bolacthoitiensu.jar",
+    "name": "Bộ Lạc Thời Tiền Sử",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Bộ Lạc Thời Tiền Sử là game phiêu lưu – hành động 2D, đưa người chơi trở về thời đại đồ đá nơi con người phải chiến đấu để sinh tồn. Bạn vào vai một thợ săn của bộ lạc, phiêu lưu qua nhiều vùng đất hoang sơ, đối đầu với thú dữ, quái vật và bảo vệ ngôi làng khỏi kẻ thù.",
+    "gameplay": "Gameplay đi cảnh cổ điển với cơ chế chiến đấu cận chiến và ném vũ khí. Người chơi có thể thu thập tài nguyên, săn bắn và nâng cấp kỹ năng cho nhân vật. Mỗi màn chơi mang đến thử thách riêng như băng qua rừng rậm, hang động hay sa mạc đầy nguy hiểm. Đồ họa pixel đặc trưng của thời Java cùng âm thanh vui nhộn tạo nên trải nghiệm tuổi thơ khó quên.",
+    "genre": ["action", "adventure", "platformer"],
+    "tags": ["Hành động", "Phiêu lưu", "Cổ đại", "Sinh tồn"],
+    "year": 2009,
+    "rating": 4.5
   },
-  "description": "Bộ Lạc Thời Tiền Sử là game phiêu lưu – hành động 2D, đưa người chơi trở về thời đại đồ đá nơi con người phải chiến đấu để sinh tồn. Bạn vào vai một thợ săn của bộ lạc, phiêu lưu qua nhiều vùng đất hoang sơ, đối đầu với thú dữ, quái vật và bảo vệ ngôi làng khỏi kẻ thù.",
-  "gameplay": "Gameplay đi cảnh cổ điển với cơ chế chiến đấu cận chiến và ném vũ khí. Người chơi có thể thu thập tài nguyên, săn bắn và nâng cấp kỹ năng cho nhân vật. Mỗi màn chơi mang đến thử thách riêng như băng qua rừng rậm, hang động hay sa mạc đầy nguy hiểm. Đồ họa pixel đặc trưng của thời Java cùng âm thanh vui nhộn tạo nên trải nghiệm tuổi thơ khó quên.",
-  "genre": ["action", "adventure", "platformer"],
-  "tags": ["Hành động", "Phiêu lưu", "Cổ đại", "Sinh tồn"],
-  "year": 2009,
-  "rating": 4.5
-}
+  {
+    "id": "HugoFoodFight",
+    "filename": "hugo_foodfight_240x320-236829.jar",
+    "name": "Hugo: Food Fight",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Hugo: Food Fight là game hành động – vui nhộn trong series Hugo nổi tiếng. Người chơi vào vai chú yêu tinh Hugo tinh nghịch, tham gia những màn 'đấu đồ ăn' cực kỳ hài hước chống lại phù thủy Scylla và tay sai của bà ta. Mục tiêu là ném chính xác thức ăn vào đối thủ trước khi bị hạ gục.",
+    "gameplay": "Gameplay đơn giản nhưng gây nghiện: người chơi điều khiển Hugo ném thức ăn qua lại trong các màn đấu tay đôi. Phải canh thời gian, hướng gió và khoảng cách để bắn trúng mục tiêu. Mỗi vòng có độ khó tăng dần với địa hình và chướng ngại vật khác nhau. Đồ họa tươi sáng, âm thanh vui tai và phong cách hài hước đặc trưng khiến game trở thành ký ức khó quên với thế hệ điện thoại Java.",
+    "genre": ["action", "arcade", "casual"],
+    "tags": ["Hành động", "Vui nhộn", "Đấu đồ ăn", "Hugo"],
+    "year": 2008,
+    "rating": 4.4
+  }
+
 
 ]
