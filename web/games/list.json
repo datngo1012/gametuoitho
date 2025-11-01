@@ -189,7 +189,7 @@
   {
     "id": "TribalPrehistoric",
     "filename": "Bolacthoitiensu.jar",
-    "name": "Bộ Lạc Thời Tiền Sử",
+    "name": "Bo Lac Thoi Tien Su",
     "jadFile": null,
     "settings": {
       "phone": "Nokia",
@@ -219,7 +219,23 @@
     "tags": ["Hành động", "Vui nhộn", "Đấu đồ ăn", "Hugo"],
     "year": 2008,
     "rating": 4.4
+  },
+  {
+    "id": "BobbyCarrot",
+    "filename": "bobbycarro_w1b7vqyh.jar",
+    "name": "Bobby Carrot",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "176",
+      "height": "208"
+    },
+    "description": "Bobby Carrot là game giải đố kinh điển nơi bạn điều khiển chú thỏ Bobby trên hành trình thu thập cà rốt trong mê cung đầy cạm bẫy. Trò chơi đòi hỏi người chơi phải tính toán kỹ lưỡng từng bước đi để hoàn thành màn mà không mắc kẹt.",
+    "gameplay": "Gameplay dạng puzzle đi ô vuông. Mỗi màn là một mê cung nhỏ, người chơi phải thu thập hết cà rốt và tìm đường ra, tránh các chướng ngại như gai, nước, bẫy và công tắc. Càng về sau độ khó tăng dần với những cơ chế thông minh như đẩy khối, mở cửa ẩn và lối đi đặc biệt. Đồ họa sáng màu, nhạc nền vui nhộn tạo cảm giác thư giãn nhưng đầy thử thách – đặc trưng của dòng game Bobby Carrot trên Java.",
+    "genre": ["puzzle", "strategy", "casual"],
+    "tags": ["Giải đố", "Trí tuệ", "Cà rốt", "Tuổi thơ"],
+    "year": 2004,
+    "rating": 4.8
   }
-
 
 ]
