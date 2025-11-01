@@ -410,7 +410,7 @@ class CommentComponent {
   }
 
   getAvatarEmoji(username) {
-    const emojis = ['👤', '👨', '👩', '🧑', '👨‍💼', '👩‍💼', '🧑‍💻', '👨‍🎓', '👩‍🎓'];
+    const emojis = ['👤', '👨', '🧑', '👨‍💼', '🧑‍💻', '👨‍🎓', '👩‍🎓'];
     const index = username.charCodeAt(0) % emojis.length;
     return emojis[index];
   }
