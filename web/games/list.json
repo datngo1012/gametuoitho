@@ -151,5 +151,40 @@
     "tags": ["Phiêu lưu", "Sinh tồn", "Khám phá"],
     "year": 2009,
     "rating": 4.5
+  },
+  {
+    "id": "Stranded2MysteriesOfTime",
+    "filename": "stranded2_xe2uzts5.jar",
+    "name": "Stranded 2: Mysteries Of Time",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Stranded 2: Mysteries Of Time là phần tiếp theo của series sinh tồn nổi tiếng trên mobile. Sau khi thoát khỏi hòn đảo hoang, nhân vật chính bị cuốn vào cơn bão thời gian và lạc đến những vùng đất bí ẩn trong quá khứ. Người chơi phải tiếp tục sinh tồn, chế tạo, săn bắt và khám phá những nền văn minh cổ xưa.",
+    "gameplay": "Gameplay vẫn giữ phong cách sinh tồn – phiêu lưu đặc trưng. Người chơi thu thập tài nguyên, chế tạo công cụ, săn thú, và xây dựng nơi trú ẩn. Điểm mới là khả năng du hành qua các thời kỳ khác nhau, mở khóa công nghệ, và khám phá bí mật thời gian. Môi trường game đa dạng hơn, với rừng, sa mạc, và tàn tích cổ xưa.",
+    "genre": ["adventure", "survival", "simulation"],
+    "tags": ["Sinh tồn", "Phiêu lưu", "Khám phá", "Cổ đại"],
+    "year": 2010,
+    "rating": 4.6
+  },
+  {
+    "id": "HarvestMoonMeBoy",
+    "filename": "harvest_moon_gb_141004.jar",
+    "name": "Harvest Moon (MeBoy)",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Harvest Moon (MeBoy) là phiên bản Java giả lập từ bản Game Boy cổ điển, nơi người chơi vào vai một nông dân trẻ kế thừa trang trại của gia đình. Nhiệm vụ của bạn là trồng trọt, chăn nuôi, câu cá và kết bạn với dân làng để xây dựng cuộc sống bình yên nơi nông thôn.",
+    "gameplay": "Gameplay tập trung vào mô phỏng nông trại và quản lý thời gian. Người chơi trồng cây, chăm sóc vật nuôi, thu hoạch và bán nông sản để kiếm tiền. Ngoài ra, bạn có thể tham gia lễ hội, tặng quà cho dân làng và thậm chí kết hôn. Phiên bản MeBoy chạy trên nền Java mô phỏng lại đầy đủ cảm giác chơi Harvest Moon cổ điển trên điện thoại Nokia ngày xưa.",
+    "genre": ["simulation", "role-playing", "casual"],
+    "tags": ["Nông trại", "Giả lập", "Nhẹ nhàng", "Kinh điển"],
+    "year": 2008,
+    "rating": 4.7
   }
+
 ]
