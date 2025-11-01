@@ -170,21 +170,20 @@
     "rating": 4.6
   },
   {
-    "id": "HarvestMoonMeBoy",
-    "filename": "harvest_moon_gb_141004.jar",
-    "name": "Harvest Moon (MeBoy)",
+    "id": "KungFuPanda",
+    "filename": "kungfupand_hwenyazm.jar",
+    "name": "Kung Fu Panda",
     "jadFile": null,
     "settings": {
       "phone": "Nokia",
       "width": "240",
       "height": "320"
     },
-    "description": "Harvest Moon (MeBoy) là phiên bản Java giả lập từ bản Game Boy cổ điển, nơi người chơi vào vai một nông dân trẻ kế thừa trang trại của gia đình. Nhiệm vụ của bạn là trồng trọt, chăn nuôi, câu cá và kết bạn với dân làng để xây dựng cuộc sống bình yên nơi nông thôn.",
-    "gameplay": "Gameplay tập trung vào mô phỏng nông trại và quản lý thời gian. Người chơi trồng cây, chăm sóc vật nuôi, thu hoạch và bán nông sản để kiếm tiền. Ngoài ra, bạn có thể tham gia lễ hội, tặng quà cho dân làng và thậm chí kết hôn. Phiên bản MeBoy chạy trên nền Java mô phỏng lại đầy đủ cảm giác chơi Harvest Moon cổ điển trên điện thoại Nokia ngày xưa.",
-    "genre": ["simulation", "role-playing", "casual"],
-    "tags": ["Nông trại", "Giả lập", "Nhẹ nhàng", "Kinh điển"],
+    "description": "Kung Fu Panda là game hành động dựa trên bộ phim hoạt hình nổi tiếng cùng tên của DreamWorks. Người chơi vào vai Po – chú gấu trúc hậu đậu nhưng có ước mơ trở thành chiến binh kung fu huyền thoại. Cùng Po vượt qua nhiều màn đấu võ và chướng ngại để chứng minh bản thân xứng đáng với danh hiệu Chiến binh Rồng.",
+    "gameplay": "Gameplay dạng hành động đi cảnh side-scrolling. Người chơi điều khiển Po thực hiện các đòn đánh, nhảy, né và tung chiêu đặc biệt để hạ gục kẻ thù. Mỗi màn chơi có bối cảnh khác nhau, từ làng quê, võ đường đến cung điện. Game có đồ họa hoạt hình vui nhộn, lối chơi đơn giản nhưng hấp dẫn – đặc trưng của game Java thời bấy giờ.",
+    "genre": ["action", "platformer", "adventure"],
+    "tags": ["Hành động", "Đi cảnh", "Kung Fu", "Phim chuyển thể"],
     "year": 2008,
-    "rating": 4.7
+    "rating": 4.5
   }
-
 ]
