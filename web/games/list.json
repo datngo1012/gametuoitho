@@ -134,5 +134,22 @@
     "tags": ["Hành động", "Phiêu lưu", "Platform"],
     "year": 2010,
     "rating": 4.6
+  },
+  {
+    "id": "RobinsonCrusoeShipwrecked",
+    "filename": "robinson_crusoe_shipwrecked_240x320.jar",
+    "name": "Robinson Crusoe: Shipwrecked",
+    "jadFile": null,
+    "settings": {
+    "phone": "Nokia",
+    "width": "240",
+    "height": "320"
+    },
+    "description": "Robinson Crusoe: Shipwrecked là game phiêu lưu sinh tồn 2D dựa trên tiểu thuyết kinh điển của Daniel Defoe. Người chơi vào vai Robinson, bị đắm tàu và mắc kẹt trên một hòn đảo hoang, phải tìm cách sinh tồn, xây dựng nơi trú ẩn và khám phá bí ẩn của hòn đảo.",
+    "gameplay": "Gameplay kết hợp giữa phiêu lưu, giải đố và quản lý tài nguyên. Người chơi sẽ thu thập gỗ, đá, thức ăn để chế tạo công cụ và sinh tồn qua ngày. Ngoài ra, bạn còn phải chiến đấu với động vật hoang dã, xây dựng nơi ở và giải mã những bí ẩn kỳ lạ trên đảo. Các màn chơi được thiết kế tuyến tính với yếu tố khám phá và sinh tồn hấp dẫn.",
+    "genre": ["adventure", "survival", "simulation"],
+    "tags": ["Phiêu lưu", "Sinh tồn", "Khám phá"],
+    "year": 2009,
+    "rating": 4.5
   }
 ]
