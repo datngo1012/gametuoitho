@@ -185,5 +185,23 @@
     "tags": ["Hành động", "Đi cảnh", "Kung Fu", "Phim chuyển thể"],
     "year": 2008,
     "rating": 4.5
-  }
+  },
+  {
+  "id": "TribalPrehistoric",
+  "filename": "Bolacthoitiensu.jar",
+  "name": "Bộ Lạc Thời Tiền Sử",
+  "jadFile": null,
+  "settings": {
+    "phone": "Nokia",
+    "width": "240",
+    "height": "320"
+  },
+  "description": "Bộ Lạc Thời Tiền Sử là game phiêu lưu – hành động 2D, đưa người chơi trở về thời đại đồ đá nơi con người phải chiến đấu để sinh tồn. Bạn vào vai một thợ săn của bộ lạc, phiêu lưu qua nhiều vùng đất hoang sơ, đối đầu với thú dữ, quái vật và bảo vệ ngôi làng khỏi kẻ thù.",
+  "gameplay": "Gameplay đi cảnh cổ điển với cơ chế chiến đấu cận chiến và ném vũ khí. Người chơi có thể thu thập tài nguyên, săn bắn và nâng cấp kỹ năng cho nhân vật. Mỗi màn chơi mang đến thử thách riêng như băng qua rừng rậm, hang động hay sa mạc đầy nguy hiểm. Đồ họa pixel đặc trưng của thời Java cùng âm thanh vui nhộn tạo nên trải nghiệm tuổi thơ khó quên.",
+  "genre": ["action", "adventure", "platformer"],
+  "tags": ["Hành động", "Phiêu lưu", "Cổ đại", "Sinh tồn"],
+  "year": 2009,
+  "rating": 4.5
+}
+
 ]
