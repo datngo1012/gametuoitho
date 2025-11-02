@@ -270,6 +270,23 @@
     "tags": ["Phiêu lưu", "Doraemon", "Đi cảnh", "Tuổi thơ"],
     "year": 2010,
     "rating": 4.4
+  },
+  {
+    "id": "ConLonThienTinhSu",
+    "filename": "con-lon-thien-tinh-su.jar",
+    "name": "Con Lon Thien Tinh Su",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Côn Lôn Thiên Tình Sử là game hành động nhập vai (ARPG) lấy bối cảnh tiên hiệp huyền ảo. Người chơi vào vai một đệ tử tu tiên, bước vào hành trình trừ yêu diệt ma, khám phá bí ẩn Côn Lôn và viết nên mối tình dang dở giữa người – tiên.",
+    "gameplay": "Gameplay dạng hành động nhập vai đi cảnh 2D. Người chơi có thể di chuyển, tung chiêu, né tránh và sử dụng các kỹ năng pháp thuật đặc biệt. Game có hệ thống nâng cấp nhân vật, trang bị và kỹ năng. Các màn chơi được thiết kế theo cốt truyện với boss lớn, thử thách khó dần và những đoạn hội thoại cảm động. Đồ họa đẹp mắt, màu sắc đậm chất kiếm hiệp – tiên hiệp, cùng nhạc nền du dương khiến game trở thành một trong những tuyệt phẩm Java của thời đó.",
+    "genre": ["action", "role-playing", "fantasy"],
+    "tags": ["ARPG", "Tiên hiệp", "Kiếm hiệp", "Tình cảm"],
+    "year": 2011,
+    "rating": 4.7
   }
 
 ]
