@@ -6,9 +6,11 @@ const emptyIcon = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
 let lib = null, launcherUtil = null;
 let state = {
     games: [],
+    uploadedGames: [],
     currentGame: null,
     editedGameId: null,
     uploadedJars: 0,
+    lastLoader: null,
 };
 let defaultSettings = {};
 
@@ -65,6 +67,23 @@ async function main() {
 
     document.getElementById("import-data-file").onchange = doImportData;
     document.getElementById("export-data-btn").onclick = doExportData;
+    
+    // Setup file input for adding games
+    document.getElementById("game-file-input").onchange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            document.getElementById("game-file-input").disabled = true;
+            document.getElementById("file-input-step").style.display = "none";
+            document.getElementById("file-input-loading").style.display = "";
+
+            const reader = new FileReader();
+            reader.onload = async () => {
+                const arrayBuffer = reader.result;
+                await processGameFile(arrayBuffer, file.name);
+            };
+            reader.readAsArrayBuffer(file);
+        }
+    };
 }
 
 async function maybeReadCheerpJFileText(path) {
@@ -445,26 +464,46 @@ async function loadGames() {
     return apps;
 }
 
-function fillGamesList(games) {
+function fillGamesList(games, uploadedGames = []) {
     const container = document.getElementById("game-list");
     container.innerHTML = "";
+    
+    const uploadedContainer = document.getElementById("uploaded-game-list");
+    uploadedContainer.innerHTML = "";
+    
+    const uploadedSection = document.getElementById("uploaded-games-section");
 
-    if (games.length === 0) {
+    // Show or hide uploaded games section
+    if (uploadedGames.length > 0) {
+        uploadedSection.style.display = "";
+        renderGames(uploadedGames, uploadedContainer, true);
+    } else {
+        uploadedSection.style.display = "none";
+    }
+
+    if (games.length === 0 && uploadedGames.length === 0) {
         // Show empty state
         const emptyState = document.createElement("div");
         emptyState.className = "empty-state";
         emptyState.innerHTML = `
             <div class="empty-state-icon">🎮</div>
             <div class="empty-state-text">Chưa có game nào</div>
-            <div class="empty-state-subtext">Vui lòng kiểm tra file games/list.json</div>
+            <div class="empty-state-subtext">Vui lòng kiểm tra file games/list.json hoặc tải game lên</div>
         `;
         container.appendChild(emptyState);
         return;
     }
 
     // Setup search functionality
-    setupGameSearch(games);
+    setupGameSearch(games.concat(uploadedGames));
+    
+    // Render pre-installed games
+    if (games.length > 0) {
+        renderGames(games, container, false);
+    }
+}
 
+function renderGames(games, container, isUploaded) {
     for (const game of games) {
         const item = document.createElement("div");
         item.className = "game-item";
@@ -548,6 +587,18 @@ function fillGamesList(games) {
             item.appendChild(gameInfoSection);
         }
 
+        // Add manage button for uploaded games
+        if (isUploaded) {
+            const manageBtn = document.createElement("button");
+            manageBtn.className = "manage-button";
+            manageBtn.textContent = "⚙️ Quản lý";
+            manageBtn.onclick = (e) => {
+                e.preventDefault();
+                openEditGame(game);
+            };
+            item.appendChild(manageBtn);
+        }
+
         container.appendChild(item);
     }
 }
@@ -563,32 +614,15 @@ function setupAddMode() {
         systemProperties: {},
     };
 
-    // document.getElementById("add-edit-text").textContent = "Add new game";
+    document.getElementById("add-edit-text").textContent = "➕ Thêm game mới";
 
-    // document.getElementById("file-input-step").style.display = "";
-    // document.getElementById("file-input-loading").style.display = "none";
-    // document.getElementById("file-input-jad-step").style.display = "none";
-    // document.getElementById("add-manage-step").style.display = "none";
+    document.getElementById("file-input-step").style.display = "";
+    document.getElementById("file-input-loading").style.display = "none";
+    document.getElementById("file-input-jad-step").style.display = "none";
+    document.getElementById("add-manage-step").style.display = "none";
 
-    // document.getElementById("game-file-input").disabled = false;
-    // document.getElementById("game-file-input").value = null;
-
-    // document.getElementById("game-file-input").onchange = (e) => {
-    //     // read file to arraybuffer
-    //     const file = e.target.files[0];
-    //     if (file) {
-    //         document.getElementById("game-file-input").disabled = true;
-    //         document.getElementById("file-input-step").style.display = "none";
-    //         document.getElementById("file-input-loading").style.display = "";
-
-    //         const reader = new FileReader();
-    //         reader.onload = async () => {
-    //             const arrayBuffer = reader.result;
-    //             await processGameFile(arrayBuffer, file.name);
-    //         };
-    //         reader.readAsArrayBuffer(file);
-    //     }
-    // };
+    document.getElementById("game-file-input").disabled = false;
+    document.getElementById("game-file-input").value = null;
 }
 
 async function processGameFile(fileBuffer, fileName) {
@@ -861,9 +895,12 @@ function openEditGame(gameObj) {
         return;
     }
     state.currentGame = gameObj;
-    document.getElementById("add-edit-text").textContent = "Edit game";
+    document.getElementById("add-edit-text").textContent = "✏️ Chỉnh sửa game";
 
     setupAddManageGame(gameObj, false);
+    
+    // Scroll to the add-game section
+    document.querySelector('.add-game-section').scrollIntoView({ behavior: 'smooth' });
 }
 
 function confirmDiscard() {
@@ -879,8 +916,28 @@ function confirmDiscard() {
 async function reloadUI() {
     state.currentGame = null;
 
-    state.games = await loadGames();
-    fillGamesList(state.games);
+    const allGames = await loadGames();
+    
+    // Separate uploaded games from pre-installed games
+    const preInstalledGameIds = (await loadGamesFromJson()).map(g => g.name.toLowerCase());
+    
+    state.games = [];
+    state.uploadedGames = [];
+    
+    for (const game of allGames) {
+        const gameNameLower = game.name.toLowerCase();
+        const isPreInstalled = preInstalledGameIds.some(pid => 
+            gameNameLower.includes(pid) || pid.includes(gameNameLower)
+        );
+        
+        if (isPreInstalled) {
+            state.games.push(game);
+        } else {
+            state.uploadedGames.push(game);
+        }
+    }
+    
+    fillGamesList(state.games, state.uploadedGames);
     setupAddMode();
 }
 

@@ -701,7 +701,7 @@
       .game-item {
         background: var(--bg-surface);
         border-radius: var(--border-radius-md);
-        overflow: hidden;
+        overflow: visible;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column;
@@ -758,6 +758,7 @@
         flex-grow: 1;
         padding: var(--spacing-lg);
         text-align: center;
+        border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
       }
 
       .game-item .icon,
@@ -1469,6 +1470,525 @@
           font-size: 1.125rem;
         }
       }
+      
+      /* Add New Game Section Styles */
+      .add-game-section {
+        background: var(--bg-surface);
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-xl);
+        margin: var(--spacing-2xl) 0;
+        box-shadow: 
+          10px 10px 20px var(--neu-shadow-dark),
+          -10px -10px 20px var(--neu-shadow-light),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      
+      body.dark-theme .add-game-section {
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 
+          10px 10px 20px var(--neu-shadow-dark),
+          -10px -10px 20px var(--neu-shadow-light),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      }
+      
+      .add-edit-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing-xl);
+        padding-bottom: var(--spacing-md);
+        border-bottom: 2px solid var(--accent-primary);
+      }
+      
+      .add-edit-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: var(--text-primary);
+      }
+      
+      .btn {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        border: none;
+        border-radius: var(--border-radius-md);
+        cursor: pointer;
+        font-weight: 500;
+        font-family: inherit;
+        font-size: 0.875rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 
+          4px 4px 8px var(--neu-shadow-dark),
+          -4px -4px 8px var(--neu-shadow-light);
+      }
+      
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 
+          6px 6px 12px var(--neu-shadow-dark),
+          -6px -6px 12px var(--neu-shadow-light);
+      }
+      
+      .btn:active {
+        transform: translateY(0);
+        box-shadow: 
+          inset 2px 2px 4px var(--neu-shadow-dark),
+          inset -2px -2px 4px var(--neu-shadow-light);
+      }
+      
+      .btn-outline {
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        border: 1px solid var(--text-tertiary);
+      }
+      
+      .btn-primary {
+        background: var(--accent-primary);
+        color: white;
+      }
+      
+      .btn-full {
+        width: 100%;
+      }
+      
+      .file-hint {
+        margin-top: var(--spacing-xs);
+        font-size: 0.8125rem;
+        color: var(--text-tertiary);
+        font-style: italic;
+      }
+      
+      .warning-message {
+        background: rgba(245, 158, 11, 0.1);
+        border: 2px solid var(--warning);
+        border-radius: var(--border-radius-md);
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        color: var(--text-primary);
+      }
+      
+      .warning-message span:first-child {
+        font-size: 1.5rem;
+      }
+      
+      .loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md);
+        padding: var(--spacing-2xl);
+      }
+      
+      .spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-top-color: var(--accent-primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      body.dark-theme .spinner {
+        border-color: rgba(255, 255, 255, 0.1);
+        border-top-color: var(--accent-primary);
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      .preview-container {
+        background: var(--bg-secondary);
+        border-radius: var(--border-radius-md);
+        padding: var(--spacing-xl);
+        margin-bottom: var(--spacing-xl);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md);
+        box-shadow: 
+          inset 4px 4px 8px var(--neu-shadow-dark),
+          inset -4px -4px 8px var(--neu-shadow-light);
+      }
+      
+      .preview-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: var(--border-radius-sm);
+        box-shadow: 
+          4px 4px 8px var(--neu-shadow-dark),
+          -4px -4px 8px var(--neu-shadow-light);
+      }
+      
+      .preview-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-align: center;
+      }
+      
+      .manage-controls {
+        display: flex;
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-md);
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .control-button {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        border: none;
+        border-radius: var(--border-radius-md);
+        cursor: pointer;
+        font-weight: 500;
+        font-family: inherit;
+        font-size: 0.875rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 
+          4px 4px 8px var(--neu-shadow-dark),
+          -4px -4px 8px var(--neu-shadow-light);
+      }
+      
+      .control-button:hover {
+        transform: translateY(-2px);
+      }
+      
+      .control-button:active {
+        transform: translateY(0);
+        box-shadow: 
+          inset 2px 2px 4px var(--neu-shadow-dark),
+          inset -2px -2px 4px var(--neu-shadow-light);
+      }
+      
+      .warning-button {
+        background: var(--warning);
+        color: white;
+      }
+      
+      .danger-button {
+        background: var(--error);
+        color: white;
+      }
+      
+      .settings-container {
+        background: var(--bg-secondary);
+        border-radius: var(--border-radius-md);
+        padding: var(--spacing-xl);
+        margin-bottom: var(--spacing-lg);
+      }
+      
+      .aux-file-upload {
+        margin-bottom: var(--spacing-xl);
+      }
+      
+      .aux-file-upload-btn {
+        display: inline-block;
+        padding: var(--spacing-md) var(--spacing-xl);
+        background: var(--bg-surface);
+        border: 2px dashed var(--accent-primary);
+        border-radius: var(--border-radius-md);
+        cursor: pointer;
+        color: var(--accent-primary);
+        font-weight: 500;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-align: center;
+      }
+      
+      .aux-file-upload-btn:hover {
+        background: var(--accent-light);
+        transform: translateY(-2px);
+      }
+      
+      .settings-grid {
+        display: grid;
+        gap: var(--spacing-lg);
+      }
+      
+      .custom-size-inputs {
+        display: flex;
+        gap: var(--spacing-sm);
+        margin-top: var(--spacing-sm);
+      }
+      
+      .custom-size-inputs input {
+        flex: 1;
+      }
+      
+      .checkbox {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        cursor: pointer;
+        color: var(--text-primary);
+        padding: var(--spacing-sm);
+        border-radius: var(--border-radius-sm);
+        transition: background 0.2s;
+      }
+      
+      .checkbox:hover {
+        background: var(--bg-surface);
+      }
+      
+      .checkbox input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+      
+      .advanced-settings {
+        margin-top: var(--spacing-xl);
+        border: 1px solid var(--text-tertiary);
+        border-radius: var(--border-radius-md);
+        padding: var(--spacing-md);
+      }
+      
+      .advanced-settings summary {
+        cursor: pointer;
+        user-select: none;
+        font-weight: 600;
+        color: var(--text-primary);
+        padding: var(--spacing-sm);
+      }
+      
+      .advanced-settings summary:hover {
+        color: var(--accent-primary);
+      }
+      
+      .advanced-settings summary h3 {
+        display: inline;
+        margin: 0;
+        font-size: 1rem;
+      }
+      
+      .advanced-settings[open] summary {
+        margin-bottom: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+        border-bottom: 1px solid var(--text-tertiary);
+      }
+      
+      .advanced-settings textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+      
+      .save-button {
+        width: 100%;
+        padding: var(--spacing-lg);
+        background: var(--accent-primary);
+        color: white;
+        border: none;
+        border-radius: var(--border-radius-md);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 
+          6px 6px 12px var(--neu-shadow-dark),
+          -6px -6px 12px var(--neu-shadow-light);
+      }
+      
+      .save-button:hover {
+        background: var(--accent-secondary);
+        transform: translateY(-2px);
+        box-shadow: 
+          8px 8px 16px var(--neu-shadow-dark),
+          -8px -8px 16px var(--neu-shadow-light);
+      }
+      
+      .save-button:active {
+        transform: translateY(0);
+        box-shadow: 
+          inset 4px 4px 8px var(--neu-shadow-dark),
+          inset -4px -4px 8px var(--neu-shadow-light);
+      }
+      
+      .save-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none !important;
+      }
+      
+      /* Uploaded Games Section */
+      .uploaded-games {
+        border: 2px solid var(--accent-secondary);
+      }
+      
+      #uploaded-games-section h2 {
+        color: var(--accent-secondary);
+      }
+      
+      .manage-button {
+        padding: var(--spacing-md);
+        background: var(--accent-primary);
+        color: white;
+        border: none;
+        border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.875rem;
+        font-family: inherit;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: none;
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .manage-button:hover {
+        background: var(--accent-secondary);
+        box-shadow: 
+          inset 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+      
+      .manage-button:active {
+        background: var(--accent-primary);
+        box-shadow: 
+          inset 0 2px 12px rgba(0, 0, 0, 0.3);
+      }
+      
+      /* Data Management Section */
+      .data-management-section {
+        background: var(--bg-surface);
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-xl);
+        margin: var(--spacing-2xl) 0;
+        box-shadow: 
+          10px 10px 20px var(--neu-shadow-dark),
+          -10px -10px 20px var(--neu-shadow-light),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      
+      body.dark-theme .data-management-section {
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 
+          10px 10px 20px var(--neu-shadow-dark),
+          -10px -10px 20px var(--neu-shadow-light),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      }
+      
+      .data-controls {
+        display: flex;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+        flex-wrap: wrap;
+      }
+      
+      .data-controls .btn {
+        flex: 1;
+        min-width: 150px;
+      }
+      
+      .data-hint {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        font-style: italic;
+      }
+      
+      /* Keyboard Controls Section */
+      .keyboard-controls-section {
+        background: var(--bg-surface);
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-xl);
+        margin: var(--spacing-2xl) 0;
+        box-shadow: 
+          10px 10px 20px var(--neu-shadow-dark),
+          -10px -10px 20px var(--neu-shadow-light),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      
+      body.dark-theme .keyboard-controls-section {
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 
+          10px 10px 20px var(--neu-shadow-dark),
+          -10px -10px 20px var(--neu-shadow-light),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      }
+      
+      .keyboard-controls {
+        background: var(--bg-secondary);
+        border-radius: var(--border-radius-md);
+        padding: var(--spacing-lg);
+        box-shadow: 
+          inset 4px 4px 8px var(--neu-shadow-dark),
+          inset -4px -4px 8px var(--neu-shadow-light);
+      }
+      
+      .keyboard-controls table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      .keyboard-controls table tr {
+        border-bottom: 1px solid var(--text-tertiary);
+      }
+      
+      .keyboard-controls table tr:last-child {
+        border-bottom: none;
+      }
+      
+      .keyboard-controls table td {
+        padding: var(--spacing-md);
+        color: var(--text-primary);
+      }
+      
+      .keyboard-controls table td:first-child {
+        font-weight: 600;
+        text-align: left;
+        width: 40%;
+      }
+      
+      .keyboard-controls table td:last-child {
+        text-align: left;
+      }
+      
+      .keyboard-controls .key {
+        background: var(--bg-surface);
+        border: 2px solid var(--text-tertiary);
+        border-radius: var(--border-radius-sm);
+        padding: 4px 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        font-weight: 600;
+        display: inline-block;
+        margin: 0 2px;
+        box-shadow: 
+          2px 2px 4px var(--neu-shadow-dark),
+          -1px -1px 2px var(--neu-shadow-light);
+        color: var(--text-primary);
+      }
+      
+      @media (max-width: 768px) {
+        .add-game-section,
+        .data-management-section {
+          padding: var(--spacing-lg);
+        }
+        
+        .settings-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .data-controls {
+          flex-direction: column;
+        }
+        
+        .data-controls .btn {
+          width: 100%;
+        }
+        
+        .manage-controls {
+          flex-direction: column;
+          width: 100%;
+        }
+        
+        .control-button {
+          width: 100%;
+        }
+      }
     </style>
     <div id="loading">
       <div class="loading-container">
@@ -1543,6 +2063,242 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
       <div id="game-list" class="game-list">
         <!-- Games will be loaded here -->
       </div>
+      
+      <!-- Uploaded Games Section -->
+      <div id="uploaded-games-section" style="display: none;">
+        <h2>📦 Game đã tải lên</h2>
+        <div id="uploaded-game-list" class="game-list uploaded-games">
+          <!-- Uploaded games will be loaded here -->
+        </div>
+      </div>
+      
+      <!-- Add New Game Section -->
+      <div class="add-game-section">
+        <div class="add-edit-header">
+          <h2 id="add-edit-text">➕ Thêm game mới</h2>
+          <button id="clear-current" class="btn btn-outline">Xóa</button>
+        </div>
+        
+        <div id="file-input-step">
+          <div class="form-group">
+            <label for="game-file-input">Chọn file JAR</label>
+            <input type="file" id="game-file-input" accept=".jar" />
+            <p class="file-hint">Chọn file game Java (.jar) từ máy tính của bạn</p>
+          </div>
+        </div>
+        
+        <div id="file-input-jad-step" style="display: none">
+          <div id="warning-message" class="warning-message">
+            <span>⚠️</span>
+            <span>Game này cần file JAD để hoạt động. Vui lòng tải lên file JAD.</span>
+          </div>
+          <div class="form-group">
+            <label for="upload-descriptor-file-input">Chọn file JAD</label>
+            <input type="file" id="upload-descriptor-file-input" accept=".jad" />
+          </div>
+          <div class="form-group">
+            <button id="continue-without-jad" class="btn btn-outline btn-full">
+              Tiếp tục mà không có file JAD (có thể không hoạt động)
+            </button>
+          </div>
+        </div>
+        
+        <div class="loading" id="file-input-loading" style="display: none">
+          <div class="spinner"></div>
+          <span>Đang phân tích file...</span>
+        </div>
+        
+        <div id="add-manage-step" style="display: none">
+          <div id="preview" class="preview-container">
+            <img class="preview-icon" alt="Game icon" />
+            <span class="preview-name">Tên game</span>
+            <div id="preview-controls" class="manage-controls">
+              <button id="wipe-data-btn" class="control-button warning-button" title="Xóa dữ liệu game">
+                🗑️ Xóa dữ liệu
+              </button>
+              <button id="uninstall-btn" class="control-button danger-button" title="Gỡ cài đặt game">
+                ❌ Gỡ cài đặt
+              </button>
+            </div>
+          </div>
+          
+          <div id="edit-settings-container" class="settings-container">
+            <div class="aux-file-upload">
+              <label for="aux-jad-file-input" class="aux-file-upload-btn">
+                📄 Tải lên file JAD (tùy chọn)
+              </label>
+              <input type="file" id="aux-jad-file-input" accept=".jad" style="display: none;" />
+            </div>
+            
+            <div class="settings-grid">
+              <div class="form-group">
+                <label for="phoneType">Loại điện thoại:</label>
+                <select id="phoneType">
+                  <option value="Standard">Standard</option>
+                  <option value="Nokia">Nokia</option>
+                  <option value="Motorola">Motorola</option>
+                  <option value="Siemens">Siemens</option>
+                  <option value="SonyEricsson">SonyEricsson</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="screenSize">Kích thước màn hình:</label>
+                <select id="screenSize">
+                  <option value="96x65">96x65</option>
+                  <option value="96x96">96x96</option>
+                  <option value="104x80">104x80</option>
+                  <option value="128x128">128x128</option>
+                  <option value="132x176">132x176</option>
+                  <option value="128x160">128x160</option>
+                  <option value="176x208">176x208</option>
+                  <option value="176x220">176x220</option>
+                  <option value="208x208">208x208</option>
+                  <option value="240x320">240x320</option>
+                  <option value="320x240">320x240</option>
+                  <option value="240x400">240x400</option>
+                  <option value="352x416">352x416</option>
+                  <option value="360x640">360x640</option>
+                  <option value="640x360">640x360</option>
+                  <option value="480x800">480x800</option>
+                  <option value="800x480">800x480</option>
+                  <option value="custom">Tùy chỉnh</option>
+                </select>
+                <div class="custom-size-inputs" id="edit-custom-size-inputs" style="display: none;">
+                  <input type="number" placeholder="Rộng" id="customWidth" min="1" />
+                  <input type="number" placeholder="Cao" id="customHeight" min="1" />
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="fontSize">Kích thước chữ:</label>
+                <select id="fontSize">
+                  <option value="0">Tự động</option>
+                  <option value="1">Nhỏ</option>
+                  <option value="2">Trung bình</option>
+                  <option value="3">Lớn</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="dgFormat">Định dạng DirectGraphics:</label>
+                <select id="dgFormat">
+                  <option value="444">444 RGB</option>
+                  <option value="4444">4444 ARGB</option>
+                  <option value="565">565 ARGB</option>
+                  <option value="888">888 ARGB</option>
+                  <option value="8888">8888 ARGB</option>
+                </select>
+              </div>
+              
+              <label class="checkbox">
+                <input type="checkbox" name="enableSound" /> Bật âm thanh
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" name="rotate" /> Xoay màn hình
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" name="forceFullscreen" /> Buộc toàn màn hình
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" name="textureDisableFilter" /> Tắt lọc texture
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" name="queuedPaint" /> Hàng đợi paint (hữu ích nếu game bị treo)
+              </label>
+            </div>
+            
+            <details class="advanced-settings">
+              <summary>
+                <h3>⚙️ Cài đặt nâng cao</h3>
+              </summary>
+              <div class="form-group">
+                <label for="editAppProps">Thuộc tính ứng dụng bổ sung:</label>
+                <textarea id="editAppProps" placeholder="Ví dụ: key: value, mỗi dòng một cặp"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="editSysProps">Thuộc tính hệ thống bổ sung:</label>
+                <textarea id="editSysProps" placeholder="Ví dụ: key: value, mỗi dòng một cặp"></textarea>
+              </div>
+            </details>
+          </div>
+          
+          <button class="save-button" id="add-save-button">Thêm game</button>
+        </div>
+      </div>
+      
+      <!-- Data Management Section -->
+      <!-- <div class="data-management-section">
+        <h2>💾 Quản lý dữ liệu</h2>
+        <div class="data-controls">
+          <button id="import-data-btn" class="btn btn-primary">
+            📥 Nhập dữ liệu
+          </button>
+          <button id="export-data-btn" class="btn btn-primary">
+            📤 Xuất dữ liệu
+          </button>
+          <input type="file" id="import-data-file" accept=".zip" style="display: none;" />
+          <a id="export-data-link" download="freej2me-data.zip" style="display: none;"></a>
+        </div>
+        <p class="data-hint">Sao lưu và khôi phục toàn bộ game và dữ liệu của bạn</p>
+      </div> -->
+      
+      <!-- Keyboard Controls Section -->
+      <!-- <div class="keyboard-controls-section">
+        <h2>⌨️ Phím điều khiển</h2>
+        <div class="keyboard-controls">
+          <table>
+            <tr>
+              <td><span class="key">Esc</span></td>
+              <td>Vào/thoát tùy chọn freej2me</td>
+            </tr>
+            <tr>
+              <td><span class="key">F1</span> hoặc <span class="key">Q</span></td>
+              <td>Phím mềm trái</td>
+            </tr>
+            <tr>
+              <td><span class="key">F2</span> hoặc <span class="key">W</span></td>
+              <td>Phím mềm phải</td>
+            </tr>
+            <tr>
+              <td><span class="key">0</span> đến <span class="key">9</span></td>
+              <td>Phím số</td>
+            </tr>
+            <tr>
+              <td>Numpad</td>
+              <td>Số với phím 123 và 789 hoán đổi</td>
+            </tr>
+            <tr>
+              <td><span class="key">E</span></td>
+              <td>*</td>
+            </tr>
+            <tr>
+              <td><span class="key">R</span></td>
+              <td>#</td>
+            </tr>
+            <tr>
+              <td><span class="key">↑</span></td>
+              <td>Lên</td>
+            </tr>
+            <tr>
+              <td><span class="key">↓</span></td>
+              <td>Xuống</td>
+            </tr>
+            <tr>
+              <td><span class="key">←</span></td>
+              <td>Trái</td>
+            </tr>
+            <tr>
+              <td><span class="key">→</span></td>
+              <td>Phải</td>
+            </tr>
+            <tr>
+              <td><span class="key">⏎ Enter</span></td>
+              <td>Phím hành động (nút OK)</td>
+            </tr>
+          </table>
+        </div>
+      </div> -->
       
       <!-- Comment Section -->
       <div id="comment-container"></div>
