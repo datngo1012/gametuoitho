@@ -36,7 +36,10 @@
     <link rel="canonical" href="https://gametuoitho.cc/" />
     
     <!-- Comment System Styles -->
-    <link rel="stylesheet" href="src/commentStyles.css" />
+    <link rel="stylesheet" href="src/commentStyles.css" id="comment-styles" />
+    
+    <!-- Version for cache busting -->
+    <script src="version.js"></script>
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -1668,19 +1671,56 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
         }
       });
     </script>
-    <script src="loader.js"></script>
-    <script type="module">
-      // Initialize Comment System
-      import CommentComponent from './src/commentComponent.js';
+    <script>
+      // Cache busting function
+      function loadScriptWithVersion(src) {
+        const version = window.APP_VERSION || Date.now();
+        const script = document.createElement('script');
+        script.src = `${src}?v=${version}`;
+        if (src.includes('launcher.js') || src.includes('commentComponent.js')) {
+          script.type = 'module';
+        }
+        document.body.appendChild(script);
+        return script;
+      }
       
-      // Wait for DOM to be ready
+      // Load CSS with version
+      function loadCSSWithVersion(href, id) {
+        const version = window.APP_VERSION || Date.now();
+        const link = document.getElementById(id);
+        if (link) {
+          link.href = `${href}?v=${version}`;
+        }
+      }
+      
+      // Apply cache busting to CSS
       document.addEventListener('DOMContentLoaded', () => {
-        // Initialize comments after a short delay to let the page load
-        setTimeout(() => {
-          new CommentComponent('comment-container');
-        }, 500);
+        loadCSSWithVersion('src/commentStyles.css', 'comment-styles');
       });
     </script>
-    <script type="module" src="src/launcher.js"></script>
+    <script src="loader.js"></script>
+    <script type="module">
+      // Initialize Comment System with cache busting
+      (function() {
+        const version = window.APP_VERSION || Date.now();
+        import(`./src/commentComponent.js?v=${version}`).then(module => {
+          const CommentComponent = module.default;
+          
+          // Wait for DOM to be ready
+          document.addEventListener('DOMContentLoaded', () => {
+            // Initialize comments after a short delay to let the page load
+            setTimeout(() => {
+              new CommentComponent('comment-container');
+            }, 500);
+          });
+        });
+      })();
+    </script>
+    <script type="module">
+      (function() {
+        const version = window.APP_VERSION || Date.now();
+        import(`./src/launcher.js?v=${version}`);
+      })();
+    </script>
   </body>
 </html>
