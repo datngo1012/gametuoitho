@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="src/commentStyles.css" id="comment-styles" />
     
     <!-- Version for cache busting -->
-    <script src="version1.js"></script>
+    <script src="version2.js"></script>
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -593,6 +593,85 @@
         letter-spacing: -0.01em;
       }
 
+      /* Search Bar Styles */
+      .search-container {
+        margin-bottom: var(--spacing-xl);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 16px 24px;
+        font-size: 16px;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        border: 2px solid transparent;
+        border-radius: var(--border-radius-md);
+        background: var(--bg-surface);
+        color: var(--text-primary);
+        box-shadow: 
+          8px 8px 16px var(--neu-shadow-dark),
+          -8px -8px 16px var(--neu-shadow-light);
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .search-input:focus {
+        border-color: var(--accent-primary);
+        box-shadow: 
+          8px 8px 20px var(--neu-shadow-dark),
+          -8px -8px 20px var(--neu-shadow-light),
+          0 0 0 3px var(--accent-light);
+      }
+
+      .search-input::placeholder {
+        color: var(--text-tertiary);
+      }
+
+      body.dark-theme .search-input {
+        background: var(--bg-surface);
+        color: var(--text-primary);
+        box-shadow: 
+          8px 8px 16px rgba(0, 0, 0, 0.4),
+          -8px -8px 16px rgba(255, 255, 255, 0.05);
+      }
+
+      body.dark-theme .search-input:focus {
+        box-shadow: 
+          8px 8px 20px rgba(0, 0, 0, 0.5),
+          -8px -8px 20px rgba(255, 255, 255, 0.08),
+          0 0 0 3px var(--accent-light);
+      }
+
+      .search-result-count {
+        display: block;
+        text-align: center;
+        margin-top: var(--spacing-md);
+        color: var(--text-secondary);
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .game-item.hidden {
+        display: none;
+      }
+
+      .no-results-message {
+        text-align: center;
+        padding: var(--spacing-2xl);
+        color: var(--text-secondary);
+        font-size: 18px;
+        grid-column: 1 / -1;
+      }
+
+      .no-results-message .emoji {
+        font-size: 48px;
+        display: block;
+        margin-bottom: var(--spacing-md);
+      }
+
       .game-list {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -999,6 +1078,19 @@
       }
       
       @media (max-width: 768px) {
+        .search-container {
+          margin-bottom: var(--spacing-lg);
+        }
+        
+        .search-input {
+          padding: 14px 20px;
+          font-size: 15px;
+        }
+        
+        .search-result-count {
+          font-size: 13px;
+        }
+        
         .welcome-section {
           padding: var(--spacing-xl) var(--spacing-lg);
         }
@@ -1435,6 +1527,19 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
       </div>
 
       <h2>📱 Danh sách game</h2>
+      
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input 
+          type="text" 
+          id="game-search" 
+          class="search-input" 
+          placeholder="🔍 Tìm kiếm game..." 
+          autocomplete="off"
+        />
+        <span class="search-result-count" id="search-result-count"></span>
+      </div>
+      
       <div id="game-list" class="game-list">
         <!-- Games will be loaded here -->
       </div>

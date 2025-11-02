@@ -462,6 +462,9 @@ function fillGamesList(games) {
         return;
     }
 
+    // Setup search functionality
+    setupGameSearch(games);
+
     for (const game of games) {
         const item = document.createElement("div");
         item.className = "game-item";
@@ -927,6 +930,98 @@ async function doExportData() {
     } catch (error) {
         console.error("Error exporting data:", error);
         alert("Error exporting data");
+    }
+}
+
+function setupGameSearch(games) {
+    const searchInput = document.getElementById("game-search");
+    const searchResultCount = document.getElementById("search-result-count");
+    const gameList = document.getElementById("game-list");
+    
+    if (!searchInput) return;
+    
+    // Remove old event listeners
+    const newSearchInput = searchInput.cloneNode(true);
+    searchInput.parentNode.replaceChild(newSearchInput, searchInput);
+    
+    newSearchInput.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.toLowerCase().trim();
+        filterGames(searchTerm, games, gameList, searchResultCount);
+    });
+    
+    // Initial count
+    updateSearchCount(games.length, games.length, searchResultCount);
+}
+
+function filterGames(searchTerm, games, gameList, searchResultCount) {
+    const gameItems = gameList.querySelectorAll(".game-item");
+    let visibleCount = 0;
+    
+    if (!searchTerm) {
+        // Show all games
+        gameItems.forEach(item => {
+            item.classList.remove("hidden");
+        });
+        visibleCount = games.length;
+    } else {
+        // Filter games
+        gameItems.forEach((item, index) => {
+            const game = games[index];
+            if (!game) return;
+            
+            const searchableText = [
+                game.name,
+                game.gameInfo?.description,
+                game.gameInfo?.gameplay,
+                ...(game.gameInfo?.tags || []),
+                ...(game.gameInfo?.genre || [])
+            ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+            
+            if (searchableText.includes(searchTerm)) {
+                item.classList.remove("hidden");
+                visibleCount++;
+            } else {
+                item.classList.add("hidden");
+            }
+        });
+    }
+    
+    updateSearchCount(visibleCount, games.length, searchResultCount);
+    
+    // Show "no results" message if needed
+    showNoResultsMessage(visibleCount, gameList);
+}
+
+function updateSearchCount(visibleCount, totalCount, searchResultCount) {
+    if (!searchResultCount) return;
+    
+    if (visibleCount === totalCount) {
+        searchResultCount.textContent = `Hiển thị tất cả ${totalCount} game`;
+    } else {
+        searchResultCount.textContent = `Tìm thấy ${visibleCount} game trong tổng số ${totalCount} game`;
+    }
+}
+
+function showNoResultsMessage(visibleCount, gameList) {
+    // Remove existing no results message
+    const existingMessage = gameList.querySelector(".no-results-message");
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Show message if no results
+    if (visibleCount === 0) {
+        const noResultsDiv = document.createElement("div");
+        noResultsDiv.className = "no-results-message";
+        noResultsDiv.innerHTML = `
+            <span class="emoji">😔</span>
+            <div>Không tìm thấy game nào</div>
+            <div style="margin-top: 8px; font-size: 14px;">Thử tìm kiếm với từ khóa khác</div>
+        `;
+        gameList.appendChild(noResultsDiv);
     }
 }
 

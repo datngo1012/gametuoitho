@@ -7,10 +7,7 @@
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game phiêu lưu cổ điển, theo chân nhà thám hiểm săn kim cương qua Angkor, Bavaria và Tibet đầy bẫy nguy hiểm.",
     "gameplay": "Đi qua mê cung, giải đố, tránh bẫy và thu thập kim cương. Có boss như rắn khổng lồ, quái vật lửa đòi hỏi phản xạ nhanh.",
-    "genre": ["adventure", "puzzle", "platform"],
-    "tags": ["Phiêu lưu", "Giải đố", "Platform"],
-    "year": 2004,
-    "rating": 4.6
+    "tags": ["Phiêu lưu", "Giải đố", "Platform"]
   },
   {
     "id": "Disco",
@@ -20,10 +17,7 @@
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game nhảy disco rực rỡ phong cách thập niên 70, sôi động và vui nhộn.",
     "gameplay": "Nhấn phím đúng nhịp để thực hiện điệu nhảy, tạo combo và mở khóa bài hát hoặc sàn nhảy mới.",
-    "genre": ["rhythm", "music", "casual"],
-    "tags": ["Nhịp điệu", "Âm nhạc", "Giải trí"],
-    "year": 2006,
-    "rating": 4.3
+    "tags": ["Nhịp điệu", "Âm nhạc", "Giải trí"]
   },
   {
     "id": "NinjaSchool2",
@@ -32,11 +26,8 @@
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game nhập vai ninja kinh điển của TeaMobi, nơi bạn rèn luyện, học chiêu và bảo vệ ngôi làng.",
-    "gameplay": "Đi cảnh chiến đấu real-time, làm nhiệm vụ, farm quái, học kỹ năng và nâng cấp trang bị trong thế giới ninja 2D.",
-    "genre": ["rpg", "action", "adventure"],
-    "tags": ["Nhập vai", "Hành động", "Ninja"],
-    "year": 2008,
-    "rating": 4.8
+    "gameplay": "Chiến đấu, làm nhiệm vụ, farm quái, học kỹ năng và nâng cấp trang bị trong thế giới ninja 2D.",
+    "tags": ["Nhập vai", "Hành động", "Ninja"]
   },
   {
     "id": "NinjaSchool3",
@@ -46,10 +37,7 @@
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Phần tiếp theo mở rộng thế giới ninja với bối cảnh mùa đông tuyết phủ và nhiều thử thách mới.",
     "gameplay": "RPG side-scrolling, chiến đấu, học kỹ năng, chọn lớp nhân vật và săn boss qua các bản đồ mở.",
-    "genre": ["rpg", "action", "adventure"],
-    "tags": ["Nhập vai", "Hành động", "Ninja"],
-    "year": 2009,
-    "rating": 4.9
+    "tags": ["Nhập vai", "Hành động", "Ninja"]
   },
   {
     "id": "Worms",
@@ -59,10 +47,7 @@
     "settings": { "phone": "Nokia", "width": "176", "height": "220" },
     "description": "Game chiến thuật theo lượt vui nhộn, nơi đội giun sử dụng vũ khí điên rồ để hạ đối thủ.",
     "gameplay": "Chọn giun, chọn vũ khí, căn góc và lực bắn để tiêu diệt địch trong bản đồ 2D có yếu tố vật lý.",
-    "genre": ["strategy", "turnbased", "comedy"],
-    "tags": ["Chiến lược", "Theo lượt", "Hài hước"],
-    "year": 2004,
-    "rating": 4.7
+    "tags": ["Chiến lược", "Theo lượt", "Hài hước"]
   },
   {
     "id": "BounceTales",
@@ -72,10 +57,7 @@
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game kinh điển của Nokia, điều khiển quả bóng đỏ vượt qua các màn chơi để cứu thế giới.",
     "gameplay": "Lăn, nhảy và bật qua chướng ngại vật, thu thập sao và giải câu đố nhẹ nhàng trong môi trường đầy màu sắc.",
-    "genre": ["adventure", "platformer", "casual"],
-    "tags": ["Phiêu lưu", "Platform", "Giải trí"],
-    "year": 2006,
-    "rating": 4.5
+    "tags": ["Phiêu lưu", "Platform", "Giải trí"]
   },
   {
     "id": "PrinceOfPersia",
@@ -85,10 +67,7 @@
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Hoàng tử vượt mê cung, chiến đấu và giải đố để cứu công chúa khỏi phù thủy độc ác.",
     "gameplay": "Chạy, nhảy, leo trèo, chiến đấu bằng kiếm và giải đố trong giới hạn thời gian, với hoạt ảnh mượt mà đặc trưng.",
-    "genre": ["adventure", "action", "puzzle"],
-    "tags": ["Phiêu lưu", "Hành động", "Giải đố"],
-    "year": 2007,
-    "rating": 4.8
+    "tags": ["Phiêu lưu", "Hành động", "Giải đố"]
   },
   {
     "id": "AssassinCreedBrotherhood",
@@ -98,10 +77,7 @@
     "settings": { "phone": "Nokia", "width": "320", "height": "240" },
     "description": "Phiên bản mobile của Assassin’s Creed, vào vai Ezio chiến đấu chống Templar tại Rome.",
     "gameplay": "Đi cảnh, leo tường, ám sát, tránh bẫy và chiến đấu cận chiến trong phong cách stealth hành động đặc trưng.",
-    "genre": ["action", "adventure", "platformer"],
-    "tags": ["Hành động", "Phiêu lưu", "Platform"],
-    "year": 2010,
-    "rating": 4.6
+    "tags": ["Hành động", "Phiêu lưu", "Platform"]
   },
   {
     "id": "RobinsonCrusoeShipwrecked",
@@ -111,10 +87,7 @@
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Phiêu lưu sinh tồn dựa trên tiểu thuyết Robinson Crusoe, lạc trên đảo hoang và tìm cách sống sót.",
     "gameplay": "Thu thập tài nguyên, chế tạo công cụ, săn thú và giải bí ẩn trên đảo trong các màn chơi tuyến tính.",
-    "genre": ["adventure", "survival", "simulation"],
-    "tags": ["Phiêu lưu", "Sinh tồn", "Khám phá"],
-    "year": 2009,
-    "rating": 4.5
+    "tags": ["Phiêu lưu", "Sinh tồn", "Khám phá"]
   },
   {
     "id": "Stranded2MysteriesOfTime",
@@ -124,10 +97,7 @@
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Phần tiếp theo của Stranded, du hành thời gian để sinh tồn và khám phá nền văn minh cổ.",
     "gameplay": "Thu thập, chế tạo, săn bắt và xây dựng nơi trú ẩn, đồng thời khám phá các thời kỳ lịch sử khác nhau.",
-    "genre": ["adventure", "survival", "simulation"],
-    "tags": ["Sinh tồn", "Phiêu lưu", "Khám phá", "Cổ đại"],
-    "year": 2010,
-    "rating": 4.6
+    "tags": ["Sinh tồn", "Phiêu lưu", "Khám phá", "Cổ đại"]
   },
   {
     "id": "KungFuPanda",
@@ -137,10 +107,7 @@
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game hành động dựa trên phim Kung Fu Panda, hóa thân thành Po để trở thành Chiến binh Rồng.",
     "gameplay": "Đi cảnh, chiến đấu, nhảy né và tung chiêu đặc biệt qua nhiều màn võ thuật đầy màu sắc.",
-    "genre": ["action", "platformer", "adventure"],
-    "tags": ["Hành động", "Đi cảnh", "Kung Fu", "Phim chuyển thể"],
-    "year": 2008,
-    "rating": 4.5
+    "tags": ["Hành động", "Đi cảnh", "Kung Fu", "Phim chuyển thể"]
   },
   {
     "id": "TribalPrehistoric",
@@ -150,10 +117,7 @@
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game phiêu lưu – hành động thời tiền sử, chiến đấu sinh tồn giữa thú dữ và quái vật.",
     "gameplay": "Đi cảnh, chiến đấu, ném vũ khí, săn bắn và vượt chướng ngại vật qua rừng, hang động, sa mạc.",
-    "genre": ["action", "adventure", "platformer"],
-    "tags": ["Hành động", "Phiêu lưu", "Cổ đại", "Sinh tồn"],
-    "year": 2009,
-    "rating": 4.5
+    "tags": ["Hành động", "Phiêu lưu", "Cổ đại", "Sinh tồn"]
   },
   {
     "id": "HugoFoodFight",
@@ -163,10 +127,7 @@
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game hành động vui nhộn trong series Hugo, đấu đồ ăn chống lại phù thủy Scylla.",
     "gameplay": "Điều khiển Hugo ném thức ăn trúng đối thủ, canh hướng gió và thời gian trong các màn hài hước tăng dần độ khó.",
-    "genre": ["action", "arcade", "casual"],
-    "tags": ["Hành động", "Vui nhộn", "Đấu đồ ăn", "Hugo"],
-    "year": 2008,
-    "rating": 4.4
+    "tags": ["Hành động", "Vui nhộn", "Đấu đồ ăn", "Hugo"]
   },
   {
     "id": "BobbyCarrot",
@@ -176,10 +137,7 @@
     "settings": { "phone": "Nokia", "width": "176", "height": "208" },
     "description": "Game giải đố kinh điển, điều khiển thỏ Bobby thu thập cà rốt trong mê cung đầy bẫy.",
     "gameplay": "Di chuyển từng bước qua mê cung, thu cà rốt, tránh bẫy và mở lối đi bằng logic thông minh.",
-    "genre": ["puzzle", "strategy", "casual"],
-    "tags": ["Giải đố", "Trí tuệ", "Cà rốt", "Tuổi thơ"],
-    "year": 2004,
-    "rating": 4.8
+    "tags": ["Giải đố", "Trí tuệ", "Cà rốt", "Tuổi thơ"]
   },
   {
     "id": "ThachSanh",
@@ -188,11 +146,8 @@
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game hành động – phiêu lưu dựa trên truyện cổ Việt Nam, theo chân dũng sĩ Thạch Sanh diệt quái cứu công chúa.",
-    "gameplay": "Đi cảnh 2D, dùng búa và cung tiêu diệt quái vật, vượt màn, chiến boss như đại bàng và xà tinh.",
-    "genre": ["action", "adventure", "platformer"],
-    "tags": ["Hành động", "Cổ tích Việt Nam", "Anh hùng", "Đi cảnh"],
-    "year": 2009,
-    "rating": 4.7
+    "gameplay": "Dùng búa và cung tiêu diệt quái vật, vượt màn, chiến boss như đại bàng và xà tinh.",
+    "tags": ["Hành động", "Cổ tích Việt Nam", "Anh hùng", "Đi cảnh"]
   },
   {
     "id": "NobitaMermaidLegend",
@@ -201,11 +156,8 @@
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game phiêu lưu hành động dựa trên phim Doraemon, cùng Nobita khám phá vương quốc người cá.",
-    "gameplay": "Đi cảnh dưới nước, thu vật phẩm, tránh chướng ngại và dùng bảo bối Doraemon để vượt qua thử thách.",
-    "genre": ["adventure", "platformer", "action"],
-    "tags": ["Phiêu lưu", "Doraemon", "Đi cảnh", "Tuổi thơ"],
-    "year": 2010,
-    "rating": 4.4
+    "gameplay": "Thu vật phẩm, tránh chướng ngại và dùng bảo bối Doraemon để vượt qua thử thách.",
+    "tags": ["Phiêu lưu", "Doraemon", "Đi cảnh", "Tuổi thơ"]
   },
   {
     "id": "ConLonThienTinhSu",
@@ -214,10 +166,7 @@
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "ARPG tiên hiệp huyền ảo, vào vai đệ tử tu tiên diệt yêu trừ ma và viết nên mối tình dang dở.",
-    "gameplay": "Đi cảnh hành động, tung chiêu pháp thuật, nâng cấp nhân vật và chiến boss theo cốt truyện cảm động.",
-    "genre": ["action", "role-playing", "fantasy"],
-    "tags": ["ARPG", "Tiên hiệp", "Kiếm hiệp", "Tình cảm"],
-    "year": 2011,
-    "rating": 4.7
+    "gameplay": "Hành động, tung chiêu pháp thuật, nâng cấp nhân vật và chiến boss theo cốt truyện cảm động.",
+    "tags": ["ARPG", "Tiên hiệp", "Kiếm hiệp", "Tình cảm"]
   }
 ]
