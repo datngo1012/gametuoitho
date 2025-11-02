@@ -236,6 +236,23 @@
     "tags": ["Giải đố", "Trí tuệ", "Cà rốt", "Tuổi thơ"],
     "year": 2004,
     "rating": 4.8
+  },
+  {
+    "id": "ThachSanh",
+    "filename": "thachsanh.jar",
+    "name": "Thach Sanh",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Thạch Sanh là game hành động – phiêu lưu dựa trên truyện cổ tích Việt Nam cùng tên. Người chơi vào vai chàng dũng sĩ Thạch Sanh, sử dụng cung tên và búa thần để tiêu diệt quái vật, cứu công chúa và bảo vệ dân làng khỏi thế lực tà ác.",
+    "gameplay": "Gameplay đi cảnh 2D cổ điển. Người chơi điều khiển Thạch Sanh vượt qua nhiều màn chơi, chiến đấu với quái vật như đại bàng, xà tinh và kẻ thù người. Game có hệ thống vũ khí đa dạng như cung tên, rìu, cùng cơ chế nhảy – chém – né đơn giản nhưng rất cuốn hút. Đồ họa pixel màu sắc, âm thanh dân gian và phong cách Việt Nam tạo nên nét riêng biệt so với các game ngoại cùng thời.",
+    "genre": ["action", "adventure", "platformer"],
+    "tags": ["Hành động", "Cổ tích Việt Nam", "Anh hùng", "Đi cảnh"],
+    "year": 2009,
+    "rating": 4.7
   }
 
 ]
