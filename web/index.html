@@ -1467,6 +1467,7 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
             <h3>🔗 Liên kết nhanh</h3>
             <ul class="footer-links">
               <li><a href="#game-list">📱 Danh sách game</a></li>
+              <li><a href="#faq" onclick="showPolicy('faq'); return false;">❓ Câu hỏi thường gặp</a></li>
               <li><a href="#privacy-policy" onclick="showPolicy('privacy'); return false;">🔒 Chính sách bảo mật</a></li>
               <li><a href="#terms-of-service" onclick="showPolicy('terms'); return false;">� Điều khoản sử dụng</a></li>
               <li><a href="#" onclick="document.getElementById('theme-toggle').click(); return false;">🌙 Đổi giao diện</a></li>
@@ -1532,6 +1533,88 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
       
       // Policy modal functionality
       const policyContent = {
+        faq: `
+          <h2>❓ Câu Hỏi Thường Gặp (FAQ)</h2>
+          <p><strong>Cập nhật: Tháng 11, 2025</strong></p>
+          
+          <h3>🎮 Về Game & Chơi Game</h3>
+          
+          <h4>1. Lỗi "Game Crashed" màn hình xanh? 🔵</h4>
+          <div style="background: var(--accent-light); padding: 1em; border-radius: var(--border-radius-sm); border-left: 4px solid var(--accent-primary); margin: 0.5em 0;">
+            <p><strong>⚠️ Lỗi phổ biến nhất!</strong></p>
+            <p><strong>Nguyên nhân:</strong> Bạn đã copy đường dẫn game để bookmark hoặc truy cập trực tiếp từ 1 link vào game mà không qua trang chủ.</p>
+            <p><strong>✅ Cách khắc phục:</strong></p>
+            <ul style="margin-bottom: 0;">
+              <li>🏠 Quay lại <a href="/" style="color: var(--accent-primary); font-weight: 600;">TRANG CHỦ</a></li>
+              <li>📱 Chọn lại game từ danh sách</li>
+              <li>🎮 Bắt đầu chơi</li>
+            </ul>
+            <p style="margin-top: 1em; margin-bottom: 0;"><strong>💡 Lưu ý quan trọng:</strong> KHÔNG THỂ bookmark hoặc truy cập trực tiếp vào game! Bắt buộc phải load từ trang chủ để khởi tạo môi trường ảo Java.</p>
+          </div>
+          
+          <h4>2. Phím * trên điện thoại không hoạt động? 📱</h4>
+          <div style="background: #fff3cd; padding: 1em; border-radius: var(--border-radius-sm); border-left: 4px solid #f59e0b; margin: 0.5em 0; color: #856404;">
+            <p><strong>⚠️ Đang trong quá trình sửa lỗi</strong></p>
+            <p><strong>Tình trạng:</strong> Phím * hiện tại chưa hoạt động trên thiết bị di động.</p>
+            <p><strong>🔧 Giải pháp tạm thời:</strong></p>
+            <ul style="margin-bottom: 0;">
+              <li>💻 Chuyển sang chơi trên máy tính (Khuyên dùng)</li>
+              <li>🎮 Hoặc chọn game khác không cần dùng phím *</li>
+            </ul>
+            <p style="margin-top: 1em; margin-bottom: 0;"><strong>📅 Cập nhật:</strong> Chúng tôi đang tích cực khắc phục lỗi này. Xin lỗi vì sự bất tiện!</p>
+          </div>
+          
+          <h4>3. Phím điều khiển là gì? Bấm phím nào? ⌨️</h4>
+          <div style="background: var(--bg-secondary); padding: 1em; border-radius: var(--border-radius-sm); border: 2px solid var(--accent-primary); margin: 0.5em 0;">
+            <p><strong>💡 Hướng dẫn xem keymap (sơ đồ phím):</strong></p>
+            <ol>
+              <li>🎮 Mở game lên</li>
+              <li>👆 Bật nút <strong>"Điều khiển"</strong> hoặc <strong>"Control"</strong> trên màn hình game</li>
+              <li>📋 Xem sơ đồ phím tương ứng</li>
+            </ol>
+            <p><strong>⌨️ Ví dụ keymap phổ biến:</strong></p>
+            <table style="width: 100%; border-collapse: collapse; margin: 0.5em 0;">
+              <tr style="background: var(--accent-light);">
+                <th style="padding: 0.5em; text-align: left; border: 1px solid var(--text-tertiary);">Chức năng</th>
+                <th style="padding: 0.5em; text-align: left; border: 1px solid var(--text-tertiary);">Phím</th>
+              </tr>
+              <tr>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);">← Trái</td>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);"><strong>Q</strong> hoặc <strong>←</strong></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);">→ Phải</td>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);"><strong>W</strong> hoặc <strong>→</strong></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);">↑ Lên</td>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);"><strong>A</strong> hoặc <strong>↑</strong></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);">↓ Xuống</td>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);"><strong>S</strong> hoặc <strong>↓</strong></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);">* (Star)</td>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);"><strong>E</strong></td>
+              </tr>
+              <tr>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);"># (Hash)</td>
+                <td style="padding: 0.5em; border: 1px solid var(--text-tertiary);"><strong>R</strong></td>
+              </tr>
+            </table>
+          </div>
+          
+          <div style="margin-top: 2em; padding: 1.5em; background: var(--accent-light); border-radius: var(--border-radius-md); border-left: 4px solid var(--accent-primary);">
+            <h3 style="margin-top: 0;">🤔 Không tìm thấy câu trả lời?</h3>
+            <p style="margin-bottom: 0.5em;">Nếu câu hỏi của bạn chưa được giải đáp, hãy:</p>
+            <ul style="margin-bottom: 0;">
+              <li>Bình luận bên dưới</li>
+              <li>Email cho chúng tôi: <a href="mailto:dtuyt0@gmail.com">dtuyt0@gmail.com</a></li>
+              <li>Báo lỗi qua form báo lỗi</li>
+            </ul>
+          </div>
+        `,
         privacy: `
           <h2>🔒 Chính Sách Bảo Mật</h2>
           <p><strong>Cập nhật lần cuối: Tháng 11, 2025</strong></p>
