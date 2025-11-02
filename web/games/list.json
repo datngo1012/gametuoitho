@@ -253,6 +253,23 @@
     "tags": ["Hành động", "Cổ tích Việt Nam", "Anh hùng", "Đi cảnh"],
     "year": 2009,
     "rating": 4.7
+  },
+  {
+    "id": "NobitaMermaidLegend",
+    "filename": "S60-TruyenThuyet-NguoiCa-240x320.jar",
+    "name": "Nobita va Truyen Thuyet Nguoi Ca",
+    "jadFile": null,
+    "settings": {
+      "phone": "Nokia",
+      "width": "240",
+      "height": "320"
+    },
+    "description": "Nobita và Truyền Thuyết Người Cá là game phiêu lưu – hành động 2D dựa trên bộ phim Doraemon nổi tiếng cùng tên. Người chơi sẽ đồng hành cùng Nobita, Doraemon và nhóm bạn trong hành trình xuống đáy đại dương, giải cứu vương quốc người cá khỏi thế lực hắc ám.",
+    "gameplay": "Gameplay mang phong cách đi cảnh side-scrolling quen thuộc. Người chơi điều khiển Nobita di chuyển qua các màn chơi dưới nước, vượt chướng ngại vật, thu thập vật phẩm và sử dụng bảo bối đặc biệt của Doraemon để vượt qua thử thách. Game có nhiều màn đa dạng với boss, nhiệm vụ giải đố nhẹ và cơ chế bơi linh hoạt. Đồ họa tươi sáng, âm thanh vui nhộn đậm chất Doraemon.",
+    "genre": ["adventure", "platformer", "action"],
+    "tags": ["Phiêu lưu", "Doraemon", "Đi cảnh", "Tuổi thơ"],
+    "year": 2010,
+    "rating": 4.4
   }
 
 ]
