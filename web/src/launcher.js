@@ -247,6 +247,27 @@ async function installGameFromJson(gameInfo) {
     }
 }
 
+async function findMissingGames(gamesList, installedApps) {
+    const missingGames = [];
+    
+    for (const gameInfo of gamesList) {
+        // Check if this game is already installed
+        const isInstalled = installedApps.find(app => {
+            if (!gameInfo.id) return false;
+            const appIdLower = app.appId.toLowerCase();
+            const gameIdLower = gameInfo.name.toLowerCase();
+            return appIdLower === gameIdLower || appIdLower.includes(gameIdLower) || gameIdLower.includes(appIdLower);
+        });
+        
+        if (!isInstalled) {
+            console.log(`Game ${gameInfo.name} not found in IndexedDB, will install`);
+            missingGames.push(gameInfo);
+        }
+    }
+    
+    return missingGames;
+}
+
 async function loadGames() {
     const apps = [];
     const gamesList = await loadGamesFromJson(); // Load for reference
@@ -271,6 +292,45 @@ async function loadGames() {
                     progressBar.style.width = progress + "%";
                 }
                 
+                const installedGame = await installGameFromJson(gameInfo);
+                if (installedGame) {
+                    apps.push(installedGame);
+                }
+            }
+            
+            // Reload apps list after installation
+            installedAppsBlob = await cjFileBlob("/files/apps.list");
+        }
+    } else {
+        // Games are already installed, check if any new games are missing
+        const tempApps = [];
+        const installedIds = (await installedAppsBlob.text()).trim().split("\n");
+        
+        for (const appId of installedIds) {
+            tempApps.push({ appId });
+        }
+        
+        // Find games that are in list.json but not in IndexedDB
+        const missingGames = await findMissingGames(gamesList, tempApps);
+        
+        if (missingGames.length > 0) {
+            const loadingText = document.getElementById("loading-text");
+            const progressBar = document.getElementById("progress-bar");
+            
+            console.log(`Found ${missingGames.length} missing games, installing...`);
+            
+            for (let i = 0; i < missingGames.length; i++) {
+                const gameInfo = missingGames[i];
+                
+                if (loadingText) {
+                    loadingText.textContent = `Đang cài game mới ${i + 1}/${missingGames.length}: ${gameInfo.name}`;
+                }
+                if (progressBar) {
+                    const progress = 50 + (40 * (i + 1) / missingGames.length);
+                    progressBar.style.width = progress + "%";
+                }
+                
+                console.log(`Installing missing game: ${gameInfo.name}`);
                 const installedGame = await installGameFromJson(gameInfo);
                 if (installedGame) {
                     apps.push(installedGame);
