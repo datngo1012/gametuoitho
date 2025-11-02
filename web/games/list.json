@@ -162,10 +162,10 @@
   {
     "id": "ConLonThienTinhSu",
     "filename": "con-lon-thien-tinh-su.jar",
-    "name": "Con Lon Thien Tinh Su",
+    "name": "昆仑千年情",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
-    "description": "ARPG tiên hiệp huyền ảo, vào vai đệ tử tu tiên diệt yêu trừ ma và viết nên mối tình dang dở.",
+    "description": "Côn lôn tình thiên sứ, ARPG tiên hiệp huyền ảo, vào vai đệ tử tu tiên diệt yêu trừ ma và viết nên mối tình dang dở.",
     "gameplay": "Hành động, tung chiêu pháp thuật, nâng cấp nhân vật và chiến boss theo cốt truyện cảm động.",
     "tags": ["ARPG", "Tiên hiệp", "Kiếm hiệp", "Tình cảm"]
   }
