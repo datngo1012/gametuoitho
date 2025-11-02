@@ -52,6 +52,9 @@ async function main() {
     setTimeout(() => {
         document.getElementById("loading").style.display = "none";
         document.getElementById("main").style.display = "";
+        
+        // Trigger event to let comment system know main is visible
+        window.dispatchEvent(new CustomEvent('mainContentLoaded'));
     }, 300);
 
     document.getElementById("clear-current").onclick = setupAddMode;

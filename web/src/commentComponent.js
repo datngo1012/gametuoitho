@@ -6,20 +6,33 @@ import { CommentService, UserSession } from './commentService.js';
 
 class CommentComponent {
   constructor(containerId) {
+    console.log('[CommentComponent] Initializing with container:', containerId);
     this.container = document.getElementById(containerId);
+    
+    if (!this.container) {
+      console.error('[CommentComponent] Container not found:', containerId);
+      return;
+    }
+    
     this.service = new CommentService();
     this.comments = [];
     this.currentUser = UserSession.getUser();
     this.replyingTo = null;
     
+    console.log('[CommentComponent] Current user:', this.currentUser);
     this.init();
   }
 
   async init() {
+    console.log('[CommentComponent] Starting initialization...');
     this.render();
     if (this.currentUser) {
+      console.log('[CommentComponent] Loading comments for logged in user...');
       await this.loadComments();
+    } else {
+      console.log('[CommentComponent] No user logged in, showing login prompt');
     }
+    console.log('[CommentComponent] Initialization complete');
   }
 
   async loadComments() {

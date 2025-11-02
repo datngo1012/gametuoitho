@@ -1776,25 +1776,59 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
     <script src="loader.js"></script>
     <script type="module">
       // Initialize Comment System with cache busting
-      (function() {
+      (async function() {
         const version = window.APP_VERSION || Date.now();
-        import(`./src/commentComponent.js?v=${version}`).then(module => {
+        
+        // Wait for DOM to be ready first
+        if (document.readyState === 'loading') {
+          await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve));
+        }
+        
+        // Wait for main content to be loaded and visible
+        const waitForMainContent = () => {
+          return new Promise(resolve => {
+            const checkMain = () => {
+              const main = document.getElementById('main');
+              if (main && main.style.display !== 'none') {
+                resolve();
+              } else {
+                window.addEventListener('mainContentLoaded', resolve, { once: true });
+              }
+            };
+            checkMain();
+          });
+        };
+        
+        try {
+          await waitForMainContent();
+          
+          const module = await import(`./src/commentComponent.js?v=${version}`);
           const CommentComponent = module.default;
           
-          // Wait for DOM to be ready
-          document.addEventListener('DOMContentLoaded', () => {
-            // Initialize comments after a short delay to let the page load
-            setTimeout(() => {
+          // Initialize comments after main content is visible
+          setTimeout(() => {
+            const container = document.getElementById('comment-container');
+            if (container) {
+              console.log('Initializing comment component...');
               new CommentComponent('comment-container');
-            }, 500);
-          });
-        });
+              console.log('Comment component initialized successfully');
+            } else {
+              console.error('Comment container not found');
+            }
+          }, 300);
+        } catch (error) {
+          console.error('Failed to load comment component:', error);
+        }
       })();
     </script>
     <script type="module">
-      (function() {
+      (async function() {
         const version = window.APP_VERSION || Date.now();
-        import(`./src/launcher.js?v=${version}`);
+        try {
+          await import(`./src/launcher.js?v=${version}`);
+        } catch (error) {
+          console.error('Failed to load launcher:', error);
+        }
       })();
     </script>
   </body>
