@@ -1242,6 +1242,138 @@
           justify-content: center;
         }
       }
+      
+      /* Policy Modal Styles */
+      .policy-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 10000;
+        padding: var(--spacing-lg);
+        overflow-y: auto;
+        animation: fadeIn 0.3s ease;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      
+      .policy-modal.show {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+      
+      .policy-content {
+        background: var(--bg-surface);
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-2xl);
+        max-width: 800px;
+        width: 100%;
+        margin: var(--spacing-2xl) auto;
+        box-shadow: 
+          12px 12px 24px var(--neu-shadow-dark),
+          -12px -12px 24px var(--neu-shadow-light);
+        animation: slideUp 0.3s ease;
+        position: relative;
+      }
+      
+      @keyframes slideUp {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      
+      .policy-content h2 {
+        color: var(--accent-primary);
+        margin-bottom: var(--spacing-xl);
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+      }
+      
+      .policy-content h3 {
+        color: var(--text-primary);
+        margin-top: var(--spacing-xl);
+        margin-bottom: var(--spacing-md);
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+      
+      .policy-content p,
+      .policy-content ul {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: var(--spacing-md);
+      }
+      
+      .policy-content ul {
+        padding-left: var(--spacing-xl);
+      }
+      
+      .policy-content li {
+        margin-bottom: var(--spacing-sm);
+      }
+      
+      .policy-close {
+        position: absolute;
+        top: var(--spacing-lg);
+        right: var(--spacing-lg);
+        background: var(--bg-secondary);
+        border: none;
+        color: var(--text-secondary);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 
+          4px 4px 8px var(--neu-shadow-dark),
+          -4px -4px 8px var(--neu-shadow-light);
+      }
+      
+      .policy-close:hover {
+        transform: scale(1.1);
+        color: var(--accent-primary);
+      }
+      
+      @media (max-width: 768px) {
+        .policy-modal {
+          padding: var(--spacing-sm);
+        }
+        
+        .policy-content {
+          padding: var(--spacing-xl);
+          margin: var(--spacing-md) auto;
+        }
+        
+        .policy-content h2 {
+          font-size: 1.5rem;
+        }
+        
+        .policy-content h3 {
+          font-size: 1.125rem;
+        }
+      }
     </style>
     <div id="loading">
       <div class="loading-container">
@@ -1307,6 +1439,14 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
       <!-- Comment Section -->
       <div id="comment-container"></div>
       
+      <!-- Policy Modal -->
+      <div id="policy-modal" class="policy-modal">
+        <div class="policy-content">
+          <button class="policy-close" onclick="closePolicy()" aria-label="Đóng">×</button>
+          <div id="policy-text"></div>
+        </div>
+      </div>
+      
       <footer class="site-footer">
         <div class="footer-content">
           <div class="footer-section">
@@ -1324,7 +1464,8 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
             <h3>🔗 Liên kết nhanh</h3>
             <ul class="footer-links">
               <li><a href="#game-list">📱 Danh sách game</a></li>
-              <!-- <li><a href="https://github.com" target="_blank">💻 Source Code</a></li> -->
+              <li><a href="#privacy-policy" onclick="showPolicy('privacy'); return false;">🔒 Chính sách bảo mật</a></li>
+              <li><a href="#terms-of-service" onclick="showPolicy('terms'); return false;">� Điều khoản sử dụng</a></li>
               <li><a href="#" onclick="document.getElementById('theme-toggle').click(); return false;">🌙 Đổi giao diện</a></li>
             </ul>
           </div>
@@ -1383,6 +1524,147 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
           themeIcon.textContent = '🌙';
           themeText.textContent = 'Dark';
           localStorage.setItem('theme', 'light');
+        }
+      });
+      
+      // Policy modal functionality
+      const policyContent = {
+        privacy: `
+          <h2>🔒 Chính Sách Bảo Mật</h2>
+          <p><strong>Cập nhật lần cuối: Tháng 11, 2025</strong></p>
+          
+          <h3>1. Thông Tin Chúng Tôi Thu Thập</h3>
+          <p>Game Tuổi Thơ cam kết bảo vệ quyền riêng tư của người dùng. Chúng tôi thu thập các thông tin sau:</p>
+          <ul>
+            <li><strong>Thông tin tự động:</strong> Địa chỉ IP, loại trình duyệt, hệ điều hành, thời gian truy cập</li>
+            <li><strong>Cookies:</strong> Để lưu trữ tùy chọn giao diện (sáng/tối) và cải thiện trải nghiệm người dùng</li>
+            <li><strong>Bình luận:</strong> Tên (nếu bạn chọn bình luận) - được lưu trữ an toàn trên database</li>
+          </ul>
+          
+          <h3>2. Cách Chúng Tôi Sử Dụng Thông Tin</h3>
+          <p>Thông tin thu thập được sử dụng để:</p>
+          <ul>
+            <li>Cải thiện chất lượng dịch vụ và trải nghiệm người dùng</li>
+            <li>Phân tích xu hướng sử dụng và tối ưu hóa hiệu suất</li>
+            <li>Hiển thị bình luận và tương tác cộng đồng</li>
+            <li>Ngăn chặn spam và lạm dụng</li>
+          </ul>
+          
+          <h3>3. Chia Sẻ Thông Tin</h3>
+          <p>Chúng tôi <strong>KHÔNG</strong> bán, cho thuê hoặc chia sẻ thông tin cá nhân của bạn với bên thứ ba, ngoại trừ:</p>
+          <ul>
+            <li>Khi có yêu cầu pháp lý từ cơ quan có thẩm quyền</li>
+            <li>Để bảo vệ quyền lợi và an toàn của người dùng khác</li>
+          </ul>
+          
+          <h3>4. Cookies và Lưu Trữ Cục Bộ</h3>
+          <p>Chúng tôi sử dụng localStorage để lưu tùy chọn giao diện của bạn. Bạn có thể xóa dữ liệu này bất cứ lúc nào thông qua cài đặt trình duyệt.</p>
+          
+          <h3>5. Bảo Mật Thông Tin</h3>
+          <p>Chúng tôi áp dụng các biện pháp bảo mật phù hợp để bảo vệ thông tin của bạn khỏi truy cập trái phép, thay đổi, tiết lộ hoặc phá hủy.</p>
+          
+          <h3>6. Quyền Của Bạn</h3>
+          <p>Bạn có quyền:</p>
+          <ul>
+            <li>Truy cập và xem thông tin cá nhân mà chúng tôi lưu trữ</li>
+            <li>Yêu cầu xóa hoặc chỉnh sửa thông tin</li>
+            <li>Từ chối việc thu thập thông tin (có thể ảnh hưởng đến trải nghiệm)</li>
+          </ul>
+          
+          <h3>7. Liên Hệ</h3>
+          <p>Nếu bạn có bất kỳ câu hỏi nào về chính sách bảo mật này, vui lòng liên hệ:</p>
+          <p><strong>Email:</strong> <a href="mailto:dtuyt0@gmail.com">dtuyt0@gmail.com</a></p>
+        `,
+        terms: `
+          <h2>📋 Điều Khoản Sử Dụng</h2>
+          <p><strong>Cập nhật lần cuối: Tháng 11, 2025</strong></p>
+          
+          <h3>1. Chấp Nhận Điều Khoản</h3>
+          <p>Bằng việc truy cập và sử dụng Game Tuổi Thơ, bạn đồng ý tuân thủ các điều khoản và điều kiện sử dụng dưới đây. Nếu bạn không đồng ý, vui lòng không sử dụng dịch vụ.</p>
+          
+          <h3>2. Mô Tả Dịch Vụ</h3>
+          <p>Game Tuổi Thơ cung cấp nền tảng chơi game Java cổ điển miễn phí trên trình duyệt web. Chúng tôi không yêu cầu tải xuống hoặc cài đặt phần mềm.</p>
+          
+          <h3>3. Quyền Sở Hữu Trí Tuệ</h3>
+          <ul>
+            <li>Tất cả các game trên trang web thuộc bản quyền của các nhà phát triển gốc</li>
+            <li>Chúng tôi chỉ cung cấp nền tảng để chơi, không sở hữu bản quyền game</li>
+            <li>Nếu bạn là chủ sở hữu bản quyền và muốn game của mình được gỡ bỏ, vui lòng liên hệ chúng tôi</li>
+          </ul>
+          
+          <h3>4. Hành Vi Người Dùng</h3>
+          <p>Khi sử dụng dịch vụ, bạn đồng ý KHÔNG:</p>
+          <ul>
+            <li>Sử dụng dịch vụ cho mục đích bất hợp pháp</li>
+            <li>Cố gắng hack, tấn công hoặc làm gián đoạn hệ thống</li>
+            <li>Đăng nội dung spam, độc hại, phản cảm hoặc vi phạm pháp luật</li>
+            <li>Sao chép, sửa đổi hoặc phân phối nội dung mà không có sự cho phép</li>
+            <li>Sử dụng bot hoặc công cụ tự động để thu thập dữ liệu</li>
+          </ul>
+          
+          <h3>5. Bình Luận và Nội Dung Người Dùng</h3>
+          <ul>
+            <li>Bạn chịu trách nhiệm về nội dung bình luận của mình</li>
+            <li>Chúng tôi có quyền xóa bình luận vi phạm quy định mà không cần thông báo</li>
+            <li>Bình luận có tính chất spam, xúc phạm, hoặc không phù hợp sẽ bị xóa</li>
+          </ul>
+          
+          <h3>6. Miễn Trừ Trách Nhiệm</h3>
+          <p>Dịch vụ được cung cấp "nguyên trạng" mà không có bất kỳ bảo đảm nào:</p>
+          <ul>
+            <li>Chúng tôi không đảm bảo dịch vụ hoạt động liên tục, không có lỗi</li>
+            <li>Chúng tôi không chịu trách nhiệm về bất kỳ thiệt hại nào phát sinh từ việc sử dụng dịch vụ</li>
+            <li>Game có thể bị gián đoạn do bảo trì hoặc sự cố kỹ thuật</li>
+          </ul>
+          
+          <h3>7. Thay Đổi Dịch Vụ</h3>
+          <p>Chúng tôi có quyền:</p>
+          <ul>
+            <li>Thay đổi, tạm ngừng hoặc ngừng cung cấp dịch vụ bất cứ lúc nào</li>
+            <li>Cập nhật các điều khoản sử dụng này mà không cần thông báo trước</li>
+            <li>Thêm hoặc gỡ bỏ game theo quyết định của chúng tôi</li>
+          </ul>
+          
+          <h3>8. Luật Áp Dụng</h3>
+          <p>Các điều khoản này được điều chỉnh bởi luật pháp Việt Nam. Mọi tranh chấp sẽ được giải quyết tại tòa án có thẩm quyền.</p>
+          
+          <h3>9. Liên Hệ</h3>
+          <p>Nếu bạn có câu hỏi về điều khoản sử dụng, vui lòng liên hệ:</p>
+          <p><strong>Email:</strong> <a href="mailto:dtuyt0@gmail.com">dtuyt0@gmail.com</a></p>
+          
+          <p style="margin-top: 2em; padding-top: 1em; border-top: 1px solid var(--text-tertiary); font-style: italic; color: var(--text-tertiary);">
+            Cảm ơn bạn đã sử dụng Game Tuổi Thơ! Chúc bạn có những giây phút vui vẻ với các tựa game huyền thoại! 🎮
+          </p>
+        `
+      };
+      
+      function showPolicy(type) {
+        const modal = document.getElementById('policy-modal');
+        const policyText = document.getElementById('policy-text');
+        
+        policyText.innerHTML = policyContent[type];
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closePolicy() {
+        const modal = document.getElementById('policy-modal');
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+      
+      // Close modal when clicking outside
+      document.addEventListener('click', (e) => {
+        const modal = document.getElementById('policy-modal');
+        if (e.target === modal) {
+          closePolicy();
+        }
+      });
+      
+      // Close modal with ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closePolicy();
         }
       });
     </script>
