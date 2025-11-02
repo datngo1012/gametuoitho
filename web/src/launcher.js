@@ -61,12 +61,23 @@ async function main() {
 
     document.getElementById("clear-current").onclick = setupAddMode;
 
-    document.getElementById("import-data-btn").addEventListener("click", () => {
-        document.getElementById("import-data-file").click();
-    });
+    // Data management buttons (optional - only if they exist)
+    const importDataBtn = document.getElementById("import-data-btn");
+    if (importDataBtn) {
+        importDataBtn.addEventListener("click", () => {
+            document.getElementById("import-data-file").click();
+        });
+    }
 
-    document.getElementById("import-data-file").onchange = doImportData;
-    document.getElementById("export-data-btn").onclick = doExportData;
+    const importDataFile = document.getElementById("import-data-file");
+    if (importDataFile) {
+        importDataFile.onchange = doImportData;
+    }
+
+    const exportDataBtn = document.getElementById("export-data-btn");
+    if (exportDataBtn) {
+        exportDataBtn.onclick = doExportData;
+    }
     
     // Setup file input for adding games
     document.getElementById("game-file-input").onchange = (e) => {
