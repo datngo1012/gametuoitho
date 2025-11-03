@@ -35,11 +35,11 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://gametuoitho.cc/" />
     
-    <!-- Comment System Styles -->
-    <link rel="stylesheet" href="src/commentStyles.css" id="comment-styles" />
+    <!-- Comment System Styles (Hidden - uncomment to enable) -->
+    <!-- <link rel="stylesheet" href="src/commentStyles.css" id="comment-styles" /> -->
     
     <!-- Version for cache busting -->
-    <script src="version10.js"></script>
+    <script src="version11.js"></script>
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -2304,8 +2304,8 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
       </div>
       -->
       
-      <!-- Comment Section -->
-      <div id="comment-container"></div>
+      <!-- Comment Section (Hidden - uncomment to enable) -->
+      <!-- <div id="comment-container"></div> -->
       
       <!-- Policy Modal -->
       <div id="policy-modal" class="policy-modal">
@@ -2633,12 +2633,16 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
         }
       }
       
-      // Apply cache busting to CSS
+      // Apply cache busting to CSS (Comment System disabled)
+      /*
       document.addEventListener('DOMContentLoaded', () => {
         loadCSSWithVersion('src/commentStyles.css', 'comment-styles');
       });
+      */
     </script>
     <script src="loader.js"></script>
+    <!-- Comment System Initialization (Hidden - uncomment to enable) -->
+    <!--
     <script type="module">
       // Initialize Comment System with cache busting
       (async function() {
@@ -2686,6 +2690,7 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
         }
       })();
     </script>
+    -->
     <script type="module">
       (async function() {
         const version = window.APP_VERSION || Date.now();

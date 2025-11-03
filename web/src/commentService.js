@@ -2,9 +2,6 @@
  * Comment Service - Handle all comment-related API calls to Supabase
  */
 
-const SUPABASE_URL = 'https://uzxkpqniithqtifygmjb.supabase.co'; // Replace with your Supabase URL
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6eGtwcW5paXRocXRpZnlnbWpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MjAzOTYsImV4cCI6MjA3NzQ5NjM5Nn0.XW2RpJGd_i2B2nx88-6HUf0wPnhfUH1e3zx8vgu5LZY'; // Replace with your Supabase anon key
-
 class CommentService {
   constructor() {
     this.supabaseUrl = SUPABASE_URL;
