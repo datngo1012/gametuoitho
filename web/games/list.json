@@ -81,6 +81,16 @@
   },
   {
     "id": "RobinsonCrusoeShipwrecked",
+    "filename": "robinson-mot-minh-o-dao-hoang-hack_240x320.jar",
+    "name": "RobRobinson một mình ở đảo hoang",
+    "jadFile": null,
+    "settings": { "phone": "Nokia", "width": "240", "height": "320" },
+    "description": "[Việt hoá]Phiêu lưu sinh tồn dựa trên tiểu thuyết Robinson Crusoe, lạc trên đảo hoang và tìm cách sống sót.",
+    "gameplay": "Thu thập tài nguyên, chế tạo công cụ, săn thú và giải bí ẩn trên đảo trong các màn chơi tuyến tính.",
+    "tags": ["Phiêu lưu", "Sinh tồn", "Khám phá"]
+  },
+  {
+    "id": "RobinsonCrusoeShipwrecked",
     "filename": "robinson_crusoe_shipwrecked_240x320.jar",
     "name": "Robinson Crusoe: Shipwrecked",
     "jadFile": null,
