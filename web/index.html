@@ -40,7 +40,7 @@
     <!-- <link rel="stylesheet" href="src/commentStyles.css" id="comment-styles" /> -->
     
     <!-- Version for cache busting -->
-    <script src="version13.js"></script>
+    <script src="version14.js"></script>
     
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
@@ -671,6 +671,18 @@
         font-size: 48px;
         display: block;
         margin-bottom: var(--spacing-md);
+      }
+
+      /* Game List Loading State */
+      .game-list-loading {
+        padding: 60px 20px;
+        text-align: center;
+        background: var(--bg-surface);
+        border-radius: var(--border-radius-lg);
+        margin: var(--spacing-xl) 0;
+        box-shadow: 
+          8px 8px 16px var(--neu-shadow-dark),
+          -8px -8px 16px var(--neu-shadow-light);
       }
 
       .game-list {
@@ -1991,7 +2003,7 @@
         }
       }
     </style>
-    <div id="loading">
+    <div id="loading" style="display: none;">
       <div class="loading-container">
         <div class="loading-icon-main">🎮</div>
         <div class="loading-text" id="loading-text">Đang khởi động...</div>
@@ -2021,7 +2033,7 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
         animation: pulse 1.5s ease-in-out infinite;
       }
     </style>
-    <main id="main" style="display: none">
+    <main id="main">
       <div class="header">
         <h1>Game Tuổi Thơ</h1>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
@@ -2049,20 +2061,43 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
 
       <h2>📱 Danh sách game</h2>
       
-      <!-- Search Bar -->
-      <div class="search-container">
-        <input 
-          type="text" 
-          id="game-search" 
-          class="search-input" 
-          placeholder="🔍 Tìm kiếm game..." 
-          autocomplete="off"
-        />
-        <span class="search-result-count" id="search-result-count"></span>
+      <!-- Game List Loading State -->
+      <div id="game-list-loading" class="game-list-loading">
+        <div class="loading-container">
+          <div class="loading-icon-main">🎮</div>
+          <div class="loading-text">Đang tải danh sách game...</div>
+          <div class="loading-subtext" style="font-size: 0.9em; color: #666; text-align: center; margin-top: 10px;">
+            ⏳ Lần đầu tiên có thể mất vài phút để tải thư viện và game.<br>
+            Các lần sau sẽ nhanh hơn nhiều!
+          </div>
+          <div class="progress-bar-container" style="margin-top: 20px;">
+            <div class="progress-bar" id="game-progress-bar"></div>
+          </div>
+          <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+          </div>
+        </div>
       </div>
       
-      <div id="game-list" class="game-list">
-        <!-- Games will be loaded here -->
+      <!-- Game List Content (hidden until loaded) -->
+      <div id="game-list-content" style="display: none;">
+        <!-- Search Bar -->
+        <div class="search-container">
+          <input 
+            type="text" 
+            id="game-search" 
+            class="search-input" 
+            placeholder="🔍 Tìm kiếm game..." 
+            autocomplete="off"
+          />
+          <span class="search-result-count" id="search-result-count"></span>
+        </div>
+        
+        <div id="game-list" class="game-list">
+          <!-- Games will be loaded here -->
+        </div>
       </div>
       
       <!-- Uploaded Games Section -->
@@ -2073,8 +2108,8 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
         </div>
       </div>
       
-      <!-- Add New Game Section -->
-      <div class="add-game-section">
+      <!-- Add New Game Section (hidden until games are loaded) -->
+      <div class="add-game-section" id="add-game-section" style="display: none;">
         <div class="add-edit-header">
           <h2 id="add-edit-text">➕ Thêm game mới</h2>
           <button id="clear-current" class="btn btn-outline">Xóa</button>

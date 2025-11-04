@@ -13,88 +13,164 @@ let state = {
     lastLoader: null,
 };
 let defaultSettings = {};
+let isGamesLoaded = false;
 
-async function main() {
-    const loadingText = document.getElementById("loading-text");
-    const progressBar = document.getElementById("progress-bar");
+async function initializeLibraries() {
+    if (lib) return; // Already initialized
     
-    loadingText.textContent = "Đang tải...";
-    progressBar.style.width = "10%";
+    const loadingDiv = document.getElementById("game-list-loading");
+    const loadingText = loadingDiv?.querySelector('.loading-text');
+    const progressBar = document.getElementById("game-progress-bar");
+    
+    if (loadingText) loadingText.textContent = "Đang tải thư viện...";
+    if (progressBar) progressBar.style.width = "10%";
     
     await cheerpjInit({
         enableDebug: false
     });
 
-    loadingText.textContent = "Đang khởi động...";
-    progressBar.style.width = "30%";
+    if (loadingText) loadingText.textContent = "Đang khởi động...";
+    if (progressBar) progressBar.style.width = "30%";
 
     lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
 
-    loadingText.textContent = "Đang tải game...";
-    progressBar.style.width = "50%";
+    if (loadingText) loadingText.textContent = "Đang tải cấu hình...";
+    if (progressBar) progressBar.style.width = "50%";
 
     launcherUtil = await lib.pl.zb3.freej2me.launcher.LauncherUtil;
 
     await launcherUtil.resetTmpDir();
 
-    loadingText.textContent = "Đang tải cấu hình...";
-    progressBar.style.width = "70%";
+    if (loadingText) loadingText.textContent = "Đang tải cấu hình game...";
+    if (progressBar) progressBar.style.width = "70%";
 
     const Config = await lib.org.recompile.freej2me.Config;
     await javaToKv(Config.DEFAULT_SETTINGS, defaultSettings);
+}
 
-    loadingText.textContent = "Đang chuẩn bị...";
-    progressBar.style.width = "90%";
-
-    await reloadUI();
-
-    loadingText.textContent = "Hoàn tất!";
-    progressBar.style.width = "100%";
-
-    setTimeout(() => {
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("main").style.display = "";
+async function loadGamesUI() {
+    if (isGamesLoaded) return;
+    
+    const loadingDiv = document.getElementById("game-list-loading");
+    const contentDiv = document.getElementById("game-list-content");
+    const addGameSection = document.getElementById("add-game-section");
+    
+    try {
+        await initializeLibraries();
         
-        // Trigger event to let comment system know main is visible
-        window.dispatchEvent(new CustomEvent('mainContentLoaded'));
-    }, 300);
+        const loadingText = loadingDiv?.querySelector('.loading-text');
+        const progressBar = document.getElementById("game-progress-bar");
+        
+        if (loadingText) loadingText.textContent = "Đang tải danh sách game...";
+        if (progressBar) progressBar.style.width = "90%";
+        
+        await reloadUI();
+        
+        if (loadingText) loadingText.textContent = "Hoàn tất!";
+        if (progressBar) progressBar.style.width = "100%";
+        
+        setTimeout(() => {
+            if (loadingDiv) loadingDiv.style.display = "none";
+            if (contentDiv) contentDiv.style.display = "block";
+            if (addGameSection) addGameSection.style.display = "block";
+            isGamesLoaded = true;
+        }, 300);
+        
+    } catch (error) {
+        console.error("Error loading games:", error);
+        const loadingText = loadingDiv?.querySelector('.loading-text');
+        if (loadingText) {
+            loadingText.textContent = "❌ Lỗi khi tải game. Vui lòng tải lại trang.";
+            loadingText.style.color = "var(--error)";
+        }
+    }
+}
 
-    document.getElementById("clear-current").onclick = setupAddMode;
+async function ensureLibrariesLoaded() {
+    if (!isGamesLoaded) {
+        await loadGamesUI();
+    }
+}
+
+async function main() {
+    // Show main content immediately
+    document.getElementById("main").style.display = "";
+    
+    // Trigger event to let comment system know main is visible
+    window.dispatchEvent(new CustomEvent('mainContentLoaded'));
+    
+    // Setup Intersection Observer to load games when section becomes visible
+    const gameListSection = document.getElementById("game-list-loading");
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !isGamesLoaded) {
+                loadGamesUI();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        rootMargin: '200px' // Start loading 200px before the section is visible
+    });
+    
+    if (gameListSection) {
+        observer.observe(gameListSection);
+    }
+
+    const clearCurrentBtn = document.getElementById("clear-current");
+    if (clearCurrentBtn) {
+        clearCurrentBtn.onclick = async () => {
+            await ensureLibrariesLoaded();
+            setupAddMode();
+        };
+    }
 
     // Data management buttons (optional - only if they exist)
     const importDataBtn = document.getElementById("import-data-btn");
     if (importDataBtn) {
-        importDataBtn.addEventListener("click", () => {
+        importDataBtn.addEventListener("click", async () => {
+            await ensureLibrariesLoaded();
             document.getElementById("import-data-file").click();
         });
     }
 
     const importDataFile = document.getElementById("import-data-file");
     if (importDataFile) {
-        importDataFile.onchange = doImportData;
+        importDataFile.onchange = async (e) => {
+            await ensureLibrariesLoaded();
+            doImportData(e);
+        };
     }
 
     const exportDataBtn = document.getElementById("export-data-btn");
     if (exportDataBtn) {
-        exportDataBtn.onclick = doExportData;
+        exportDataBtn.onclick = async () => {
+            await ensureLibrariesLoaded();
+            doExportData();
+        };
     }
     
     // Setup file input for adding games
-    document.getElementById("game-file-input").onchange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            document.getElementById("game-file-input").disabled = true;
-            document.getElementById("file-input-step").style.display = "none";
-            document.getElementById("file-input-loading").style.display = "";
+    const gameFileInput = document.getElementById("game-file-input");
+    if (gameFileInput) {
+        gameFileInput.onchange = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                await ensureLibrariesLoaded();
+                
+                gameFileInput.disabled = true;
+                document.getElementById("file-input-step").style.display = "none";
+                document.getElementById("file-input-loading").style.display = "";
 
-            const reader = new FileReader();
-            reader.onload = async () => {
-                const arrayBuffer = reader.result;
-                await processGameFile(arrayBuffer, file.name);
-            };
-            reader.readAsArrayBuffer(file);
-        }
-    };
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const arrayBuffer = reader.result;
+                    await processGameFile(arrayBuffer, file.name);
+                };
+                reader.readAsArrayBuffer(file);
+            }
+        };
+    }
 }
 
 async function maybeReadCheerpJFileText(path) {
