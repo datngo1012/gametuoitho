@@ -477,6 +477,87 @@
     #display:focus {
         outline: none;
     }
+    
+    #game-crash-notice {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, 
+            rgba(255, 87, 34, 0.95) 0%,
+            rgba(244, 67, 54, 0.95) 100%
+        );
+        color: white;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-size: 0.85em;
+        font-weight: 600;
+        box-shadow: 
+            0 8px 24px rgba(255, 87, 34, 0.4),
+            0 4px 12px rgba(0, 0, 0, 0.3),
+            inset 0 1px 2px rgba(255, 255, 255, 0.3);
+        z-index: 1002;
+        display: none;
+        animation: slideUpNotice 0.5s ease-out, noticeGlow 2s ease-in-out infinite;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+    }
+    
+    body.dark-theme #game-crash-notice {
+        background: linear-gradient(135deg, 
+            rgba(255, 87, 34, 0.9) 0%,
+            rgba(244, 67, 54, 0.9) 100%
+        );
+        box-shadow: 
+            0 8px 24px rgba(255, 87, 34, 0.5),
+            0 4px 12px rgba(0, 0, 0, 0.5),
+            inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    }
+    
+    @keyframes slideUpNotice {
+        from {
+            transform: translateX(-50%) translateY(100px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes noticeGlow {
+        0%, 100% {
+            box-shadow: 
+                0 8px 24px rgba(255, 87, 34, 0.4),
+                0 4px 12px rgba(0, 0, 0, 0.3),
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
+        }
+        50% {
+            box-shadow: 
+                0 12px 32px rgba(255, 87, 34, 0.6),
+                0 6px 16px rgba(0, 0, 0, 0.4),
+                inset 0 1px 3px rgba(255, 255, 255, 0.4);
+        }
+    }
+    
+    #game-crash-notice.show {
+        display: block;
+    }
+    
+    #game-crash-notice .notice-icon {
+        display: inline-block;
+        animation: rotateIcon 2s linear infinite;
+        margin-right: 8px;
+    }
+    
+    @keyframes rotateIcon {
+        0%, 90%, 100% {
+            transform: rotate(0deg);
+        }
+        95% {
+            transform: rotate(-10deg);
+        }
+    }
     #loading {
         display: flex;
         flex-direction: column;
@@ -664,6 +745,100 @@
             4px 4px 8px rgba(0, 0, 0, 0.2),
             -4px -4px 8px rgba(255, 255, 255, 0.7),
             inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+    }
+    
+    .loading-warning {
+        margin-top: 20px;
+        padding: 20px 24px;
+        background: linear-gradient(135deg, 
+            rgba(255, 235, 59, 0.15) 0%,
+            rgba(255, 193, 7, 0.2) 50%,
+            rgba(255, 152, 0, 0.15) 100%
+        );
+        border: 3px solid rgba(255, 193, 7, 0.6);
+        border-radius: 16px;
+        color: var(--panel-text);
+        font-size: 0.9em;
+        line-height: 1.8;
+        text-align: left;
+        box-shadow: 
+            0 8px 24px rgba(255, 193, 7, 0.25),
+            0 4px 12px rgba(255, 152, 0, 0.15),
+            inset 0 2px 4px rgba(255, 255, 255, 0.4),
+            inset 0 -2px 4px rgba(255, 193, 7, 0.2);
+        animation: warningPulse 3s ease-in-out infinite;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .loading-warning::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.3), 
+            transparent
+        );
+        animation: warningShimmer 3s infinite;
+    }
+    
+    @keyframes warningShimmer {
+        0% {
+            left: -100%;
+        }
+        50%, 100% {
+            left: 100%;
+        }
+    }
+    
+    body.dark-theme .loading-warning {
+        background: linear-gradient(135deg, 
+            rgba(255, 193, 7, 0.12) 0%,
+            rgba(255, 152, 0, 0.15) 50%,
+            rgba(255, 193, 7, 0.1) 100%
+        );
+        border-color: rgba(255, 193, 7, 0.4);
+        box-shadow: 
+            0 8px 24px rgba(255, 193, 7, 0.2),
+            0 4px 12px rgba(0, 0, 0, 0.3),
+            inset 0 2px 4px rgba(255, 255, 255, 0.1),
+            inset 0 -2px 4px rgba(255, 193, 7, 0.15);
+    }
+    
+    .loading-warning strong {
+        color: #f57c00;
+        font-weight: 700;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1;
+    }
+    
+    body.dark-theme .loading-warning strong {
+        color: #ffb74d;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    
+    @keyframes warningPulse {
+        0%, 100% {
+            border-color: rgba(255, 193, 7, 0.6);
+            box-shadow: 
+                0 8px 24px rgba(255, 193, 7, 0.25),
+                0 4px 12px rgba(255, 152, 0, 0.15),
+                inset 0 2px 4px rgba(255, 255, 255, 0.4);
+            transform: scale(1);
+        }
+        50% {
+            border-color: rgba(255, 193, 7, 0.8);
+            box-shadow: 
+                0 12px 32px rgba(255, 193, 7, 0.35),
+                0 6px 16px rgba(255, 152, 0, 0.25),
+                inset 0 2px 6px rgba(255, 255, 255, 0.5);
+            transform: scale(1.01);
+        }
     }
     
     body.dark-theme .loading-dot {
@@ -1022,8 +1197,19 @@
                     <div class="loading-dot"></div>
                     <div class="loading-dot"></div>
                 </div>
+                <div class="loading-warning" id="loading-warning">
+                    ⚠️ <strong>LƯU Ý QUAN TRỌNG:</strong><br>
+                    • Nếu tải lâu, hãy nhấn nút "Quay lại" ở trên và chọn lại game<br>
+                    • <strong>KHÔNG</strong> nhấn F5 hoặc tải lại trang<br>
+                    • Tải lại trang sẽ khiến game bị lỗi crash!
+                </div>
             </div>
         </div>
+    </div>
+    
+    <div id="game-crash-notice">
+        <span class="notice-icon">⚠️</span>
+        <strong>Game bị crash?</strong> Nhấn "Quay lại" ở trên và chọn game lại
     </div>
     <div id="left-keys" class="keypad-part">
         <div class="key-grid left-grid">
@@ -1089,6 +1275,78 @@
             panel.classList.toggle('show');
             this.textContent = panel.classList.contains('show') ? '✕ Đóng' : '🎮 Điều khiển';
         });
+        
+        // Prevent F5 refresh and warn user
+        let gameLoaded = false;
+        
+        window.addEventListener('keydown', function(e) {
+            // Prevent F5 (key 116) and Ctrl+R
+            if ((e.keyCode === 116) || (e.ctrlKey && e.keyCode === 82)) {
+                e.preventDefault();
+                if (!gameLoaded) {
+                    alert('⚠️ CẢNH BÁO!\n\nKHÔNG được tải lại trang khi đang load game!\n\nNếu muốn tải lại, hãy:\n1. Nhấn nút "Quay lại" ở góc trên\n2. Chọn lại game từ trang chủ\n\nTải lại trang sẽ khiến game bị crash!');
+                } else {
+                    if (confirm('⚠️ Bạn có chắc muốn tải lại trang?\n\nĐiều này có thể khiến game bị lỗi!\n\nBấm "Quay lại" để về trang chủ an toàn hơn.')) {
+                        location.reload();
+                    }
+                }
+            }
+        });
+        
+        // Warn before closing/refreshing page
+        window.addEventListener('beforeunload', function(e) {
+            if (!gameLoaded) {
+                e.preventDefault();
+                e.returnValue = 'Game đang tải. Bạn có chắc muốn rời khỏi trang?';
+                return e.returnValue;
+            }
+        });
+        
+        // Mark game as loaded when display canvas is shown
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                const display = document.getElementById('display');
+                const crashNotice = document.getElementById('game-crash-notice');
+                
+                if (display && display.style.display !== 'none') {
+                    gameLoaded = true;
+                    observer.disconnect();
+                    
+                    // Show crash notice after 3 seconds when game is loaded
+                    setTimeout(function() {
+                        if (crashNotice) {
+                            crashNotice.classList.add('show');
+                            
+                            // Auto hide after 15 seconds
+                            setTimeout(function() {
+                                crashNotice.style.animation = 'slideUpNotice 0.5s ease-out reverse';
+                                setTimeout(function() {
+                                    crashNotice.classList.remove('show');
+                                    crashNotice.style.animation = '';
+                                }, 500);
+                            }, 15000);
+                        }
+                    }, 3000);
+                }
+            });
+        });
+        
+        const display = document.getElementById('display');
+        if (display) {
+            observer.observe(display, { attributes: true, attributeFilter: ['style'] });
+        }
+        
+        // Click to dismiss crash notice
+        const crashNotice = document.getElementById('game-crash-notice');
+        if (crashNotice) {
+            crashNotice.addEventListener('click', function() {
+                this.style.animation = 'slideUpNotice 0.5s ease-out reverse';
+                setTimeout(() => {
+                    this.classList.remove('show');
+                    this.style.animation = '';
+                }, 500);
+            });
+        }
     </script>
     <script type="module" src="src/main.js"></script>
 </body>
