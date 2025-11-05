@@ -99,23 +99,8 @@ async function main() {
     // Trigger event to let comment system know main is visible
     window.dispatchEvent(new CustomEvent('mainContentLoaded'));
     
-    // Setup Intersection Observer to load games when section becomes visible
-    const gameListSection = document.getElementById("game-list-loading");
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !isGamesLoaded) {
-                loadGamesUI();
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        rootMargin: '200px' // Start loading 200px before the section is visible
-    });
-    
-    if (gameListSection) {
-        observer.observe(gameListSection);
-    }
+    // Load games immediately instead of waiting for scroll
+    loadGamesUI();
 
     const clearCurrentBtn = document.getElementById("clear-current");
     if (clearCurrentBtn) {
