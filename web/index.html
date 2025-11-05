@@ -2286,86 +2286,6 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
         </div>
       </div>
       
-      <!-- Data Management Section (Hidden - uncomment to enable) -->
-      <!-- 
-      <div class="data-management-section">
-        <h2>💾 Quản lý dữ liệu</h2>
-        <div class="data-controls">
-          <button id="import-data-btn" class="btn btn-primary">
-            📥 Nhập dữ liệu
-          </button>
-          <button id="export-data-btn" class="btn btn-primary">
-            📤 Xuất dữ liệu
-          </button>
-          <input type="file" id="import-data-file" accept=".zip" style="display: none;" />
-          <a id="export-data-link" download="freej2me-data.zip" style="display: none;"></a>
-        </div>
-        <p class="data-hint">Sao lưu và khôi phục toàn bộ game và dữ liệu của bạn</p>
-      </div>
-      -->
-      
-      <!-- Keyboard Controls Section (Hidden - uncomment to enable) -->
-      <!-- 
-      <div class="keyboard-controls-section">
-        <h2>⌨️ Phím điều khiển</h2>
-        <div class="keyboard-controls">
-          <table>
-            <tr>
-              <td><span class="key">Esc</span></td>
-              <td>Vào/thoát tùy chọn freej2me</td>
-            </tr>
-            <tr>
-              <td><span class="key">F1</span> hoặc <span class="key">Q</span></td>
-              <td>Phím mềm trái</td>
-            </tr>
-            <tr>
-              <td><span class="key">F2</span> hoặc <span class="key">W</span></td>
-              <td>Phím mềm phải</td>
-            </tr>
-            <tr>
-              <td><span class="key">0</span> đến <span class="key">9</span></td>
-              <td>Phím số</td>
-            </tr>
-            <tr>
-              <td>Numpad</td>
-              <td>Số với phím 123 và 789 hoán đổi</td>
-            </tr>
-            <tr>
-              <td><span class="key">E</span></td>
-              <td>*</td>
-            </tr>
-            <tr>
-              <td><span class="key">R</span></td>
-              <td>#</td>
-            </tr>
-            <tr>
-              <td><span class="key">↑</span></td>
-              <td>Lên</td>
-            </tr>
-            <tr>
-              <td><span class="key">↓</span></td>
-              <td>Xuống</td>
-            </tr>
-            <tr>
-              <td><span class="key">←</span></td>
-              <td>Trái</td>
-            </tr>
-            <tr>
-              <td><span class="key">→</span></td>
-              <td>Phải</td>
-            </tr>
-            <tr>
-              <td><span class="key">⏎ Enter</span></td>
-              <td>Phím hành động (nút OK)</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      -->
-      
-      <!-- Comment Section (Hidden - uncomment to enable) -->
-      <!-- <div id="comment-container"></div> -->
-      
       <!-- Policy Modal -->
       <div id="policy-modal" class="policy-modal">
         <div class="policy-content">
@@ -2687,64 +2607,8 @@ Vui lòng kiên nhẫn chờ trong ít phút, các lần truy cập sau sẽ nha
         }
       }
       
-      // Apply cache busting to CSS (Comment System disabled)
-      /*
-      document.addEventListener('DOMContentLoaded', () => {
-        loadCSSWithVersion('src/commentStyles.css', 'comment-styles');
-      });
-      */
     </script>
     <script src="loader.js"></script>
-    <!-- Comment System Initialization (Hidden - uncomment to enable) -->
-    <!--
-    <script type="module">
-      // Initialize Comment System with cache busting
-      (async function() {
-        const version = window.APP_VERSION || Date.now();
-        
-        // Wait for DOM to be ready first
-        if (document.readyState === 'loading') {
-          await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve));
-        }
-        
-        // Wait for main content to be loaded and visible
-        const waitForMainContent = () => {
-          return new Promise(resolve => {
-            const checkMain = () => {
-              const main = document.getElementById('main');
-              if (main && main.style.display !== 'none') {
-                resolve();
-              } else {
-                window.addEventListener('mainContentLoaded', resolve, { once: true });
-              }
-            };
-            checkMain();
-          });
-        };
-        
-        try {
-          await waitForMainContent();
-          
-          const module = await import(`./src/commentComponent.js?v=${version}`);
-          const CommentComponent = module.default;
-          
-          // Initialize comments after main content is visible
-          setTimeout(() => {
-            const container = document.getElementById('comment-container');
-            if (container) {
-              console.log('Initializing comment component...');
-              new CommentComponent('comment-container');
-              console.log('Comment component initialized successfully');
-            } else {
-              console.error('Comment container not found');
-            }
-          }, 300);
-        } catch (error) {
-          console.error('Failed to load comment component:', error);
-        }
-      })();
-    </script>
-    -->
     <script type="module">
       (async function() {
         const version = window.APP_VERSION || Date.now();
