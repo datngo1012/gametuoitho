@@ -1,4 +1,6 @@
 // note that we can only call java stuff if thread not running..
+import { getCurrentLanguage, t, getLocalizedGameData } from './translations.js';
+
 const cheerpjWebRoot = '/app';
 
 const emptyIcon = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
@@ -22,26 +24,26 @@ async function initializeLibraries() {
     const loadingText = loadingDiv?.querySelector('.loading-text');
     const progressBar = document.getElementById("game-progress-bar");
     
-    if (loadingText) loadingText.textContent = "Đang tải thư viện...";
+    if (loadingText) loadingText.textContent = t('loadingLibraries');
     if (progressBar) progressBar.style.width = "10%";
     
     await cheerpjInit({
         enableDebug: false
     });
 
-    if (loadingText) loadingText.textContent = "Đang khởi động...";
+    if (loadingText) loadingText.textContent = t('loadingStartup');
     if (progressBar) progressBar.style.width = "30%";
 
     lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
 
-    if (loadingText) loadingText.textContent = "Đang tải cấu hình...";
+    if (loadingText) loadingText.textContent = t('loadingConfig');
     if (progressBar) progressBar.style.width = "50%";
 
     launcherUtil = await lib.pl.zb3.freej2me.launcher.LauncherUtil;
 
     await launcherUtil.resetTmpDir();
 
-    if (loadingText) loadingText.textContent = "Đang tải cấu hình game...";
+    if (loadingText) loadingText.textContent = t('loadingGameConfig');
     if (progressBar) progressBar.style.width = "70%";
 
     const Config = await lib.org.recompile.freej2me.Config;
@@ -61,12 +63,12 @@ async function loadGamesUI() {
         const loadingText = loadingDiv?.querySelector('.loading-text');
         const progressBar = document.getElementById("game-progress-bar");
         
-        if (loadingText) loadingText.textContent = "Đang tải danh sách game...";
+        if (loadingText) loadingText.textContent = t('loadingGameList');
         if (progressBar) progressBar.style.width = "90%";
         
         await reloadUI();
         
-        if (loadingText) loadingText.textContent = "Hoàn tất!";
+        if (loadingText) loadingText.textContent = t('loadingComplete');
         if (progressBar) progressBar.style.width = "100%";
         
         setTimeout(() => {
@@ -80,7 +82,7 @@ async function loadGamesUI() {
         console.error("Error loading games:", error);
         const loadingText = loadingDiv?.querySelector('.loading-text');
         if (loadingText) {
-            loadingText.textContent = "❌ Lỗi khi tải game. Vui lòng tải lại trang.";
+            loadingText.textContent = t('loadingError');
             loadingText.style.color = "var(--error)";
         }
     }
@@ -560,6 +562,10 @@ function fillGamesList(games, uploadedGames = []) {
     
     const uploadedSection = document.getElementById("uploaded-games-section");
     
+    // Store games globally for language change re-rendering
+    window.currentGames = games;
+    window.uploadedGames = uploadedGames;
+    
     // Add single-game class if only one game total
     const totalGames = games.length + uploadedGames.length;
     if (totalGames === 1) {
@@ -614,33 +620,39 @@ function fillGamesList(games, uploadedGames = []) {
 
 function renderGames(games, container, isUploaded) {
     for (const game of games) {
+        // Apply localization to game data
+        const localizedGame = {
+            ...game,
+            gameInfo: game.gameInfo ? getLocalizedGameData(game.gameInfo) : null
+        };
+
         const item = document.createElement("div");
         item.className = "game-item";
 
         const link = document.createElement("a");
-        link.href = "run?app=" + game.appId;
+        link.href = "run?app=" + localizedGame.appId;
         link.addEventListener('pointerdown', e => {
             if (e.pointerType === 'touch') {
-                link.href = "run?app=" + game.appId + "&mobile=1";
+                link.href = "run?app=" + localizedGame.appId + "&mobile=1";
             }
         });
 
         const icon = document.createElement("img");
         icon.className = "icon";
-        icon.src = game.icon;
+        icon.src = localizedGame.icon;
         link.appendChild(icon);
 
         const info = document.createElement("div");
         info.className = "game-info";
-        info.textContent = game.name;
+        info.textContent = localizedGame.gameInfo?.name || localizedGame.name;
         link.appendChild(info);
 
         // Add tags if available
-        if (game.gameInfo && game.gameInfo.tags && game.gameInfo.tags.length > 0) {
+        if (localizedGame.gameInfo && localizedGame.gameInfo.tags && localizedGame.gameInfo.tags.length > 0) {
             const tagsContainer = document.createElement("div");
             tagsContainer.className = "game-tags";
             
-            game.gameInfo.tags.forEach(tag => {
+            localizedGame.gameInfo.tags.forEach(tag => {
                 const tagElement = document.createElement("span");
                 tagElement.className = "game-tag";
                 tagElement.textContent = tag;
@@ -653,23 +665,23 @@ function renderGames(games, container, isUploaded) {
         item.appendChild(link);
 
         // Add game info section below the link
-        if (game.gameInfo) {
+        if (localizedGame.gameInfo) {
             const gameInfoSection = document.createElement("div");
             gameInfoSection.className = "game-details";
             
             // Description
-            if (game.gameInfo.description) {
+            if (localizedGame.gameInfo.description) {
                 const descElement = document.createElement("p");
                 descElement.className = "game-description";
-                descElement.textContent = game.gameInfo.description;
+                descElement.textContent = localizedGame.gameInfo.description;
                 gameInfoSection.appendChild(descElement);
             }
             
             // Gameplay
-            if (game.gameInfo.gameplay) {
+            if (localizedGame.gameInfo.gameplay) {
                 const gameplayElement = document.createElement("p");
                 gameplayElement.className = "game-gameplay";
-                gameplayElement.innerHTML = `<strong>🎯 Cách chơi:</strong> ${game.gameInfo.gameplay}`;
+                gameplayElement.innerHTML = `<strong>🎯 ${t('gameplayLabel')}:</strong> ${localizedGame.gameInfo.gameplay}`;
                 gameInfoSection.appendChild(gameplayElement);
             }
             
@@ -1190,9 +1202,9 @@ function updateSearchCount(visibleCount, totalCount, searchResultCount) {
     if (!searchResultCount) return;
     
     if (visibleCount === totalCount) {
-        searchResultCount.textContent = `Hiển thị tất cả ${totalCount} game`;
+        searchResultCount.textContent = t('searchShowingAll', { count: totalCount });
     } else {
-        searchResultCount.textContent = `Tìm thấy ${visibleCount} game trong tổng số ${totalCount} game`;
+        searchResultCount.textContent = t('searchResults', { found: visibleCount, total: totalCount });
     }
 }
 
@@ -1209,11 +1221,35 @@ function showNoResultsMessage(visibleCount, gameList) {
         noResultsDiv.className = "no-results-message";
         noResultsDiv.innerHTML = `
             <span class="emoji">😔</span>
-            <div>Không tìm thấy game nào</div>
-            <div style="margin-top: 8px; font-size: 14px;">Thử tìm kiếm với từ khóa khác</div>
+            <div>${t('noGamesFound')}</div>
+            <div style="margin-top: 8px; font-size: 14px;">${t('tryDifferentSearch')}</div>
         `;
         gameList.appendChild(noResultsDiv);
     }
 }
+
+// Listen for language changes and re-render games
+window.addEventListener('languageChanged', () => {
+    const gameList = document.getElementById('game-list');
+    if (gameList && window.currentGames) {
+        gameList.innerHTML = '';
+        renderGames(window.currentGames, gameList, false);
+    }
+    
+    const uploadedList = document.getElementById('uploaded-game-list');
+    if (uploadedList && window.uploadedGames) {
+        uploadedList.innerHTML = '';
+        renderGames(window.uploadedGames, uploadedList, true);
+    }
+    
+    // Update search count if search is active
+    const searchInput = document.getElementById('game-search');
+    if (searchInput && searchInput.value.trim()) {
+        const searchTerm = searchInput.value.trim();
+        const searchResultCount = document.getElementById('search-result-count');
+        const allGames = (window.currentGames || []).concat(window.uploadedGames || []);
+        filterGames(searchTerm, allGames, gameList, searchResultCount);
+    }
+});
 
 main();

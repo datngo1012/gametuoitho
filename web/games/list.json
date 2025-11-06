@@ -1,182 +1,254 @@
-[
+﻿[
   {
     "id": "DiamondRush",
     "filename": "DiamondRush_240x320.jar",
     "name": "Diamond Rush",
+    "name_en": "Diamond Rush",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game phiêu lưu cổ điển, theo chân nhà thám hiểm săn kim cương qua Angkor, Bavaria và Tibet đầy bẫy nguy hiểm.",
+    "description_en": "Classic adventure game following an explorer hunting for diamonds through Angkor, Bavaria, and Tibet filled with dangerous traps.",
     "gameplay": "Đi qua mê cung, giải đố, tránh bẫy và thu thập kim cương. Có boss như rắn khổng lồ, quái vật lửa đòi hỏi phản xạ nhanh.",
-    "tags": ["Phiêu lưu", "Giải đố", "Platform"]
+    "gameplay_en": "Navigate through mazes, solve puzzles, avoid traps and collect diamonds. Face bosses like giant snakes and fire monsters requiring quick reflexes.",
+    "tags": ["Phiêu lưu", "Giải đố", "Platform"],
+    "tags_en": ["Adventure", "Puzzle", "Platform"]
   },
   {
     "id": "Disco",
     "filename": "Disco_240x320.jar",
     "name": "Disco",
+    "name_en": "Disco",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game nhảy disco rực rỡ phong cách thập niên 70, sôi động và vui nhộn.",
+    "description_en": "Vibrant disco dancing game in 70s style, energetic and fun.",
     "gameplay": "Nhấn phím đúng nhịp để thực hiện điệu nhảy, tạo combo và mở khóa bài hát hoặc sàn nhảy mới.",
-    "tags": ["Nhịp điệu", "Âm nhạc", "Giải trí"]
+    "gameplay_en": "Press keys in rhythm to perform dance moves, create combos and unlock new songs or dance floors.",
+    "tags": ["Nhịp điệu", "Âm nhạc", "Giải trí"],
+    "tags_en": ["Rhythm", "Music", "Entertainment"]
   },
   {
     "id": "NinjaSchool2",
     "filename": "ninjaschool2modhth.jar",
     "name": "Ninja School 2",
+    "name_en": "Ninja School 2",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "[Mod]Game nhập vai ninja kinh điển của TeaMobi, nơi bạn rèn luyện, học chiêu và bảo vệ ngôi làng.",
+    "description_en": "[Mod]Classic ninja RPG by TeaMobi, where you train, learn skills and protect the village.",
     "gameplay": "Chiến đấu, làm nhiệm vụ, farm quái, học kỹ năng và nâng cấp trang bị trong thế giới ninja 2D.",
-    "tags": ["Nhập vai", "Hành động", "Ninja"]
+    "gameplay_en": "Fight, quest, farm monsters, learn skills and upgrade equipment in a 2D ninja world.",
+    "tags": ["Nhập vai", "Hành động", "Ninja"],
+    "tags_en": ["RPG", "Action", "Ninja"]
   },
   {
     "id": "NinjaSchool3",
     "filename": "NinjaSchool3_240x320.jar",
     "name": "Ninja School 3",
+    "name_en": "Ninja School 3",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Phần tiếp theo mở rộng thế giới ninja với bối cảnh mùa đông tuyết phủ và nhiều thử thách mới.",
+    "description_en": "The sequel expanding the ninja world with snowy winter settings and new challenges.",
     "gameplay": "RPG side-scrolling, chiến đấu, học kỹ năng, chọn lớp nhân vật và săn boss qua các bản đồ mở.",
-    "tags": ["Nhập vai", "Hành động", "Ninja"]
+    "gameplay_en": "Side-scrolling RPG, fight, learn skills, choose character class and hunt bosses through open maps.",
+    "tags": ["Nhập vai", "Hành động", "Ninja"],
+    "tags_en": ["RPG", "Action", "Ninja"]
   },
   {
     "id": "Worms",
     "filename": "Worms_176x220.jar",
     "name": "Worms",
+    "name_en": "Worms",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "176", "height": "220" },
     "description": "Game chiến thuật theo lượt vui nhộn, nơi đội giun sử dụng vũ khí điên rồ để hạ đối thủ.",
+    "description_en": "Fun turn-based strategy game where worm teams use crazy weapons to defeat opponents.",
     "gameplay": "Chọn giun, chọn vũ khí, căn góc và lực bắn để tiêu diệt địch trong bản đồ 2D có yếu tố vật lý.",
-    "tags": ["Chiến lược", "Theo lượt", "Hài hước"]
+    "gameplay_en": "Select worm, choose weapon, aim angle and power to eliminate enemies in physics-based 2D maps.",
+    "tags": ["Chiến lược", "Theo lượt", "Hài hước"],
+    "tags_en": ["Strategy", "Turn-based", "Humorous"]
   },
   {
     "id": "BounceTales",
     "filename": "BounceTales_240x320.jar",
     "name": "Bounce Tales",
+    "name_en": "Bounce Tales",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game kinh điển của Nokia, điều khiển quả bóng đỏ vượt qua các màn chơi để cứu thế giới.",
+    "description_en": "Nokia's classic game, control the red ball through levels to save the world.",
     "gameplay": "Lăn, nhảy và bật qua chướng ngại vật, thu thập sao và giải câu đố nhẹ nhàng trong môi trường đầy màu sắc.",
-    "tags": ["Phiêu lưu", "Platform", "Giải trí"]
+    "gameplay_en": "Roll, jump and bounce over obstacles, collect stars and solve light puzzles in colorful environments.",
+    "tags": ["Phiêu lưu", "Platform", "Giải trí"],
+    "tags_en": ["Adventure", "Platform", "Casual"]
   },
   {
     "id": "PrinceOfPersia",
     "filename": "PrinceOfPersia_240x320.jar",
     "name": "Prince of Persia Classic",
+    "name_en": "Prince of Persia Classic",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Hoàng tử vượt mê cung, chiến đấu và giải đố để cứu công chúa khỏi phù thủy độc ác.",
+    "description_en": "The prince navigates dungeons, fights and solves puzzles to save the princess from an evil sorcerer.",
     "gameplay": "Chạy, nhảy, leo trèo, chiến đấu bằng kiếm và giải đố trong giới hạn thời gian, với hoạt ảnh mượt mà đặc trưng.",
-    "tags": ["Phiêu lưu", "Hành động", "Giải đố"]
+    "gameplay_en": "Run, jump, climb, sword fight and solve puzzles within time limits, featuring smooth signature animations.",
+    "tags": ["Phiêu lưu", "Hành động", "Giải đố"],
+    "tags_en": ["Adventure", "Action", "Puzzle"]
   },
   {
     "id": "AssassinCreedBrotherhood",
     "filename": "assassin-creed-brotherhood-320x240.jar",
     "name": "Assassin's Creed Brotherhood",
+    "name_en": "Assassin's Creed Brotherhood",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "320", "height": "240" },
-    "description": "Phiên bản mobile của Assassin’s Creed, vào vai Ezio chiến đấu chống Templar tại Rome.",
+    "description": "Phiên bản mobile của Assassin's Creed, vào vai Ezio chiến đấu chống Templar tại Rome.",
+    "description_en": "Mobile version of Assassin's Creed, play as Ezio fighting against Templars in Rome.",
     "gameplay": "Đi cảnh, leo tường, ám sát, tránh bẫy và chiến đấu cận chiến trong phong cách stealth hành động đặc trưng.",
-    "tags": ["Hành động", "Phiêu lưu", "Platform"]
+    "gameplay_en": "Parkour, wall climbing, assassination, trap evasion and melee combat in signature stealth-action style.",
+    "tags": ["Hành động", "Phiêu lưu", "Platform"],
+    "tags_en": ["Action", "Adventure", "Platform"]
   },
   {
-    "id": "RobinsonCrusoeShipwrecked",
+    "id": "RobinsonCrusoeShipwreckedVi",
     "filename": "robinson-mot-minh-o-dao-hoang-hack_240x320.jar",
-    "name": "RobRobinson một mình ở đảo hoang",
+    "name": "Robinson một mình ở đảo hoang",
+    "name_en": "Robinson Crusoe: Shipwrecked",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "[Việt hoá]Phiêu lưu sinh tồn dựa trên tiểu thuyết Robinson Crusoe, lạc trên đảo hoang và tìm cách sống sót.",
+    "description_en": "[Vietnamese]Survival adventure based on Robinson Crusoe novel, stranded on a deserted island seeking survival.",
     "gameplay": "Thu thập tài nguyên, chế tạo công cụ, săn thú và giải bí ẩn trên đảo trong các màn chơi tuyến tính.",
-    "tags": ["Phiêu lưu", "Sinh tồn", "Khám phá"]
+    "gameplay_en": "Gather resources, craft tools, hunt animals and solve island mysteries through linear levels.",
+    "tags": ["Phiêu lưu", "Sinh tồn", "Khám phá"],
+    "tags_en": ["Adventure", "Survival", "Exploration"]
   },
   {
     "id": "RobinsonCrusoeShipwrecked",
     "filename": "robinson_crusoe_shipwrecked_240x320.jar",
     "name": "Robinson Crusoe: Shipwrecked",
+    "name_en": "Robinson Crusoe: Shipwrecked",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Phiêu lưu sinh tồn dựa trên tiểu thuyết Robinson Crusoe, lạc trên đảo hoang và tìm cách sống sót.",
+    "description_en": "Survival adventure based on Robinson Crusoe novel, stranded on a deserted island seeking survival.",
     "gameplay": "Thu thập tài nguyên, chế tạo công cụ, săn thú và giải bí ẩn trên đảo trong các màn chơi tuyến tính.",
-    "tags": ["Phiêu lưu", "Sinh tồn", "Khám phá"]
+    "gameplay_en": "Gather resources, craft tools, hunt animals and solve island mysteries through linear levels.",
+    "tags": ["Phiêu lưu", "Sinh tồn", "Khám phá"],
+    "tags_en": ["Adventure", "Survival", "Exploration"]
   },
   {
     "id": "Stranded2MysteriesOfTime",
     "filename": "stranded2_xe2uzts5.jar",
     "name": "Stranded 2: Mysteries Of Time",
+    "name_en": "Stranded 2: Mysteries Of Time",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Phần tiếp theo của Stranded, du hành thời gian để sinh tồn và khám phá nền văn minh cổ.",
+    "description_en": "Sequel to Stranded, time travel to survive and explore ancient civilizations.",
     "gameplay": "Thu thập, chế tạo, săn bắt và xây dựng nơi trú ẩn, đồng thời khám phá các thời kỳ lịch sử khác nhau.",
-    "tags": ["Sinh tồn", "Phiêu lưu", "Khám phá", "Cổ đại"]
+    "gameplay_en": "Gather, craft, hunt and build shelters while exploring different historical periods.",
+    "tags": ["Sinh tồn", "Phiêu lưu", "Khám phá", "Cổ đại"],
+    "tags_en": ["Survival", "Adventure", "Exploration", "Ancient"]
   },
   {
     "id": "KungFuPanda",
     "filename": "kungfupand_hwenyazm.jar",
     "name": "Kung Fu Panda",
+    "name_en": "Kung Fu Panda",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game hành động dựa trên phim Kung Fu Panda, hóa thân thành Po để trở thành Chiến binh Rồng.",
+    "description_en": "Action game based on Kung Fu Panda movie, become Po to earn the Dragon Warrior title.",
     "gameplay": "Đi cảnh, chiến đấu, nhảy né và tung chiêu đặc biệt qua nhiều màn võ thuật đầy màu sắc.",
-    "tags": ["Hành động", "Đi cảnh", "Kung Fu", "Phim chuyển thể"]
+    "gameplay_en": "Platforming, fighting, dodging and unleashing special moves through colorful martial arts levels.",
+    "tags": ["Hành động", "Đi cảnh", "Kung Fu", "Phim chuyển thể"],
+    "tags_en": ["Action", "Platform", "Kung Fu", "Movie adaptation"]
   },
   {
     "id": "TribalPrehistoric",
     "filename": "Bolacthoitiensu.jar",
     "name": "Bo Lac Thoi Tien Su",
+    "name_en": "Prehistoric Tribal",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game phiêu lưu – hành động thời tiền sử, chiến đấu sinh tồn giữa thú dữ và quái vật.",
+    "description_en": "Prehistoric adventure-action game, fighting for survival among beasts and monsters.",
     "gameplay": "Đi cảnh, chiến đấu, ném vũ khí, săn bắn và vượt chướng ngại vật qua rừng, hang động, sa mạc.",
-    "tags": ["Hành động", "Phiêu lưu", "Cổ đại", "Sinh tồn"]
+    "gameplay_en": "Platform, fight, throw weapons, hunt and overcome obstacles through forests, caves and deserts.",
+    "tags": ["Hành động", "Phiêu lưu", "Cổ đại", "Sinh tồn"],
+    "tags_en": ["Action", "Adventure", "Ancient", "Survival"]
   },
   {
     "id": "HugoFoodFight",
     "filename": "hugo_foodfight_240x320-236829.jar",
     "name": "Hugo: Food Fight",
+    "name_en": "Hugo: Food Fight",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game hành động vui nhộn trong series Hugo, đấu đồ ăn chống lại phù thủy Scylla.",
+    "description_en": "Fun action game in Hugo series, food fighting against the witch Scylla.",
     "gameplay": "Điều khiển Hugo ném thức ăn trúng đối thủ, canh hướng gió và thời gian trong các màn hài hước tăng dần độ khó.",
-    "tags": ["Hành động", "Vui nhộn", "Đấu đồ ăn", "Hugo"]
+    "gameplay_en": "Control Hugo throwing food at opponents, timing wind direction in humorous levels with increasing difficulty.",
+    "tags": ["Hành động", "Vui nhộn", "Đấu đồ ăn", "Hugo"],
+    "tags_en": ["Action", "Casual", "Food Fight", "Hugo"]
   },
   {
     "id": "BobbyCarrot",
     "filename": "bobbycarro_w1b7vqyh.jar",
     "name": "Bobby Carrot",
+    "name_en": "Bobby Carrot",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "176", "height": "208" },
     "description": "Game giải đố kinh điển, điều khiển thỏ Bobby thu thập cà rốt trong mê cung đầy bẫy.",
+    "description_en": "Classic puzzle game, control rabbit Bobby collecting carrots in trap-filled mazes.",
     "gameplay": "Di chuyển từng bước qua mê cung, thu cà rốt, tránh bẫy và mở lối đi bằng logic thông minh.",
-    "tags": ["Giải đố", "Trí tuệ", "Cà rốt", "Tuổi thơ"]
+    "gameplay_en": "Move step by step through mazes, collect carrots, avoid traps and unlock paths with smart logic.",
+    "tags": ["Giải đố", "Trí tuệ", "Cà rốt", "Tuổi thơ"],
+    "tags_en": ["Puzzle", "Logic", "Carrot", "Childhood"]
   },
   {
     "id": "ThachSanh",
     "filename": "thachsanh.jar",
     "name": "Thach Sanh",
+    "name_en": "Thach Sanh",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game hành động – phiêu lưu dựa trên truyện cổ Việt Nam, theo chân dũng sĩ Thạch Sanh diệt quái cứu công chúa.",
+    "description_en": "Action-adventure game based on Vietnamese folklore, following hero Thach Sanh defeating monsters to save the princess.",
     "gameplay": "Dùng búa và cung tiêu diệt quái vật, vượt màn, chiến boss như đại bàng và xà tinh.",
-    "tags": ["Hành động", "Cổ tích Việt Nam", "Anh hùng", "Đi cảnh"]
+    "gameplay_en": "Use hammer and bow to defeat monsters, clear levels and fight bosses like giant eagles and serpent demons.",
+    "tags": ["Hành động", "Cổ tích Việt Nam", "Anh hùng", "Đi cảnh"],
+    "tags_en": ["Action", "Vietnamese Folklore", "Hero", "Platform"]
   },
   {
     "id": "NobitaMermaidLegend",
     "filename": "S60-TruyenThuyet-NguoiCa-240x320.jar",
     "name": "Nobita va Truyen Thuyet Nguoi Ca",
+    "name_en": "Nobita and the Mermaid Legend",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game phiêu lưu hành động dựa trên phim Doraemon, cùng Nobita khám phá vương quốc người cá.",
+    "description_en": "Action-adventure game based on Doraemon movie, join Nobita exploring the mermaid kingdom.",
     "gameplay": "Thu vật phẩm, tránh chướng ngại và dùng bảo bối Doraemon để vượt qua thử thách.",
-    "tags": ["Phiêu lưu", "Doraemon", "Đi cảnh", "Tuổi thơ"]
+    "gameplay_en": "Collect items, avoid obstacles and use Doraemon's gadgets to overcome challenges.",
+    "tags": ["Phiêu lưu", "Doraemon", "Đi cảnh", "Tuổi thơ"],
+    "tags_en": ["Adventure", "Doraemon", "Platform", "Childhood"]
   },
   {
     "id": "ConLonThienTinhSu",
     "filename": "con-lon-thien-tinh-su.jar",
     "name": "昆仑千年情",
+    "name_en": "Kunlun: Millennium Love",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Côn lôn tình thiên sứ, ARPG tiên hiệp huyền ảo, vào vai đệ tử tu tiên diệt yêu trừ ma và viết nên mối tình dang dở.",
+    "description_en": "Kunlun Celestial Envoy, fantasy martial arts ARPG, play as a cultivator disciple defeating demons and writing an unfinished love story.",
     "gameplay": "Hành động, tung chiêu pháp thuật, nâng cấp nhân vật và chiến boss theo cốt truyện cảm động.",
-    "tags": ["ARPG", "Tiên hiệp", "Kiếm hiệp", "Tình cảm"]
+    "gameplay_en": "Action, unleash magical skills, upgrade character and fight bosses through an emotional storyline.",
+    "tags": ["ARPG", "Tiên hiệp", "Kiếm hiệp", "Tình cảm"],
+    "tags_en": ["ARPG", "Martial Arts", "Wuxia", "Romance"]
   }
 ]

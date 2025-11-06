@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Tuổi Thơ - Đang chơi game</title>
+    <title data-i18n-title="loading">Game Tuổi Thơ - Đang chơi game</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Đang chơi game Java cổ điển trên Game Tuổi Thơ. Trải nghiệm game di động kinh điển ngay trên trình duyệt." />
+    <meta name="description" content="Đang chơi game Java cổ điển trên Game Tuổi Thơ. Trải nghiệm game di động kinh điển ngay trên trình duyệt." data-i18n-meta="siteDescription" />
     <meta name="robots" content="noindex, nofollow" />
     
     <!-- Open Graph -->
@@ -1149,59 +1149,59 @@
 </style>
 <body>
     <div id="game-header">
-        <h1 id="game-title">🎮 Đang tải game...</h1>
-        <button id="back-btn" onclick="window.location.href='index.html'">← Quay lại</button>
+        <h1 id="game-title" data-i18n="loadingGame">🎮 Đang tải game...</h1>
+        <button id="back-btn" onclick="window.location.href='index.html'" data-i18n="backButton">← Quay lại</button>
         <button class="theme-toggle-run" id="theme-toggle-run" aria-label="Toggle theme">
             <span id="theme-icon-run">🌙</span>
         </button>
     </div>
     
-    <button id="controls-toggle">🎮 Điều khiển</button>
+    <button id="controls-toggle" data-i18n="controls">🎮 Điều khiển</button>
     
     <div id="controls-panel">
-        <div class="controls-title">🎮 Phím điều khiển</div>
+        <div class="controls-title" data-i18n="controlsTitle">🎮 Phím điều khiển</div>
         <div class="control-item">
-            <span class="control-label">Di chuyển lên</span>
+            <span class="control-label" data-i18n="controlMoveUp">Di chuyển lên</span>
             <span class="control-key">↑</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Di chuyển xuống</span>
+            <span class="control-label" data-i18n="controlMoveDown">Di chuyển xuống</span>
             <span class="control-key">↓</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Di chuyển trái</span>
+            <span class="control-label" data-i18n="controlMoveLeft">Di chuyển trái</span>
             <span class="control-key">←</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Di chuyển phải</span>
+            <span class="control-label" data-i18n="controlMoveRight">Di chuyển phải</span>
             <span class="control-key">→</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Xác nhận (OK)</span>
+            <span class="control-label" data-i18n="controlOK">Xác nhận (OK)</span>
             <span class="control-key">Enter</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Phím trái</span>
+            <span class="control-label" data-i18n="controlLeftKey">Phím trái</span>
             <span class="control-key">F1 / Q</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Phím phải</span>
+            <span class="control-label" data-i18n="controlRightKey">Phím phải</span>
             <span class="control-key">F2 / W</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Số</span>
+            <span class="control-label" data-i18n="controlNumbers">Số</span>
             <span class="control-key">0-9</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Dấu sao</span>
+            <span class="control-label" data-i18n="controlStar">Dấu sao</span>
             <span class="control-key">* / E</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Dấu thăng</span>
+            <span class="control-label" data-i18n="controlHash">Dấu thăng</span>
             <span class="control-key"># / R</span>
         </div>
         <div class="control-item">
-            <span class="control-label">Menu</span>
+            <span class="control-label" data-i18n="controlMenu">Menu</span>
             <span class="control-key">Esc</span>
         </div>
     </div>
@@ -1211,7 +1211,7 @@
         <div id="loading">
             <div class="loading-icon">🎮</div>
             <div class="loading-content">
-                <div class="loading-text" id="loading-text">Đang khởi động...</div>
+                <div class="loading-text" id="loading-text" data-i18n="loadingStartup">Đang khởi động...</div>
                 <div class="progress-container">
                     <div class="progress-bar-wrapper">
                         <div class="progress-bar-fill" id="progress-bar-fill"></div>
@@ -1224,10 +1224,10 @@
                     <div class="loading-dot"></div>
                 </div>
                 <div class="loading-warning" id="loading-warning">
-                    ⚠️ <strong>LƯU Ý QUAN TRỌNG:</strong><br>
-                    • Nếu tải lâu, hãy nhấn nút "Quay lại" ở trên và chọn lại game<br>
-                    • <strong>KHÔNG</strong> nhấn F5 hoặc tải lại trang<br>
-                    • Tải lại trang sẽ khiến game bị lỗi crash!
+                    ⚠️ <strong data-i18n="loadingWarningTitle">LƯU Ý QUAN TRỌNG:</strong><br>
+                    <span data-i18n="loadingWarningLine1">• Nếu tải lâu, hãy nhấn nút "Quay lại" ở trên và chọn lại game</span><br>
+                    <span data-i18n="loadingWarningLine2">• <strong>KHÔNG</strong> nhấn F5 hoặc tải lại trang</span><br>
+                    <span data-i18n="loadingWarningLine3">• Tải lại trang sẽ khiến game bị lỗi crash!</span>
                 </div>
             </div>
         </div>
@@ -1235,7 +1235,7 @@
     
     <div id="game-crash-notice">
         <span class="notice-icon">⚠️</span>
-        <strong>Game bị crash?</strong> Nhấn "Quay lại" ở trên và chọn game lại
+        <span data-i18n="crashNoticeTitle"><strong>Game bị crash?</strong> Nhấn "Quay lại" ở trên và chọn game lại</span>
     </div>
     <div id="left-keys" class="keypad-part">
         <div class="key-grid left-grid">
@@ -1267,6 +1267,70 @@
         </div>
     </div>
     <script src="loader.js"></script>
+    <script type="module">
+      // Load translations and initialize i18n
+      (async function() {
+        const version = window.APP_VERSION || Date.now();
+        
+        try {
+          const translationsModule = await import(`./src/translations.js?v=${version}`);
+          const { getCurrentLanguage, t } = translationsModule;
+          
+          // Make t function globally available for other scripts
+          window.t = t;
+          window.getCurrentLanguage = getCurrentLanguage;
+          
+          // Update UI texts based on current language
+          function updateUITexts() {
+            const lang = getCurrentLanguage();
+            
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+              const key = el.getAttribute('data-i18n');
+              const translation = t(key);
+              
+              // Check if element has HTML content
+              if (el.innerHTML.includes('<br>') || el.innerHTML.includes('<strong>')) {
+                el.innerHTML = translation;
+              } else {
+                el.textContent = translation;
+              }
+            });
+            
+            // Update page title
+            const titleKey = document.querySelector('[data-i18n-title]')?.getAttribute('data-i18n-title');
+            if (titleKey) {
+              document.title = lang === 'vi' ? 'Game Tuổi Thơ - Đang chơi game' : 'Retro Java Games - Playing Game';
+            }
+            
+            // Update back button with arrow
+            const backBtn = document.getElementById('back-btn');
+            if (backBtn) {
+              backBtn.textContent = '← ' + t('backButton').replace('← ', '');
+            }
+            
+            // Update controls toggle button
+            const controlsToggle = document.getElementById('controls-toggle');
+            if (controlsToggle) {
+              const isOpen = document.getElementById('controls-panel').classList.contains('show');
+              controlsToggle.textContent = isOpen ? t('controlsOpen') : t('controlsClose');
+            }
+          }
+          
+          // Listen for language changes
+          window.addEventListener('languageChanged', updateUITexts);
+          
+          // Initialize on load
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateUITexts);
+          } else {
+            updateUITexts();
+          }
+        } catch (error) {
+          console.error('Failed to load translations:', error);
+        }
+      })();
+    </script>
     <script>
         // Theme toggle functionality
         const themeToggleRun = document.getElementById('theme-toggle-run');
@@ -1299,7 +1363,12 @@
         document.getElementById('controls-toggle').addEventListener('click', function() {
             const panel = document.getElementById('controls-panel');
             panel.classList.toggle('show');
-            this.textContent = panel.classList.contains('show') ? '✕ Đóng' : '🎮 Điều khiển';
+            // Use global t function if available
+            if (window.t) {
+                this.textContent = panel.classList.contains('show') ? window.t('controlsOpen') : window.t('controlsClose');
+            } else {
+                this.textContent = panel.classList.contains('show') ? '✕ Đóng' : '🎮 Điều khiển';
+            }
         });
         
         // Prevent F5 refresh and warn user
@@ -1310,9 +1379,12 @@
             if ((e.keyCode === 116) || (e.ctrlKey && e.keyCode === 82)) {
                 e.preventDefault();
                 if (!gameLoaded) {
-                    alert('⚠️ CẢNH BÁO!\n\nKHÔNG được tải lại trang khi đang load game!\n\nNếu muốn tải lại, hãy:\n1. Nhấn nút "Quay lại" ở góc trên\n2. Chọn lại game từ trang chủ\n\nTải lại trang sẽ khiến game bị crash!');
+                    // Use global t function if available
+                    const message = window.t ? window.t('f5WarningLoading') : '⚠️ CẢNH BÁO!\n\nKHÔNG được tải lại trang khi đang load game!\n\nNếu muốn tải lại, hãy:\n1. Nhấn nút "Quay lại" ở góc trên\n2. Chọn lại game từ trang chủ\n\nTải lại trang sẽ khiến game bị crash!';
+                    alert(message);
                 } else {
-                    if (confirm('⚠️ Bạn có chắc muốn tải lại trang?\n\nĐiều này có thể khiến game bị lỗi!\n\nBấm "Quay lại" để về trang chủ an toàn hơn.')) {
+                    const message = window.t ? window.t('f5WarningLoaded') : '⚠️ Bạn có chắc muốn tải lại trang?\n\nĐiều này có thể khiến game bị lỗi!\n\nBấm "Quay lại" để về trang chủ an toàn hơn.';
+                    if (confirm(message)) {
                         location.reload();
                     }
                 }
@@ -1323,7 +1395,8 @@
         window.addEventListener('beforeunload', function(e) {
             if (!gameLoaded) {
                 e.preventDefault();
-                e.returnValue = 'Game đang tải. Bạn có chắc muốn rời khỏi trang?';
+                const message = window.t ? window.t('beforeUnloadWarning') : 'Game đang tải. Bạn có chắc muốn rời khỏi trang?';
+                e.returnValue = message;
                 return e.returnValue;
             }
         });
