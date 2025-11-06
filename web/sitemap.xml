@@ -5,25 +5,154 @@
   <!-- Trang chủ -->
   <url>
     <loc>https://gametuoitho.cc/</loc>
-    <lastmod>2025-10-23</lastmod>
+    <lastmod>2025-11-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   
-  <!-- Trang danh sách game -->
-  <url>
-    <loc>https://gametuoitho.cc/web/</loc>
-    <lastmod>2025-10-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
   <!-- Trang chơi game -->
   <url>
-    <loc>https://gametuoitho.cc/web/run.html</loc>
-    <lastmod>2025-10-23</lastmod>
+    <loc>https://gametuoitho.cc/run</loc>
+    <lastmod>2025-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Diamond Rush -->
+  <url>
+    <loc>https://gametuoitho.cc/diamond-rush</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Disco -->
+  <url>
+    <loc>https://gametuoitho.cc/disco</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Ninja School 2 -->
+  <url>
+    <loc>https://gametuoitho.cc/ninja-school-2</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Ninja School 3 -->
+  <url>
+    <loc>https://gametuoitho.cc/ninja-school-3</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Worms -->
+  <url>
+    <loc>https://gametuoitho.cc/worms</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Bounce Tales -->
+  <url>
+    <loc>https://gametuoitho.cc/bounce-tales</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Prince of Persia -->
+  <url>
+    <loc>https://gametuoitho.cc/prince-of-persia</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Assassin's Creed Brotherhood -->
+  <url>
+    <loc>https://gametuoitho.cc/assassins-creed-brotherhood</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Robinson Crusoe: Shipwrecked -->
+  <url>
+    <loc>https://gametuoitho.cc/robinsonCrusoeShipwrecked</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Stranded 2 -->
+  <url>
+    <loc>https://gametuoitho.cc/stranded2</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Kung Fu Panda -->
+  <url>
+    <loc>https://gametuoitho.cc/kung-fu-panda</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Bo Lac Thoi Tien Su -->
+  <url>
+    <loc>https://gametuoitho.cc/bo-lac-thoi-tien-su</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Hugo Food Fight -->
+  <url>
+    <loc>https://gametuoitho.cc/hugo-food-fight</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Bobby Carrot -->
+  <url>
+    <loc>https://gametuoitho.cc/bobby-carrot</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Thach Sanh -->
+  <url>
+    <loc>https://gametuoitho.cc/thach-sanh</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Nobita va Truyen Thuyet Nguoi Ca -->
+  <url>
+    <loc>https://gametuoitho.cc/nobita-va-truyen-thuyet-nguoi-ca</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Con Lon Thien Tinh Su -->
+  <url>
+    <loc>https://gametuoitho.cc/con-lon-thien-tinh-su</loc>
+    <lastmod>2025-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
 
 </urlset>

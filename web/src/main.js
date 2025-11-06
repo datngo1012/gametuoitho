@@ -495,7 +495,7 @@ async function init() {
 
     updateProgress(50, "Đang tải game...");
 
-    const lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
+    const lib = await cheerpjRunLibrary(cheerpjWebRoot+"/lib.jar");
 
     updateProgress(70, "Đang chuẩn bị...");
 

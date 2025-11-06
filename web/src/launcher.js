@@ -34,7 +34,7 @@ async function initializeLibraries() {
     if (loadingText) loadingText.textContent = t('loadingStartup');
     if (progressBar) progressBar.style.width = "30%";
 
-    lib = await cheerpjRunLibrary(cheerpjWebRoot+"/freej2me-web.jar");
+    lib = await cheerpjRunLibrary(cheerpjWebRoot+"/lib.jar");
 
     if (loadingText) loadingText.textContent = t('loadingConfig');
     if (progressBar) progressBar.style.width = "50%";
@@ -222,18 +222,37 @@ async function loadGamesFromJson() {
         }
         const gamesList = await response.json();
         
-        // Check if current page is diamond-rush.html
+        // Check if current page is a specific game page
         const currentPath = window.location.pathname;
-        const isDiamondRushPage = currentPath.includes('diamond-rush') || currentPath.includes('diamond-rush.html');
         
-        if (isDiamondRushPage) {
-            // Filter to only include Diamond Rush game
-            const diamondRushGames = gamesList.filter(game => {
-                const gameName = game.name.toLowerCase();
-                return gameName.includes('diamond') && gameName.includes('rush');
-            });
-            console.log('Diamond Rush page detected, filtering to Diamond Rush games only:', diamondRushGames);
-            return diamondRushGames;
+        // Map of page slugs to game IDs
+        const gamePageMap = {
+            'diamond-rush': 'DiamondRush',
+            'disco': 'Disco',
+            'ninja-school-2': 'NinjaSchool2',
+            'ninja-school-3': 'NinjaSchool3',
+            'worms': 'Worms',
+            'bounce-tales': 'BounceTales',
+            'prince-of-persia': 'PrinceOfPersia',
+            'assassins-creed-brotherhood': 'AssassinCreedBrotherhood',
+            'robinsonCrusoeShipwrecked': 'RobinsonCrusoeShipwrecked',
+            'stranded2': 'Stranded2MysteriesOfTime',
+            'kung-fu-panda': 'KungFuPanda',
+            'bo-lac-thoi-tien-su': 'TribalPrehistoric',
+            'hugo-food-fight': 'HugoFoodFight',
+            'bobby-carrot': 'BobbyCarrot',
+            'thach-sanh': 'ThachSanh',
+            'nobita-va-truyen-thuyet-nguoi-ca': 'NobitaMermaidLegend',
+            'con-lon-thien-tinh-su': 'ConLonThienTinhSu'
+        };
+        
+        // Check if current path matches any game page
+        for (const [pageSlug, gameId] of Object.entries(gamePageMap)) {
+            if (currentPath.includes(pageSlug)) {
+                const filteredGames = gamesList.filter(game => game.id === gameId);
+                console.log(`${pageSlug} page detected, filtering to ${gameId} only:`, filteredGames);
+                return filteredGames;
+            }
         }
         
         return gamesList;
@@ -587,23 +606,11 @@ function fillGamesList(games, uploadedGames = []) {
         const emptyState = document.createElement("div");
         emptyState.className = "empty-state";
         
-        // Check if this is diamond-rush page
-        const currentPath = window.location.pathname;
-        const isDiamondRushPage = currentPath.includes('diamond-rush') || currentPath.includes('diamond-rush.html');
-        
-        if (isDiamondRushPage) {
-            emptyState.innerHTML = `
-                <div class="empty-state-icon">💎</div>
-                <div class="empty-state-text">Không tìm thấy Diamond Rush</div>
-                <div class="empty-state-subtext">Vui lòng kiểm tra file games/list.json có chứa game Diamond Rush</div>
-            `;
-        } else {
-            emptyState.innerHTML = `
-                <div class="empty-state-icon">🎮</div>
-                <div class="empty-state-text">Chưa có game nào</div>
-                <div class="empty-state-subtext">Vui lòng kiểm tra file games/list.json hoặc tải game lên</div>
-            `;
-        }
+        emptyState.innerHTML = `
+            <div class="empty-state-icon">🎮</div>
+            <div class="empty-state-text">Không tìm thấy game</div>
+            <div class="empty-state-subtext">Vui lòng kiểm tra file games/list.json hoặc tải game lên</div>
+        `;
         
         container.appendChild(emptyState);
         return;
@@ -1040,28 +1047,21 @@ async function reloadUI() {
     const allGames = await loadGames();
     
     // Separate uploaded games from pre-installed games
-    const preInstalledGameIds = (await loadGamesFromJson()).map(g => g.name.toLowerCase());
+    const preInstalledGameIds = (await loadGamesFromJson()).map(g => g.id || g.name.toLowerCase());
     
     state.games = [];
     state.uploadedGames = [];
     
-    // Check if current page is diamond-rush.html
-    const currentPath = window.location.pathname;
-    const isDiamondRushPage = currentPath.includes('diamond-rush') || currentPath.includes('diamond-rush.html');
-    
     for (const game of allGames) {
         const gameNameLower = game.name.toLowerCase();
-        const isPreInstalled = preInstalledGameIds.some(pid => 
-            gameNameLower.includes(pid) || pid.includes(gameNameLower)
-        );
-        
-        // If this is Diamond Rush page, only show Diamond Rush games
-        if (isDiamondRushPage) {
-            const isDiamondRush = gameNameLower.includes('diamond') && gameNameLower.includes('rush');
-            if (!isDiamondRush) {
-                continue; // Skip non-Diamond Rush games
-            }
-        }
+        const gameAppIdLower = game.appId.toLowerCase();
+        const isPreInstalled = preInstalledGameIds.some(pid => {
+            const pidLower = pid.toLowerCase();
+            return gameNameLower.includes(pidLower) || 
+                   pidLower.includes(gameNameLower) ||
+                   gameAppIdLower.includes(pidLower) ||
+                   pidLower.includes(gameAppIdLower);
+        });
         
         if (isPreInstalled) {
             state.games.push(game);
@@ -1071,7 +1071,11 @@ async function reloadUI() {
     }
     
     fillGamesList(state.games, state.uploadedGames);
-    setupAddMode();
+    
+    const currentPath = window.location.pathname;
+    if (currentPath === '/' || currentPath === '/index.html') {
+        setupAddMode();
+    }
 }
 
 async function doUninstallGame(appId) {
@@ -1130,12 +1134,8 @@ function setupGameSearch(games) {
     
     if (!searchInput) return;
     
-    // Check if this is diamond-rush page and hide search if only one game
-    const currentPath = window.location.pathname;
-    const isDiamondRushPage = currentPath.includes('diamond-rush') || currentPath.includes('diamond-rush.html');
-    
-    if (isDiamondRushPage && games.length <= 1) {
-        // Hide search container on Diamond Rush page if there's only one game
+    // Hide search if only one game (for single game pages)
+    if (games.length <= 1) {
         const searchContainer = searchInput.closest('.search-container') || searchInput.closest('.game-info-container');
         if (searchContainer) {
             searchContainer.style.display = 'none';
