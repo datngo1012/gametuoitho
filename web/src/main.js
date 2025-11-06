@@ -16,7 +16,7 @@ import midiBridgeNatives from "../libjs/libmidibridge.js";
 const evtQueue = new EventQueue();
 const sp = new URLSearchParams(location.search);
 
-const cheerpjWebRoot = '/app'+location.pathname.replace(/\/[^/]*$/,'');
+const cheerpjWebRoot = '/app';
 
 let isMobile = sp.get('mobile');
 
