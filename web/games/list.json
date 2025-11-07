@@ -250,5 +250,19 @@
     "gameplay_en": "Action, unleash magical skills, upgrade character and fight bosses through an emotional storyline.",
     "tags": ["ARPG", "Tiên hiệp", "Kiếm hiệp", "Tình cảm"],
     "tags_en": ["ARPG", "Martial Arts", "Wuxia", "Romance"]
+  },
+  {
+    "id": "HoaAn",
+    "filename": "hoa_an3c1.jar",
+    "name": "Hỏa Ấn",
+    "name_en": "Fire Seal",
+    "jadFile": null,
+    "settings": { "phone": "Nokia", "width": "240", "height": "320" },
+    "description": "Game nhập vai hành động Trung Quốc, vào vai hiệp khách phiêu lưu trừ gian diệt ác.",
+    "description_en": "Chinese action RPG, play as a hero adventuring to eliminate evil.",
+    "gameplay": "Chiến đấu, học kỹ năng võ thuật, làm nhiệm vụ và khám phá thế giới mở.",
+    "gameplay_en": "Fight, learn martial arts skills, complete quests and explore an open world.",
+    "tags": ["Nhập vai", "Hành động", "Kiếm hiệp", "Phiêu lưu"],
+    "tags_en": ["RPG", "Action", "Wuxia", "Adventure"]
   }
 ]

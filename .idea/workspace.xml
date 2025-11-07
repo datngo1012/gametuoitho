@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ad2c335-69a2-4af1-b4f9-f76e2abce638" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/javax/microedition/io/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/javax/microedition/io/Connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/javax/microedition/io/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/javax/microedition/io/Connector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/javax/microedition/io/HttpConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/javax/microedition/io/HttpConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/javax/microedition/io/InputConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/javax/microedition/io/InputConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/javax/microedition/io/OutputConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/javax/microedition/io/OutputConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/freej2me-web.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/lib.jar" beforeDir="false" afterPath="$PROJECT_DIR$/web/lib.jar" afterDir="false" />
-    </list>
+    <list default="true" id="8ad2c335-69a2-4af1-b4f9-f76e2abce638" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +52,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762486946400</updated>
-      <workItem from="1762486947930" duration="1810000" />
+      <workItem from="1762486947930" duration="2003000" />
     </task>
     <servers />
   </component>
