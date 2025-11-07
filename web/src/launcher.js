@@ -1047,7 +1047,7 @@ async function reloadUI() {
     const allGames = await loadGames();
     
     // Separate uploaded games from pre-installed games
-    const preInstalledGameIds = (await loadGamesFromJson()).map(g => g.id || g.name.toLowerCase());
+    const preInstalledGameIds = (await loadGamesFromJson()).map(g => g.name.toLowerCase());
     
     state.games = [];
     state.uploadedGames = [];
