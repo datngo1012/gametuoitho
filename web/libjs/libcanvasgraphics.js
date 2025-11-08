@@ -105,6 +105,16 @@ ctx.canvas.width = 10; ctx.canvas.height = 10;
 //document.body.appendChild(ctx.canvas);
 
 async function transformBitmapOrCanvas(src, sx, sy, sw, sh, a90, mirror) {
+  // Validate dimensions to prevent createImageBitmap errors
+  if (sw <= 0 || sh <= 0) {
+    console.warn(`Invalid dimensions for transformBitmapOrCanvas: sw=${sw}, sh=${sh}`);
+    // Return a 1x1 transparent bitmap as fallback
+    ctx.canvas.width = 1;
+    ctx.canvas.height = 1;
+    ctx.clearRect(0, 0, 1, 1);
+    return await createImageBitmap(ctx.canvas);
+  }
+
   if (a90 == 0 && !mirror) {
     return await createImageBitmap(src, sx, sy, sw, sh);
   }
@@ -144,6 +154,13 @@ function castToInt8(uint8) {
 
 const CanvasImage = {
   async Java_pl_zb3_freej2me_bridge_graphics_CanvasImage_bitmapFromColor(lib, width, height, r, g, b, a) {
+    // Validate dimensions
+    if (width <= 0 || height <= 0) {
+      console.warn(`Invalid dimensions for bitmapFromColor: width=${width}, height=${height}`);
+      width = Math.max(1, width);
+      height = Math.max(1, height);
+    }
+
     ctx.canvas.width = width; ctx.canvas.height = height;
 
     // ctx.clearRect(0, 0, width, height); // width always resets it.. I guess
@@ -168,6 +185,13 @@ const CanvasImage = {
     return await transformBitmapOrCanvas(bmp, sx, sy, sw, sh, a90, mirror);
   },
   async Java_pl_zb3_freej2me_bridge_graphics_CanvasImage_bitmapFromRGBAData(lib, rgba, width, height) {
+    // Validate dimensions
+    if (width <= 0 || height <= 0) {
+      console.warn(`Invalid dimensions for bitmapFromRGBAData: width=${width}, height=${height}`);
+      width = Math.max(1, width);
+      height = Math.max(1, height);
+    }
+
     ctx.canvas.width = width; ctx.canvas.height = height;
 
     const imageData = new ImageData(castToUint8Clamped(rgba), width, height);
@@ -176,6 +200,13 @@ const CanvasImage = {
     return await createImageBitmap(ctx.canvas);
   },
   async Java_pl_zb3_freej2me_bridge_graphics_CanvasImage_getRGBAFromBitmap(lib, bmp, sx, sy, width, height) {
+    // Validate dimensions
+    if (width <= 0 || height <= 0) {
+      console.warn(`Invalid dimensions for getRGBAFromBitmap: width=${width}, height=${height}`);
+      width = Math.max(1, width);
+      height = Math.max(1, height);
+    }
+
     ctx.canvas.width = width; ctx.canvas.height = height;
     ctx.drawImage(bmp, sx, sy, width, height, 0, 0, width, height);
 

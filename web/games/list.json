@@ -264,5 +264,37 @@
     "gameplay_en": "Fight, learn martial arts skills, complete quests and explore an open world.",
     "tags": ["Nhập vai", "Hành động", "Kiếm hiệp", "Phiêu lưu"],
     "tags_en": ["RPG", "Action", "Wuxia", "Adventure"]
+  },
+  {
+    "id": "Loan12SuQuan",
+    "filename": "loan-12-su-quan.jar",
+    "name": "Loạn 12 Sứ Quân",
+    "name_en": "The Twelve Warlords",
+    "jadFile": null,
+    "settings": {
+    "phone": "Nokia",
+    "width": "240",
+    "height": "320"
+    },
+    "description": "Game mobile Việt lấy bối cảnh năm 966, sau cái chết của Ngô Quyền, với 12 sứ quân tranh quyền. Người chơi là tướng dưới trướng Đinh Bộ Lĩnh, dẹp loạn, thống nhất đất nước, gặp nhân vật lịch sử như Ngô Xướng Xí, Bùi Quang Dũng qua trận đánh.",
+    "description_en": "Vietnamese mobile game set in 966 AD after Ngô Quyền's death, with 12 warlords fighting for power. Play as a general under Đinh Bộ Lĩnh to unify the nation and meet figures like Ngô Xướng Xí and Bùi Quang Dũng in battles.",
+    "gameplay": "Kết hợp RPG và match-3. Chọn 6 nhân vật đồng hành với tuyệt chiêu, luyện tập với Lưu Cơ. Trong trận, thay phiên xếp biểu tượng: kiếm tấn công, tim hồi máu, vàng tài nguyên, bánh chưng lương thực, sách kinh nghiệm, xoáy âm dương năng lượng. Xếp 4+ được lượt thêm. Theo dõi máu và lương thực. Thắng nhận vàng, kinh nghiệm để lên cấp, mua vật phẩm như Quỷ diện giáp.",
+    "gameplay_en": "Blends RPG and match-3. Select from 6 companions with unique moves, train with Lưu Cơ. In battles, alternate matching icons: swords attack, hearts heal, gold resources, rice cakes food, books experience, yin-yang energy. Match 4+ for extra turn. Monitor health/food. Wins give gold/experience for leveling and items like Ghost Face Armor.",
+    "tags": ["Chiến thuật", "Lịch sử Việt Nam", "Thời gian thực", "Xây dựng", "Quân sự"],
+    "tags_en": ["Strategy", "Vietnamese History", "Real-time", "Building", "Military"]
+  },
+  {
+    "id": "ZombieInfection2",
+    "filename": "ZombieInfection2_240x320.jar",
+    "name": "Zombie Infection 2",
+    "name_en": "Zombie Infection 2",
+    "jadFile": null,
+    "settings": { "phone": "Nokia", "width": "240", "height": "320" },
+    "description": "Tiếp nối phần đầu, người chơi vào vai nhân vật chính chiến đấu chống lại lũ zombie trong nhiều bối cảnh khác nhau, từ thành phố đổ nát đến khu nghiên cứu bí mật. Đồ họa và cơ chế chiến đấu được cải tiến rõ rệt.",
+    "description_en": "The sequel to Zombie Infection. Players fight hordes of zombies across diverse environments — from ruined cities to secret labs — with improved graphics and enhanced combat mechanics.",
+    "gameplay": "Điều khiển nhân vật di chuyển, bắn zombie, sử dụng các loại vũ khí khác nhau và giải cứu những người sống sót. Mỗi màn chơi có boss riêng và yêu cầu người chơi sử dụng chiến thuật hợp lý để sinh tồn.",
+    "gameplay_en": "Control the character to move, shoot zombies, use various weapons, and rescue survivors. Each level features unique bosses and challenges that require tactical play to survive.",
+    "tags": ["Hành động", "Bắn súng", "Zombie", "Sinh tồn"],
+    "tags_en": ["Action", "Shooter", "Zombie", "Survival"]
   }
 ]
