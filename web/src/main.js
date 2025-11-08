@@ -1,6 +1,6 @@
 import { LibMedia } from "../libmedia/libmedia.js";
 import { LibMidi, createUnlockingAudioContext } from "../libmidi/libmidi.js";
-import { codeMap, KeyRepeatManager, T9InputManager } from "./key.js";
+import { codeMap, KeyRepeatManager, T9InputManager } from "./k.js";
 import { EventQueue } from "./eventqueue.js";
 import { initKbdListeners, setKbdHandler, kbdWidth, kbdHeight } from "./screenKbd.js";
 
