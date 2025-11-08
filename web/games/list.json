@@ -56,10 +56,10 @@
     "tags_en": ["RPG", "Action", "Ninja"]
   },
   {
-    "id": "Worms2007",
+    "id": "Worms_2007",
     "filename": "worms_2007-15499.jar",
-    "name": "Worms 2007",
-    "name_en": "Worms 2007",
+    "name": "Worms_2007",
+    "name_en": "Worms_2007",
     "jadFile": null,
     "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "[Mới]Game chiến thuật theo lượt vui nhộn, nơi đội giun sử dụng vũ khí điên rồ để hạ đối thủ.",
@@ -310,5 +310,21 @@
     "gameplay_en": "Control the character to move, shoot zombies, use various weapons, and rescue survivors. Each level features unique bosses and challenges that require tactical play to survive.",
     "tags": ["Hành động", "Bắn súng", "Zombie", "Sinh tồn"],
     "tags_en": ["Action", "Shooter", "Zombie", "Survival"]
+  },
+  {
+    "id": "StreetFootball",
+    "filename": "ultimatest_1xmd6399.jar",
+    "name": "Street Football",
+    "name_en": "Street Football",
+    "jadFile": null,
+    "settings": { "phone": "SonyEricsson", "width": "176", "height": "220" },
+    "description": "Trải nghiệm không khí bóng đá đường phố sôi động với các cầu thủ phong cách freestyle. Game mang đến nhịp độ nhanh, sân nhỏ, kỹ thuật đẹp mắt và không khí tự do đặc trưng của bóng đá đường phố.",
+    "description_en": "Experience the exciting atmosphere of street soccer with stylish freestyle players. The game features fast-paced matches, small courts, impressive tricks, and the free spirit of street football.",
+    "gameplay": "Điều khiển cầu thủ thi đấu 3v3 hoặc 5v5 trên sân nhỏ, thực hiện kỹ thuật chuyền, sút, rê bóng và biểu diễn skill để ghi bàn. Mỗi nhân vật có chỉ số và phong cách riêng, người chơi có thể mở khóa sân và đội mới khi chiến thắng.",
+    "gameplay_en": "Control players in 3v3 or 5v5 matches on small street courts. Pass, shoot, dribble, and perform freestyle skills to score. Each character has unique stats and style, and new arenas or teams unlock as you progress.",
+    "tags": ["Thể thao", "Bóng đá", "Hành động", "Đường phố"],
+    "tags_en": ["Sports", "Football", "Action", "Street"],
+    "developer": "Gameloft",
+    "year": "2007"
   }
 ]
