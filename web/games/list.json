@@ -56,12 +56,26 @@
     "tags_en": ["RPG", "Action", "Ninja"]
   },
   {
+    "id": "Worms2007",
+    "filename": "worms_2007-15499.jar",
+    "name": "Worms 2007",
+    "name_en": "Worms 2007",
+    "jadFile": null,
+    "settings": { "phone": "Nokia", "width": "240", "height": "320" },
+    "description": "[Mới]Game chiến thuật theo lượt vui nhộn, nơi đội giun sử dụng vũ khí điên rồ để hạ đối thủ.",
+    "description_en": "Fun turn-based strategy game where worm teams use crazy weapons to defeat opponents.",
+    "gameplay": "Chọn giun, chọn vũ khí, căn góc và lực bắn để tiêu diệt địch trong bản đồ 2D có yếu tố vật lý.",
+    "gameplay_en": "Select worm, choose weapon, aim angle and power to eliminate enemies in physics-based 2D maps.",
+    "tags": ["Chiến lược", "Theo lượt", "Hài hước"],
+    "tags_en": ["Strategy", "Turn-based", "Humorous"]
+  },
+  {
     "id": "Worms",
     "filename": "Worms_176x220.jar",
     "name": "Worms",
     "name_en": "Worms",
     "jadFile": null,
-    "settings": { "phone": "Nokia", "width": "176", "height": "220" },
+    "settings": { "phone": "Nokia", "width": "240", "height": "320" },
     "description": "Game chiến thuật theo lượt vui nhộn, nơi đội giun sử dụng vũ khí điên rồ để hạ đối thủ.",
     "description_en": "Fun turn-based strategy game where worm teams use crazy weapons to defeat opponents.",
     "gameplay": "Chọn giun, chọn vũ khí, căn góc và lực bắn để tiêu diệt địch trong bản đồ 2D có yếu tố vật lý.",
