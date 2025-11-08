@@ -1,6 +1,6 @@
 import { LibMedia } from "../libmedia/libmedia.js";
 import { LibMidi, createUnlockingAudioContext } from "../libmidi/libmidi.js";
-import { codeMap, KeyRepeatManager } from "./key.js";
+import { codeMap, KeyRepeatManager, T9InputManager } from "./key.js";
 import { EventQueue } from "./eventqueue.js";
 import { initKbdListeners, setKbdHandler, kbdWidth, kbdHeight } from "./screenKbd.js";
 
@@ -27,8 +27,42 @@ let fractionScale = sp.get('fractionScale') || (localStorage && localStorage.get
 let scaleSet = false;
 
 const keyRepeatManager = new KeyRepeatManager();
+const t9InputManager = new T9InputManager();
 
 window.evtQueue = evtQueue;
+
+// Hàm hiển thị chế độ T9 (ABC hoặc 123)
+function showT9ModeIndicator(modeText) {
+    // Tìm hoặc tạo indicator element
+    let indicator = document.getElementById('t9-mode-indicator');
+    if (!indicator) {
+        indicator = document.createElement('div');
+        indicator.id = 't9-mode-indicator';
+        indicator.style.cssText = `
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 9999;
+            transition: opacity 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        `;
+        document.body.appendChild(indicator);
+    }
+    
+    indicator.textContent = `T9: ${modeText}`;
+    indicator.style.opacity = '1';
+    
+    // Fade out sau 2 giây
+    setTimeout(() => {
+        indicator.style.opacity = '0.5';
+    }, 2000);
+}
 
 function autoscale() {
     if (!scaleSet) return;
@@ -67,13 +101,79 @@ function setListeners() {
     let mouseDown = false;
     let noMouse = false;
 
+    // Hiển thị chế độ T9 hiện tại
+    t9InputManager.registerModeChange((mode) => {
+        const modeText = mode === T9InputManager.INPUT_MODE_TEXT ? 'ABC' : '123';
+        console.log(`📱 T9 Mode: ${modeText}`);
+        // Có thể thêm UI indicator ở đây
+        showT9ModeIndicator(modeText);
+    });
+
+    // Xử lý khi T9 nhập ký tự
+    t9InputManager.register((char, isPreview) => {
+        console.log(`T9 Input: "${char}" ${isPreview ? '(preview)' : '(confirmed)'}`);
+        // Gửi ký tự vào game
+        if (!isPreview) {
+            // Chỉ gửi khi đã confirm
+            const charCode = char.charCodeAt(0);
+            evtQueue.queueEvent({
+                kind: 'keydown',
+                args: [charCode, charCode, false, false]
+            });
+            // Auto release sau một chút
+            setTimeout(() => {
+                evtQueue.queueEvent({
+                    kind: 'keyup',
+                    args: [charCode, charCode, false, false]
+                });
+            }, 50);
+        }
+    });
+
     setKbdHandler((isDown, key) => {
+        // Xử lý phím # để toggle T9 mode
+        if (key === 'NumpadHash' || key === 'NumpadDivide') {
+            if (isDown) {
+                t9InputManager.toggleInputMode();
+            }
+            return;
+        }
+
+        // Xử lý phím số trong T9 mode
+        if (isDown && key.startsWith('Digit')) {
+            const digit = key.substring(5); // '0'-'9'
+            if (t9InputManager.getInputMode() === T9InputManager.INPUT_MODE_TEXT) {
+                t9InputManager.handleDigitPress(digit);
+                return; // Không gửi phím số thông thường
+            }
+        }
+
+        // Xử lý phím thông thường
         const symbol = key.startsWith('Digit') ? key.substring(5) : '\x00';
         keyRepeatManager.post(isDown, key, {symbol, ctrlKey: false, shiftKey: false});
     });
 
     function handleKeyEvent(e) {
         const isDown = e.type === 'keydown';
+
+        // Xử lý phím # để toggle T9 mode
+        if (e.code === 'NumpadDivide' || e.key === '#') {
+            if (isDown) {
+                t9InputManager.toggleInputMode();
+            }
+            e.preventDefault();
+            return;
+        }
+
+        // Xử lý phím số trong T9 mode
+        if (isDown && e.code.startsWith('Digit')) {
+            const digit = e.code.substring(5);
+            if (t9InputManager.getInputMode() === T9InputManager.INPUT_MODE_TEXT) {
+                t9InputManager.handleDigitPress(digit);
+                e.preventDefault();
+                return;
+            }
+        }
 
         if (codeMap[e.code]) {
             keyRepeatManager.post(isDown, e.code, {

@@ -63,7 +63,159 @@ export const codeMap = {
     'KeyZ': 90,
 };
 
+// T9 input mapping - Map số điện thoại sang chữ cái
+const t9Map = {
+    '0': [' ', '0'],
+    '1': ['.', ',', '?', '!', '\'', '"', '1', '-', '(', ')'],
+    '2': ['a', 'b', 'c', '2'],
+    '3': ['d', 'e', 'f', '3'],
+    '4': ['g', 'h', 'i', '4'],
+    '5': ['j', 'k', 'l', '5'],
+    '6': ['m', 'n', 'o', '6'],
+    '7': ['p', 'q', 'r', 's', '7'],
+    '8': ['t', 'u', 'v', '8'],
+    '9': ['w', 'x', 'y', 'z', '9'],
+};
 
+export class T9InputManager {
+    static INPUT_MODE_NUMERIC = 'numeric';
+    static INPUT_MODE_TEXT = 'text';
+    static CHAR_TIMEOUT = 1000; // 1 giây để confirm ký tự
+
+    inputMode = T9InputManager.INPUT_MODE_NUMERIC;
+    currentKey = null;
+    currentIndex = 0;
+    charTimeoutId = null;
+    listener = null;
+    modeChangeListener = null;
+
+    /**
+     * Đăng ký listener để nhận sự kiện khi có ký tự được nhập
+     * @param {(char: string) => void} callback - Callback nhận ký tự được nhập
+     */
+    register(callback) {
+        if (callback !== null && typeof callback !== 'function') {
+            console.error("T9InputManager.register: Provided callback is not a function or null.");
+            return;
+        }
+        this.listener = callback;
+    }
+
+    /**
+     * Đăng ký listener để nhận sự kiện khi chế độ nhập thay đổi
+     * @param {(mode: string) => void} callback - Callback nhận chế độ mới
+     */
+    registerModeChange(callback) {
+        if (callback !== null && typeof callback !== 'function') {
+            console.error("T9InputManager.registerModeChange: Provided callback is not a function or null.");
+            return;
+        }
+        this.modeChangeListener = callback;
+    }
+
+    /**
+     * Toggle giữa chế độ số và chữ (khi nhấn #)
+     */
+    toggleInputMode() {
+        if (this.inputMode === T9InputManager.INPUT_MODE_NUMERIC) {
+            this.inputMode = T9InputManager.INPUT_MODE_TEXT;
+        } else {
+            this.inputMode = T9InputManager.INPUT_MODE_NUMERIC;
+        }
+        
+        this.reset();
+        
+        if (this.modeChangeListener) {
+            this.modeChangeListener(this.inputMode);
+        }
+        
+        console.log(`T9 Input Mode: ${this.inputMode}`);
+    }
+
+    /**
+     * Xử lý khi phím số được nhấn
+     * @param {string} digit - Số từ '0' đến '9'
+     */
+    handleDigitPress(digit) {
+        if (this.inputMode === T9InputManager.INPUT_MODE_NUMERIC) {
+            // Ở chế độ số, trả về số luôn
+            if (this.listener) {
+                this.listener(digit);
+            }
+            return;
+        }
+
+        // Chế độ text - T9 input
+        const chars = t9Map[digit];
+        if (!chars) return;
+
+        if (this.currentKey === digit) {
+            // Cùng phím, cycle đến ký tự tiếp theo
+            this.currentIndex = (this.currentIndex + 1) % chars.length;
+        } else {
+            // Phím khác, confirm ký tự cũ và bắt đầu phím mới
+            if (this.currentKey !== null) {
+                this.confirmCurrentChar();
+            }
+            this.currentKey = digit;
+            this.currentIndex = 0;
+        }
+
+        // Emit ký tự tạm thời (preview)
+        if (this.listener) {
+            this.listener(chars[this.currentIndex], true); // true = preview mode
+        }
+
+        // Reset timeout
+        this.resetTimeout();
+    }
+
+    /**
+     * Reset timeout để confirm ký tự sau 1 khoảng thời gian
+     */
+    resetTimeout() {
+        if (this.charTimeoutId) {
+            clearTimeout(this.charTimeoutId);
+        }
+        this.charTimeoutId = setTimeout(() => {
+            this.confirmCurrentChar();
+        }, T9InputManager.CHAR_TIMEOUT);
+    }
+
+    /**
+     * Xác nhận ký tự hiện tại
+     */
+    confirmCurrentChar() {
+        if (this.currentKey === null) return;
+
+        const chars = t9Map[this.currentKey];
+        if (chars && this.listener) {
+            this.listener(chars[this.currentIndex], false); // false = confirmed
+        }
+
+        this.currentKey = null;
+        this.currentIndex = 0;
+        
+        if (this.charTimeoutId) {
+            clearTimeout(this.charTimeoutId);
+            this.charTimeoutId = null;
+        }
+    }
+
+    /**
+     * Reset trạng thái
+     */
+    reset() {
+        this.confirmCurrentChar();
+    }
+
+    /**
+     * Lấy chế độ nhập hiện tại
+     */
+    getInputMode() {
+        return this.inputMode;
+    }
+}
 
 export class KeyRepeatManager {
     static TIME_TO_FIRST_REPEAT = 500;
