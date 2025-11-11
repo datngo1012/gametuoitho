@@ -132,7 +132,8 @@ function setListeners() {
 
     setKbdHandler((isDown, key) => {
         // Xử lý phím # để toggle T9 mode
-        if (key === 'NumpadHash' || key === 'NumpadDivide') {
+        // if (key === 'NumpadHash' || key === 'NumpadDivide') {
+        if (key === 'Escape') {
             if (isDown) {
                 t9InputManager.toggleInputMode();
             }
@@ -157,7 +158,8 @@ function setListeners() {
         const isDown = e.type === 'keydown';
 
         // Xử lý phím # để toggle T9 mode
-        if (e.code === 'NumpadDivide' || e.key === '#') {
+        // if (e.code === 'NumpadDivide' || e.key === '#') {
+        if (key === 'Escape') {
             if (isDown) {
                 t9InputManager.toggleInputMode();
             }
