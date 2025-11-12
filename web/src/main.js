@@ -159,7 +159,7 @@ function setListeners() {
 
         // Xử lý phím # để toggle T9 mode
         // if (e.code === 'NumpadDivide' || e.key === '#') {
-        if (key === 'Escape') {
+        if (e.code === 'Escape') {
             if (isDown) {
                 t9InputManager.toggleInputMode();
             }
