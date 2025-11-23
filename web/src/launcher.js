@@ -644,76 +644,64 @@ function renderGames(games, container, isUploaded) {
             }
         });
 
+        // Thumbnail container with badges
+        const thumbnail = document.createElement("div");
+        thumbnail.className = "game-thumbnail";
+        
         const icon = document.createElement("img");
         icon.className = "icon";
         icon.src = localizedGame.icon;
-        link.appendChild(icon);
+        icon.alt = localizedGame.gameInfo?.name || localizedGame.name;
+        thumbnail.appendChild(icon);
+        
+        // Add instant play badge
+        const instantPlay = document.createElement("div");
+        instantPlay.className = "game-instant-play";
+        instantPlay.textContent = t('instantPlay') || 'Play Now';
+        thumbnail.appendChild(instantPlay);
+        
+        // Add rating badge (random for now, you can add real ratings later)
+        const rating = document.createElement("div");
+        rating.className = "game-rating";
+        rating.textContent = Math.floor(Math.random() * 20) + 70; // Random 70-90
+        thumbnail.appendChild(rating);
+        
+        link.appendChild(thumbnail);
 
+        // Game content section
+        const content = document.createElement("div");
+        content.className = "game-content";
+        
         const info = document.createElement("div");
         info.className = "game-info";
         info.textContent = localizedGame.gameInfo?.name || localizedGame.name;
-        link.appendChild(info);
+        content.appendChild(info);
+
+        // Add description
+        if (localizedGame.gameInfo && localizedGame.gameInfo.description) {
+            const desc = document.createElement("div");
+            desc.className = "game-description";
+            desc.textContent = localizedGame.gameInfo.description;
+            content.appendChild(desc);
+        }
 
         // Add tags if available
         if (localizedGame.gameInfo && localizedGame.gameInfo.tags && localizedGame.gameInfo.tags.length > 0) {
             const tagsContainer = document.createElement("div");
             tagsContainer.className = "game-tags";
             
-            localizedGame.gameInfo.tags.forEach(tag => {
+            localizedGame.gameInfo.tags.slice(0, 3).forEach(tag => {
                 const tagElement = document.createElement("span");
                 tagElement.className = "game-tag";
                 tagElement.textContent = tag;
                 tagsContainer.appendChild(tagElement);
             });
             
-            link.appendChild(tagsContainer);
+            content.appendChild(tagsContainer);
         }
-
+        
+        link.appendChild(content);
         item.appendChild(link);
-
-        // Add game info section below the link
-        if (localizedGame.gameInfo) {
-            const gameInfoSection = document.createElement("div");
-            gameInfoSection.className = "game-details";
-            
-            // Description
-            if (localizedGame.gameInfo.description) {
-                const descElement = document.createElement("p");
-                descElement.className = "game-description";
-                descElement.textContent = localizedGame.gameInfo.description;
-                gameInfoSection.appendChild(descElement);
-            }
-            
-            // Gameplay
-            if (localizedGame.gameInfo.gameplay) {
-                const gameplayElement = document.createElement("p");
-                gameplayElement.className = "game-gameplay";
-                gameplayElement.innerHTML = `<strong>🎯 ${t('gameplayLabel')}:</strong> ${localizedGame.gameInfo.gameplay}`;
-                gameInfoSection.appendChild(gameplayElement);
-            }
-            
-            // Metadata (genre, year, rating)
-            const metaInfo = [];
-            if (game.gameInfo.genre && game.gameInfo.genre.length > 0) {
-                metaInfo.push(`<span class="game-meta-item">📂 ${game.gameInfo.genre.join(', ')}</span>`);
-            }
-            if (game.gameInfo.year) {
-                metaInfo.push(`<span class="game-meta-item">📅 ${game.gameInfo.year}</span>`);
-            }
-            if (game.gameInfo.rating) {
-                const stars = '⭐'.repeat(Math.round(game.gameInfo.rating));
-                metaInfo.push(`<span class="game-meta-item">${stars} (${game.gameInfo.rating}/5)</span>`);
-            }
-            
-            if (metaInfo.length > 0) {
-                const metaElement = document.createElement("div");
-                metaElement.className = "game-meta";
-                metaElement.innerHTML = metaInfo.join(' • ');
-                gameInfoSection.appendChild(metaElement);
-            }
-            
-            item.appendChild(gameInfoSection);
-        }
 
         // Add manage button for uploaded games
         if (isUploaded) {

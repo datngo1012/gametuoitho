@@ -14,6 +14,7 @@ export const translations = {
     // Navigation & Buttons
     backButton: "Quay lại",
     playNow: "Chơi ngay",
+    instantPlay: "Chơi ngay",
     loading: "Đang tải...",
     controls: "Điều khiển",
     close: "Đóng",
