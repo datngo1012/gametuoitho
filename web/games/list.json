@@ -422,19 +422,5 @@
     "tags_en": ["Strategy", "Management", "Business", "Resort"],
     "developer": "Gameloft",
     "year": "2007"
-  },
-  {
-    "id": "uno",
-    "filename": "UNO_Friends_240x320.jar",
-    "name": "UNO Friends",
-    "name_en": "UNO Friends",
-    "jadFile": null,
-    "settings": { "phone": "Nokia", "width": "240", "height": "320" },
-    "description": "UNO Friends là phiên bản di động của trò chơi bài UNO nổi tiếng. Người chơi có thể tham gia vào các trận đấu bài đầy màu sắc và vui nhộn với bạn bè hoặc người chơi trực tuyến khác.",
-    "description_en": "UNO Friends is the mobile version of the famous UNO card game. Players can join colorful and fun card matches with friends or other online players.",
-    "gameplay": "Chơi bài UNO theo luật truyền thống, sử dụng các lá bài đặc biệt để thay đổi lượt chơi và chiến thắng đối thủ. Người chơi có thể tùy chỉnh bộ bài và tham gia vào các chế độ chơi khác nhau.",
-    "gameplay_en": "Play UNO according to traditional rules, using special cards to change turns and defeat opponents. Players can customize their deck and participate in different game modes.",
-    "tags": ["Bài", "Đa người chơi", "Vui nhộn", "Trò chơi xã hội"],
-    "tags_en": ["Card Game", "Multiplayer", "Casual", "Social"]
   }
 ]
