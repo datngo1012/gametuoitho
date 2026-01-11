@@ -326,5 +326,53 @@
     "tags_en": ["Sports", "Football", "Action", "Street"],
     "developer": "Gameloft",
     "year": "2007"
+  },
+  {
+    "id": "HoaAn1",
+    "filename": "Hoa-An-1-Ke-Phan-Boi.jar",
+    "name": "Hoa An 1 - Kẻ Phản Bội",
+    "name_en": "Hoa An 1 - The Betrayer",
+    "jadFile": null,
+    "settings": { "phone": "Nokia", "width": "240", "height": "320" },
+    "description": "Fire Emblem hay hỏa ấn là 1 seri game rất hay và nổi tiếng có thể nói là kinh điển của khá nhiều người đam mêm thể loại dàn trận theo lượt (TBS).Hỏa ấn khác với mấy game hành động chặt chém bình thường ở chỗ sử dụng tư duy nhiều không như những game khác chỉ cần gian lận nho nhỏ do được , Bạn chỉ vài tiếng là phá đảo nhưng với TBS số giờ chơi lên tới vài chục tiếng là chuyện thường nếu bạn chịu khó đọc qua và hiểu cốt truyện. Và trên hết khi chơi thể loại này đó là bàn phím của bạn sẽ không nhanh hỏng bằng game hành động",
+    "description_en": "Fire Emblem is a very good and famous game series, considered a classic by many fans of the turn-based strategy (TBS) genre. Fire Emblem differs from typical hack-and-slash action games by requiring more strategic thinking. Unlike other games where you can easily cheat your way through in a few hours, TBS games often take dozens of hours to complete if you take the time to read and understand the storyline. Most importantly, when playing this genre, your keyboard won't wear out as quickly as with action games.",
+    "gameplay": "Điều khiển nhân vật di chuyển, tấn công và sử dụng kỹ năng trong các trận chiến theo lượt. Người chơi cần suy nghĩ chiến thuật và lên kế hoạch cho từng bước đi của mình để đạt được chiến thắng.",
+    "gameplay_en": "Control characters to move, attack, and use skills in turn-based battles. Players need to think strategically and plan each move carefully to achieve victory.",
+    "tags": ["Nhập vai", "Chiến thuật", "Hành động", "Phưu lưu"],
+    "tags_en": ["RPG", "Strategy", "Action", "Adventure"],
+    "developer": "Gameloft",
+    "year": "2007"
+  },
+  {
+    "id": "HoaAn2",
+    "filename": "hoa_an3c2.jar",
+    "name": "Hoa An 2",
+    "name_en": "Hoa An 2 - The Betrayer",
+    "jadFile": null,
+    "settings": { "phone": "Nokia", "width": "240", "height": "320" },
+    "description": "Như ta đã biết sau chương 1 của Hảo Ấn 3, Quốc vương Accor và các cận than đã gần như chiếm lại được hoàn toàn Sofia từ tay Gailu, những tưởng mọi chuyện sẽ kết thúc khi Sofia được giải phóng hoàn toàn. Nhưng không, trận chiến thứ 2 lại tiếp tục nổ ra giữa 2 đất nước. Và lần này lại chính Wood Accor phát đọng cuộc chiến tiến vào Gailu! Lý do ư? bạn phải chon 1 trong 3 lý do, một điểm mới của trò chơi trong phần này: có vài map bạn sẽ bị đưa vào những tình huống khó xử và hệ thống sẽ cho 3 lựa chọn, việc lựa chọn này có liên quân đến diễn biến các trận sau đó nha.Có lẽ nhiều bạn khi chơi bản Hỏa Ấn 2 có chút thắc mắc về thân phận thực sự của Quốc vương Wood Accor, trong phần này sẽ có một chút bí mật được hé lộ. Thêm một cái đáng chú ý nữa là sự xuất hiện của Thánh Kiếm Thác Hỏa có liên quan đến dòng dõi Hoàng Tộc xa xưa (chưa phá băng nên cũng chưa biets cái kiếm đấy trông như thế nào",
+    "description_en": "As we know from chapter 1 of Fire Seal 3, King Accor and his close allies have nearly reclaimed Sofia from Gailu. It seemed like everything would end with Sofia's liberation. However, the second battle erupts between the two nations, this time initiated by Wood Accor invading Gailu! The reason? You must choose one of three reasons, a new feature in this part of the game: in some maps, you'll be placed in difficult situations and the system will offer three choices, which will affect subsequent battles. Many players may wonder about King Wood Accor's true identity; this part reveals some secrets. Another notable point is the appearance of the Holy Sword of Firefall, related to ancient royal lineage (haven't unlocked it yet, so I don't know what it looks like).",
+    "gameplay": "Điều khiển nhân vật di chuyển, tấn công và sử dụng kỹ năng trong các trận chiến theo lượt. Người chơi cần suy nghĩ chiến thuật và lên kế hoạch cho từng bước đi của mình để đạt được chiến thắng.",
+    "gameplay_en": "Control characters to move, attack, and use skills in turn-based battles. Players need to think strategically and plan each move carefully to achieve victory.",
+    "tags": ["Nhập vai", "Chiến thuật", "Hành động", "Phưu lưu"],
+    "tags_en": ["RPG", "Strategy", "Action", "Adventure"],
+    "developer": "Gameloft",
+    "year": "2007"
+  },
+  {
+    "id": "aoe-3",
+    "filename": "aoe-3-240x320.jar",
+    "name": "Đế Chế 3",
+    "name_en": "Age of Empires 3",
+    "jadFile": null,
+    "settings": { "phone": "Nokia", "width": "240", "height": "320" },
+    "description": "Trò chơi chiến lược thời gian thực (RTS) nổi tiếng Age of Empires 3 được chuyển thể thành phiên bản di động. Người chơi sẽ xây dựng và phát triển đế chế của mình qua các thời kỳ lịch sử, từ thời kỳ khám phá đến thời kỳ thuộc địa.",
+    "description_en": "The famous real-time strategy (RTS) game Age of Empires 3 has been adapted into a mobile version. Players will build and develop their empire through historical periods, from the Age of Discovery to the Colonial Era.",
+    "gameplay": "Xây dựng căn cứ, thu thập tài nguyên, huy động quân đội và chiến đấu chống lại các đế chế khác. Người chơi cần quản lý kinh tế và quân sự một cách hiệu quả để giành chiến thắng trong các trận đấu.",
+    "gameplay_en": "Build bases, gather resources, mobilize armies, and fight against other empires. Players need to manage their economy and military effectively to win battles.",
+    "tags": ["Chiến lược", "Thời gian thực", "Lịch sử", "Xây dựng"],
+    "tags_en": ["Strategy", "Real-time", "History", "Building"],
+    "developer": "Microsoft",
+    "year": "2007"
   }
 ]
