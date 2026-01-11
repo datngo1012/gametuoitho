@@ -1,1 +1,1 @@
-npx serve -u web
+npx serve -u
