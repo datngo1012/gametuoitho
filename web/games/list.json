@@ -422,5 +422,21 @@
     "tags_en": ["Strategy", "Management", "Business", "Resort"],
     "developer": "Gameloft",
     "year": "2007"
+  },
+  {
+    "id": "GTA",
+    "filename": "gtavicecit_8jqppz3w.jar",
+    "name": "GTA Vice City - Cướp Đường Phố",
+    "name_en": "GTA Vice City",
+    "jadFile": null,
+    "settings": { "phone": "Nokia", "width": "240", "height": "320" },
+    "description": "Phiên bản di động của Grand Theft Auto: Vice City, nơi người chơi vào vai Tommy Vercetti trong thế giới tội phạm mở rộng của Vice City.",
+    "description_en": "Mobile version of Grand Theft Auto: Vice City, where players take on the role of Tommy Vercetti in the expansive criminal world of Vice City.",
+    "gameplay": "Thực hiện nhiệm vụ, lái xe, chiến đấu và khám phá thành phố mở với nhiều hoạt động và phương tiện khác nhau.",
+    "gameplay_en": "Complete missions, drive vehicles, fight enemies, and explore the open city with various activities and vehicles.",
+    "tags": ["Hành động", "Phiêu lưu", "Mở thế giới", "Tội phạm"],
+    "tags_en": ["Action", "Adventure", "Open World", "Crime"],
+    "developer": "Rockstar Games",
+    "year": "2007"
   }
 ]

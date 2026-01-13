@@ -676,19 +676,45 @@ function renderGames(games, container, isUploaded) {
             const gameInfoSection = document.createElement("div");
             gameInfoSection.className = "game-details";
             
-            // Description
+            // Helper function to truncate text to approximately 30 words
+            const truncateText = (text, maxWords = 30) => {
+                if (!text) return '';
+                const words = text.split(/\s+/);
+                if (words.length <= maxWords) return text;
+                return words.slice(0, maxWords).join(' ') + '...';
+            };
+            
+            // Description with tooltip
             if (localizedGame.gameInfo.description) {
                 const descElement = document.createElement("p");
                 descElement.className = "game-description";
-                descElement.textContent = localizedGame.gameInfo.description;
+                const fullDescription = localizedGame.gameInfo.description;
+                const shortDescription = truncateText(fullDescription, 30);
+                descElement.textContent = shortDescription;
+                
+                // Add tooltip if text was truncated
+                if (shortDescription !== fullDescription) {
+                    descElement.title = fullDescription;
+                    descElement.style.cursor = "help";
+                }
+                
                 gameInfoSection.appendChild(descElement);
             }
             
-            // Gameplay
+            // Gameplay with tooltip
             if (localizedGame.gameInfo.gameplay) {
                 const gameplayElement = document.createElement("p");
                 gameplayElement.className = "game-gameplay";
-                gameplayElement.innerHTML = `<strong>🎯 ${t('gameplayLabel')}:</strong> ${localizedGame.gameInfo.gameplay}`;
+                const fullGameplay = localizedGame.gameInfo.gameplay;
+                const shortGameplay = truncateText(fullGameplay, 30);
+                gameplayElement.innerHTML = `<strong>🎯 ${t('gameplayLabel')}:</strong> ${shortGameplay}`;
+                
+                // Add tooltip if text was truncated
+                if (shortGameplay !== fullGameplay) {
+                    gameplayElement.title = `${t('gameplayLabel')}: ${fullGameplay}`;
+                    gameplayElement.style.cursor = "help";
+                }
+                
                 gameInfoSection.appendChild(gameplayElement);
             }
             
